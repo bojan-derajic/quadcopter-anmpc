@@ -1,0 +1,140 @@
+# CompilerName=mingw64
+# Mode=optim
+ninja_required_version = 1.3
+
+# Basic folders
+root = .
+builddir = $root/build/win64
+matlabdir = C:/Program Files/Polyspace/R2020b
+startdir = C:/Users/Bojan Derajic/OneDrive/Master studije - Predmeti BG/Master rad/Adaptive NMPC
+
+# Toolchain information
+cc = C:\ProgramData\MATLAB\SupportPackages\R2020b_1\3P.instrset\mingw_w64.instrset\bin\gcc
+cxx = C:\ProgramData\MATLAB\SupportPackages\R2020b_1\3P.instrset\mingw_w64.instrset\bin\g++
+linker = C:\ProgramData\MATLAB\SupportPackages\R2020b_1\3P.instrset\mingw_w64.instrset\bin\gcc
+linkerxx = C:\ProgramData\MATLAB\SupportPackages\R2020b_1\3P.instrset\mingw_w64.instrset\bin\g++
+
+cflags =  -c -fexceptions -fno-omit-frame-pointer -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c99 -I "C:\Users\Bojan Derajic\OneDrive\Master studije - Predmeti BG\Master rad\Adaptive NMPC\codegen\mex\nlmpcmoveCodeGeneration" -I "C:\Users\Bojan Derajic\OneDrive\Master studije - Predmeti BG\Master rad\Adaptive NMPC" -I "C:\Users\Bojan Derajic\OneDrive\Master studije - Predmeti BG\Master rad\Adaptive NMPC\codegen\mex\nlmpcmoveCodeGeneration\interface" -I "C:\Program Files\Polyspace\R2020b\extern\include" -I "." -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=nmpc_move -D__USE_MINGW_ANSI_STDIO=1  
+
+cxxflags =  -c -fexceptions -fno-omit-frame-pointer -std=c++11 -m64 -DMATLAB_MEX_FILE  -DMATLAB_MEX_FILE -O2 -fwrapv -DNDEBUG -std=c++11 -I "C:\Users\Bojan Derajic\OneDrive\Master studije - Predmeti BG\Master rad\Adaptive NMPC\codegen\mex\nlmpcmoveCodeGeneration" -I "C:\Users\Bojan Derajic\OneDrive\Master studije - Predmeti BG\Master rad\Adaptive NMPC" -I "C:\Users\Bojan Derajic\OneDrive\Master studije - Predmeti BG\Master rad\Adaptive NMPC\codegen\mex\nlmpcmoveCodeGeneration\interface" -I "C:\Program Files\Polyspace\R2020b\extern\include" -I "." -DHAVE_LAPACK_CONFIG_H -DLAPACK_COMPLEX_STRUCTURE -DMW_HAVE_LAPACK_DECLS -DMODEL=nmpc_move -D__USE_MINGW_ANSI_STDIO=1  
+
+ldflags =  -m64 -Wl,--no-undefined -shared -static -L"C:\Program Files\Polyspace\R2020b\extern\lib\win64\mingw64" -llibmx -llibmex -llibmat -lm -llibmwlapack -llibmwblas -o "nmpc_move.mexw64" -L"$matlabdir\extern\lib\win64\mingw64" -llibmwblas -llibmwlapack -llibemlrt -llibcovrt -llibut -llibmwmathutil  -Wl,--version-script,nmpc_move.map
+
+# Build Rules
+rule cc
+    command = $cc $cflags $in -o $out
+
+rule cxx
+    command = $cxx $cxxflags $in -o $out
+
+rule link
+    command = $linker @$out.rsp $ldflags
+    rspfile = $out.rsp
+    rspfile_content = $in
+
+rule linkxx
+    command = $linkerxx $in $ldflags
+
+# Build
+build $builddir/nlmpcmoveCodeGeneration_data.o : cc $root/nlmpcmoveCodeGeneration_data.c
+build $builddir/rt_nonfinite.o : cc $root/rt_nonfinite.c
+build $builddir/nlmpcmoveCodeGeneration_initialize.o : cc $root/nlmpcmoveCodeGeneration_initialize.c
+build $builddir/nlmpcmoveCodeGeneration_terminate.o : cc $root/nlmpcmoveCodeGeneration_terminate.c
+build $builddir/znlmpc_generateRuntimeData.o : cc $root/znlmpc_generateRuntimeData.c
+build $builddir/znlmpc_getUBounds.o : cc $root/znlmpc_getUBounds.c
+build $builddir/indexShapeCheck.o : cc $root/indexShapeCheck.c
+build $builddir/reshapeSizeChecks.o : cc $root/reshapeSizeChecks.c
+build $builddir/mtimes.o : cc $root/mtimes.c
+build $builddir/eml_int_forloop_overflow_check.o : cc $root/eml_int_forloop_overflow_check.c
+build $builddir/fmincon.o : cc $root/fmincon.c
+build $builddir/checkLinearInputs.o : cc $root/checkLinearInputs.c
+build $builddir/all.o : cc $root/all.c
+build $builddir/checkNonlinearInputs.o : cc $root/checkNonlinearInputs.c
+build $builddir/nlmpcmoveCodeGeneration.o : cc $root/nlmpcmoveCodeGeneration.c
+build $builddir/znlmpc_getXUe.o : cc $root/znlmpc_getXUe.c
+build $builddir/znlmpc_confun.o : cc $root/znlmpc_confun.c
+build $builddir/state_fcn.o : cc $root/state_fcn.c
+build $builddir/state_jacob_fcn.o : cc $root/state_jacob_fcn.c
+build $builddir/factoryConstruct.o : cc $root/factoryConstruct.c
+build $builddir/znlmpc_objfun.o : cc $root/znlmpc_objfun.c
+build $builddir/checkVectorNonFinite.o : cc $root/checkVectorNonFinite.c
+build $builddir/computeConstrViolationIneq_.o : cc $root/computeConstrViolationIneq_.c
+build $builddir/ixamax.o : cc $root/ixamax.c
+build $builddir/computePrimalFeasError.o : cc $root/computePrimalFeasError.c
+build $builddir/computeDualFeasError.o : cc $root/computeDualFeasError.c
+build $builddir/computeComplError.o : cc $root/computeComplError.c
+build $builddir/isDeltaXTooSmall.o : cc $root/isDeltaXTooSmall.c
+build $builddir/xdot.o : cc $root/xdot.c
+build $builddir/xnrm2.o : cc $root/xnrm2.c
+build $builddir/xasum.o : cc $root/xasum.c
+build $builddir/_coder_nlmpcmoveCodeGeneration_api.o : cc $root/interface/_coder_nlmpcmoveCodeGeneration_api.c
+build $builddir/_coder_nlmpcmoveCodeGeneration_mex.o : cc $root/interface/_coder_nlmpcmoveCodeGeneration_mex.c
+build $builddir/xcopy.o : cc $root/xcopy.c
+build $builddir/evalObjAndConstrAndDerivatives.o : cc $root/evalObjAndConstrAndDerivatives.c
+build $builddir/computeConstraintsAndUserJacobian_.o : cc $root/computeConstraintsAndUserJacobian_.c
+build $builddir/computeLinearResiduals.o : cc $root/computeLinearResiduals.c
+build $builddir/updateWorkingSetForNewQP.o : cc $root/updateWorkingSetForNewQP.c
+build $builddir/initActiveSet.o : cc $root/initActiveSet.c
+build $builddir/setProblemType.o : cc $root/setProblemType.c
+build $builddir/modifyOverheadPhaseOne_.o : cc $root/modifyOverheadPhaseOne_.c
+build $builddir/driver.o : cc $root/driver.c
+build $builddir/test_exit.o : cc $root/test_exit.c
+build $builddir/computeGradLag.o : cc $root/computeGradLag.c
+build $builddir/computeLambdaLSQ.o : cc $root/computeLambdaLSQ.c
+build $builddir/factorQRE.o : cc $root/factorQRE.c
+build $builddir/xgeqp3.o : cc $root/xgeqp3.c
+build $builddir/computeQ_.o : cc $root/computeQ_.c
+build $builddir/xorgqr.o : cc $root/xorgqr.c
+build $builddir/xgemv.o : cc $root/xgemv.c
+build $builddir/xtrsv.o : cc $root/xtrsv.c
+build $builddir/sortLambdaQP.o : cc $root/sortLambdaQP.c
+build $builddir/saveJacobian.o : cc $root/saveJacobian.c
+build $builddir/saveState.o : cc $root/saveState.c
+build $builddir/addBoundToActiveSetMatrix_.o : cc $root/addBoundToActiveSetMatrix_.c
+build $builddir/step.o : cc $root/step.c
+build $builddir/normal.o : cc $root/normal.c
+build $builddir/driver1.o : cc $root/driver1.c
+build $builddir/PresolveWorkingSet.o : cc $root/PresolveWorkingSet.c
+build $builddir/RemoveDependentEq_.o : cc $root/RemoveDependentEq_.c
+build $builddir/ComputeNumDependentEq_.o : cc $root/ComputeNumDependentEq_.c
+build $builddir/IndexOfDependentEq_.o : cc $root/IndexOfDependentEq_.c
+build $builddir/countsort.o : cc $root/countsort.c
+build $builddir/moveConstraint_.o : cc $root/moveConstraint_.c
+build $builddir/feasibleX0ForWorkingSet.o : cc $root/feasibleX0ForWorkingSet.c
+build $builddir/xgeqrf.o : cc $root/xgeqrf.c
+build $builddir/xgemm.o : cc $root/xgemm.c
+build $builddir/xtrsm.o : cc $root/xtrsm.c
+build $builddir/factorQR.o : cc $root/factorQR.c
+build $builddir/xaxpy.o : cc $root/xaxpy.c
+build $builddir/maxConstraintViolation.o : cc $root/maxConstraintViolation.c
+build $builddir/removeAllIneqConstr.o : cc $root/removeAllIneqConstr.c
+build $builddir/phaseone.o : cc $root/phaseone.c
+build $builddir/computeFval.o : cc $root/computeFval.c
+build $builddir/linearForm_.o : cc $root/linearForm_.c
+build $builddir/iterate.o : cc $root/iterate.c
+build $builddir/computeGrad_StoreHx.o : cc $root/computeGrad_StoreHx.c
+build $builddir/computeFval_ReuseHx.o : cc $root/computeFval_ReuseHx.c
+build $builddir/squareQ_appendCol.o : cc $root/squareQ_appendCol.c
+build $builddir/xrot.o : cc $root/xrot.c
+build $builddir/compute_deltax.o : cc $root/compute_deltax.c
+build $builddir/factor.o : cc $root/factor.c
+build $builddir/xpotrf.o : cc $root/xpotrf.c
+build $builddir/solve.o : cc $root/solve.c
+build $builddir/xscal.o : cc $root/xscal.c
+build $builddir/compute_lambda.o : cc $root/compute_lambda.c
+build $builddir/feasibleratiotest.o : cc $root/feasibleratiotest.c
+build $builddir/checkStoppingAndUpdateFval.o : cc $root/checkStoppingAndUpdateFval.c
+build $builddir/addAeqConstr.o : cc $root/addAeqConstr.c
+build $builddir/relaxed.o : cc $root/relaxed.c
+build $builddir/updatePenaltyParam.o : cc $root/updatePenaltyParam.c
+build $builddir/soc.o : cc $root/soc.c
+build $builddir/evalObjAndConstr.o : cc $root/evalObjAndConstr.c
+build $builddir/linesearch.o : cc $root/linesearch.c
+build $builddir/revertSolution.o : cc $root/revertSolution.c
+build $builddir/computeDeltaLag.o : cc $root/computeDeltaLag.c
+build $builddir/BFGSUpdate.o : cc $root/BFGSUpdate.c
+build $builddir/_coder_nlmpcmoveCodeGeneration_info.o : cc $root/interface/_coder_nlmpcmoveCodeGeneration_info.c
+build $builddir/c_mexapi_version.o : cc $matlabdir/extern/version/c_mexapi_version.c
+
+# Link
+build $root\nmpc_move.mexw64 : link $builddir/nlmpcmoveCodeGeneration_data.o $builddir/rt_nonfinite.o $builddir/nlmpcmoveCodeGeneration_initialize.o $builddir/nlmpcmoveCodeGeneration_terminate.o $builddir/znlmpc_generateRuntimeData.o $builddir/znlmpc_getUBounds.o $builddir/indexShapeCheck.o $builddir/reshapeSizeChecks.o $builddir/mtimes.o $builddir/eml_int_forloop_overflow_check.o $builddir/fmincon.o $builddir/checkLinearInputs.o $builddir/all.o $builddir/checkNonlinearInputs.o $builddir/nlmpcmoveCodeGeneration.o $builddir/znlmpc_getXUe.o $builddir/znlmpc_confun.o $builddir/state_fcn.o $builddir/state_jacob_fcn.o $builddir/factoryConstruct.o $builddir/znlmpc_objfun.o $builddir/checkVectorNonFinite.o $builddir/computeConstrViolationIneq_.o $builddir/ixamax.o $builddir/computePrimalFeasError.o $builddir/computeDualFeasError.o $builddir/computeComplError.o $builddir/isDeltaXTooSmall.o $builddir/xdot.o $builddir/xnrm2.o $builddir/xasum.o $builddir/_coder_nlmpcmoveCodeGeneration_api.o $builddir/_coder_nlmpcmoveCodeGeneration_mex.o $builddir/xcopy.o $builddir/evalObjAndConstrAndDerivatives.o $builddir/computeConstraintsAndUserJacobian_.o $builddir/computeLinearResiduals.o $builddir/updateWorkingSetForNewQP.o $builddir/initActiveSet.o $builddir/setProblemType.o $builddir/modifyOverheadPhaseOne_.o $builddir/driver.o $builddir/test_exit.o $builddir/computeGradLag.o $builddir/computeLambdaLSQ.o $builddir/factorQRE.o $builddir/xgeqp3.o $builddir/computeQ_.o $builddir/xorgqr.o $builddir/xgemv.o $builddir/xtrsv.o $builddir/sortLambdaQP.o $builddir/saveJacobian.o $builddir/saveState.o $builddir/addBoundToActiveSetMatrix_.o $builddir/step.o $builddir/normal.o $builddir/driver1.o $builddir/PresolveWorkingSet.o $builddir/RemoveDependentEq_.o $builddir/ComputeNumDependentEq_.o $builddir/IndexOfDependentEq_.o $builddir/countsort.o $builddir/moveConstraint_.o $builddir/feasibleX0ForWorkingSet.o $builddir/xgeqrf.o $builddir/xgemm.o $builddir/xtrsm.o $builddir/factorQR.o $builddir/xaxpy.o $builddir/maxConstraintViolation.o $builddir/removeAllIneqConstr.o $builddir/phaseone.o $builddir/computeFval.o $builddir/linearForm_.o $builddir/iterate.o $builddir/computeGrad_StoreHx.o $builddir/computeFval_ReuseHx.o $builddir/squareQ_appendCol.o $builddir/xrot.o $builddir/compute_deltax.o $builddir/factor.o $builddir/xpotrf.o $builddir/solve.o $builddir/xscal.o $builddir/compute_lambda.o $builddir/feasibleratiotest.o $builddir/checkStoppingAndUpdateFval.o $builddir/addAeqConstr.o $builddir/relaxed.o $builddir/updatePenaltyParam.o $builddir/soc.o $builddir/evalObjAndConstr.o $builddir/linesearch.o $builddir/revertSolution.o $builddir/computeDeltaLag.o $builddir/BFGSUpdate.o $builddir/_coder_nlmpcmoveCodeGeneration_info.o $builddir/c_mexapi_version.o 
