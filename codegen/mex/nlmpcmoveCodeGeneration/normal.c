@@ -24,7 +24,7 @@ static emlrtRSInfo re_emlrtRSI = { 1,  /* lineNo */
 };
 
 static emlrtBCInfo lc_emlrtBCI = { 1,  /* iFirst */
-  240,                                 /* iLast */
+  180,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -35,7 +35,7 @@ static emlrtBCInfo lc_emlrtBCI = { 1,  /* iFirst */
 
 /* Function Definitions */
 void normal(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
-            real_T Hessian[103041], const real_T grad_data[], const int32_T
+            real_T Hessian[58081], const real_T grad_data[], const int32_T
             grad_size[1], g_struct_T *TrialState, k_struct_T *MeritFunction,
             d_struct_T *memspace, j_struct_T *WorkingSet, l_struct_T *QRManager,
             m_struct_T *CholManager, i_struct_T *QPObjective, const c_struct_T
@@ -65,7 +65,7 @@ void normal(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
     st.site = &re_emlrtRSI;
     penaltyParamTrial = MeritFunction->penaltyParam;
     constrViolationEq = 0.0;
-    for (k = 0; k < 240; k++) {
+    for (k = 0; k < 180; k++) {
       constrViolationEq += muDoubleScalarAbs(TrialState->cEq[k]);
     }
 
@@ -127,15 +127,15 @@ void normal(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   nonlinEqRemoved = (WorkingSet->mEqRemoved > 0);
   exitg1 = false;
   while ((!exitg1) && (WorkingSet->mEqRemoved > 0)) {
-    if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 240)) {
-      emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 240, &lc_emlrtBCI,
+    if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 180)) {
+      emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 180, &lc_emlrtBCI,
         sp);
     }
 
     k = WorkingSet->indexEqRemoved[WorkingSet->mEqRemoved - 1];
     if (k >= 1) {
-      if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 240)) {
-        emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 240,
+      if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 180)) {
+        emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 180,
           &lc_emlrtBCI, sp);
       }
 
@@ -149,7 +149,7 @@ void normal(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
 
   if (nonlinEqRemoved) {
     st.site = &re_emlrtRSI;
-    for (k = 0; k < 240; k++) {
+    for (k = 0; k < 180; k++) {
       WorkingSet->Wlocalidx.data[WorkingSet->sizes[0] + k] = k + 1;
     }
   }

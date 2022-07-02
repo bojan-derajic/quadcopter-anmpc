@@ -16,7 +16,7 @@ static emlrtRSInfo cb_emlrtRSI = { 109,/* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\eml\\eml\\+coder\\+internal\\reshapeSizeChecks.m"/* pathName */
 };
 
-static emlrtRTEInfo g_emlrtRTEI = { 58,/* lineNo */
+static emlrtRTEInfo d_emlrtRTEI = { 58,/* lineNo */
   23,                                  /* colNo */
   "assertValidSizeArg",                /* fName */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\eml\\eml\\+coder\\+internal\\assertValidSizeArg.m"/* pName */
@@ -30,7 +30,7 @@ void computeDimsData(const emlrtStack *sp, real_T varargin_1)
   st.tls = sp->tls;
   st.site = &cb_emlrtRSI;
   if ((varargin_1 != varargin_1) || muDoubleScalarIsInf(varargin_1)) {
-    emlrtErrorWithMessageIdR2018a(&st, &g_emlrtRTEI,
+    emlrtErrorWithMessageIdR2018a(&st, &d_emlrtRTEI,
       "Coder:MATLAB:NonIntegerInput", "Coder:MATLAB:NonIntegerInput", 4, 12,
       MIN_int32_T, 12, MAX_int32_T);
   }

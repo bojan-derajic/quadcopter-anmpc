@@ -58,7 +58,7 @@ static emlrtBCInfo tc_emlrtBCI = { -1, /* iFirst */
 };
 
 static emlrtBCInfo uc_emlrtBCI = { 1,  /* iFirst */
-  240,                                 /* iLast */
+  180,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -168,9 +168,9 @@ int32_T RemoveDependentEq_(const emlrtStack *sp, d_struct_T *memspace,
                   1], 1, i, &tc_emlrtBCI, &st);
               }
 
-              if ((workingset->mEqRemoved < 1) || (workingset->mEqRemoved > 240))
+              if ((workingset->mEqRemoved < 1) || (workingset->mEqRemoved > 180))
               {
-                emlrtDynamicBoundsCheckR2012b(workingset->mEqRemoved, 1, 240,
+                emlrtDynamicBoundsCheckR2012b(workingset->mEqRemoved, 1, 180,
                   &uc_emlrtBCI, &st);
               }
 
@@ -228,9 +228,9 @@ int32_T RemoveDependentEq_(const emlrtStack *sp, d_struct_T *memspace,
               }
 
               nVar = workingset->Wlocalidx.data[idx_col - 1];
-              if ((workingset->mEqRemoved < 1) || (workingset->mEqRemoved > 240))
+              if ((workingset->mEqRemoved < 1) || (workingset->mEqRemoved > 180))
               {
-                emlrtDynamicBoundsCheckR2012b(workingset->mEqRemoved, 1, 240,
+                emlrtDynamicBoundsCheckR2012b(workingset->mEqRemoved, 1, 180,
                   &uc_emlrtBCI, &st);
               }
 

@@ -39,7 +39,7 @@ static emlrtBCInfo je_emlrtBCI = { -1, /* iFirst */
 };
 
 static emlrtBCInfo ke_emlrtBCI = { 1,  /* iFirst */
-  321,                                 /* iLast */
+  241,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -49,7 +49,7 @@ static emlrtBCInfo ke_emlrtBCI = { 1,  /* iFirst */
 };
 
 static emlrtBCInfo le_emlrtBCI = { 1,  /* iFirst */
-  321,                                 /* iLast */
+  241,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -75,8 +75,8 @@ void linesearch(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   ptrdiff_t n_t;
   emlrtStack b_st;
   emlrtStack st;
-  real_T y_data[2323];
-  real_T b_TrialState[321];
+  real_T y_data[1743];
+  real_T b_TrialState[241];
   real_T constrViolationIneq;
   real_T phi_alpha;
   int32_T exitg1;
@@ -114,7 +114,7 @@ void linesearch(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
   do {
     exitg1 = 0;
-    if (TrialState->FunctionEvaluations < 32100) {
+    if (TrialState->FunctionEvaluations < 24100) {
       if ((*evalWellDefined) && (phi_alpha <= MeritFunction_phi + *alpha *
            0.0001 * MeritFunction_phiPrimePlus)) {
         exitg1 = 1;
@@ -158,8 +158,8 @@ void linesearch(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
         } else {
           st.site = &qh_emlrtRSI;
           for (loop_ub = 0; loop_ub < WorkingSet_nVar; loop_ub++) {
-            if ((loop_ub + 1 < 1) || (loop_ub + 1 > 321)) {
-              emlrtDynamicBoundsCheckR2012b(loop_ub + 1, 1, 321, &ke_emlrtBCI,
+            if ((loop_ub + 1 < 1) || (loop_ub + 1 > 241)) {
+              emlrtDynamicBoundsCheckR2012b(loop_ub + 1, 1, 241, &ke_emlrtBCI,
                 sp);
             }
 
@@ -169,8 +169,8 @@ void linesearch(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
                 &je_emlrtBCI, sp);
             }
 
-            if ((loop_ub + 1 < 1) || (loop_ub + 1 > 321)) {
-              emlrtDynamicBoundsCheckR2012b(loop_ub + 1, 1, 321, &le_emlrtBCI,
+            if ((loop_ub + 1 < 1) || (loop_ub + 1 > 241)) {
+              emlrtDynamicBoundsCheckR2012b(loop_ub + 1, 1, 241, &le_emlrtBCI,
                 sp);
             }
 
@@ -178,7 +178,7 @@ void linesearch(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
               TrialState->delta_x.data[loop_ub];
           }
 
-          memcpy(&b_TrialState[0], &TrialState->xstarsqp[0], 321U * sizeof
+          memcpy(&b_TrialState[0], &TrialState->xstarsqp[0], 241U * sizeof
                  (real_T));
           st.site = &qh_emlrtRSI;
           evalObjAndConstr(SD, &st, c_FcnEvaluator_objfun_tunableEn->x,
@@ -204,7 +204,7 @@ void linesearch(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
           st.site = &qh_emlrtRSI;
           if (*evalWellDefined) {
             phi_alpha = 0.0;
-            for (y_size_idx_0 = 0; y_size_idx_0 < 240; y_size_idx_0++) {
+            for (y_size_idx_0 = 0; y_size_idx_0 < 180; y_size_idx_0++) {
               phi_alpha += muDoubleScalarAbs(TrialState->cEq[y_size_idx_0]);
             }
 

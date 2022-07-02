@@ -47,7 +47,7 @@ void b_test_exit(const emlrtStack *sp, struct_T *Flags, d_struct_T *memspace,
                  fscales_lineq_constraint_size[1], const int32_T
                  fscales_cineq_constraint_size[1], j_struct_T *WorkingSet,
                  g_struct_T *TrialState, l_struct_T *QRManager, const real_T lb
-                 [321], const real_T ub[321])
+                 [241], const real_T ub[241])
 {
   ptrdiff_t incx_t;
   ptrdiff_t n_t;
@@ -78,7 +78,7 @@ void b_test_exit(const emlrtStack *sp, struct_T *Flags, d_struct_T *memspace,
   mLB = WorkingSet->sizes[3];
   mUB = WorkingSet->sizes[4];
   mLambda = (((WorkingSet->sizes[0] + WorkingSet->sizes[2]) + WorkingSet->sizes
-              [3]) + WorkingSet->sizes[4]) + 240;
+              [3]) + WorkingSet->sizes[4]) + 180;
   st.site = &id_emlrtRSI;
   computeGradLag(&st, TrialState->gradLag.data, TrialState->gradLag.size,
                  WorkingSet->ldA, WorkingSet->nVar, TrialState->grad.data,
@@ -141,7 +141,7 @@ void b_test_exit(const emlrtStack *sp, struct_T *Flags, d_struct_T *memspace,
       TrialState->cIneq.size, WorkingSet->indexLB.data, WorkingSet->indexLB.size,
       WorkingSet->sizes[3], lb, WorkingSet->indexUB.data, WorkingSet->sizes[4],
       ub, TrialState->lambdasqp.data, TrialState->lambdasqp.size,
-      WorkingSet->sizes[0] + 241);
+      WorkingSet->sizes[0] + 181);
     MeritFunction->firstOrderOpt = muDoubleScalarMax
       (MeritFunction->nlpDualFeasError, MeritFunction->nlpComplError);
     if (TrialState->sqpIterations > 1) {
@@ -230,9 +230,9 @@ void b_test_exit(const emlrtStack *sp, struct_T *Flags, d_struct_T *memspace,
                                  TrialState->lambda.data,
                                  TrialState->lambda.size,
                                  memspace->workspace_double.data);
-                nActiveConstr = mFixed + 239;
+                nActiveConstr = mFixed + 179;
                 st.site = &id_emlrtRSI;
-                if ((mFixed <= mFixed + 239) && (mFixed + 239 > 2147483646)) {
+                if ((mFixed <= mFixed + 179) && (mFixed + 179 > 2147483646)) {
                   b_st.site = &db_emlrtRSI;
                   check_forloop_overflow_error(&b_st);
                 }
@@ -307,7 +307,7 @@ void b_test_exit(const emlrtStack *sp, struct_T *Flags, d_struct_T *memspace,
             Flags->done = true;
             TrialState->sqpExitFlag = 0;
           } else {
-            if (TrialState->FunctionEvaluations >= 32100) {
+            if (TrialState->FunctionEvaluations >= 24100) {
               Flags->done = true;
               TrialState->sqpExitFlag = 0;
             }
@@ -321,7 +321,7 @@ void b_test_exit(const emlrtStack *sp, struct_T *Flags, d_struct_T *memspace,
 void test_exit(const emlrtStack *sp, k_struct_T *MeritFunction, const int32_T
                fscales_lineq_constraint_size[1], const int32_T
                fscales_cineq_constraint_size[1], const j_struct_T *WorkingSet,
-               g_struct_T *TrialState, const real_T lb[321], const real_T ub[321],
+               g_struct_T *TrialState, const real_T lb[241], const real_T ub[241],
                boolean_T *Flags_gradOK, boolean_T *Flags_fevalOK, boolean_T
                *Flags_done, boolean_T *Flags_stepAccepted, boolean_T
                *Flags_failedLineSearch, int32_T *Flags_stepType)
@@ -400,12 +400,12 @@ void test_exit(const emlrtStack *sp, k_struct_T *MeritFunction, const int32_T
                       WorkingSet->indexLB.size, WorkingSet->sizes[3], lb,
                       WorkingSet->indexUB.data, WorkingSet->sizes[4], ub,
                       TrialState->lambdasqp.data, TrialState->lambdasqp.size,
-                      WorkingSet->sizes[0] + 241);
+                      WorkingSet->sizes[0] + 181);
     MeritFunction->nlpComplError = 0.0;
     MeritFunction->firstOrderOpt = muDoubleScalarMax
       (MeritFunction->nlpDualFeasError, 0.0);
     c_xcopy((((WorkingSet->sizes[0] + WorkingSet->sizes[2]) + WorkingSet->sizes
-              [3]) + WorkingSet->sizes[4]) + 240, TrialState->lambdasqp.data,
+              [3]) + WorkingSet->sizes[4]) + 180, TrialState->lambdasqp.data,
             TrialState->lambdasqp_old.data);
     if (isFeasible && (MeritFunction->nlpDualFeasError <= 1.0E-6 *
                        optimRelativeFactor)) {

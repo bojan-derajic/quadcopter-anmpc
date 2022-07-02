@@ -72,7 +72,7 @@ static emlrtBCInfo jc_emlrtBCI = { -1, /* iFirst */
 };
 
 static emlrtBCInfo kc_emlrtBCI = { 1,  /* iFirst */
-  321,                                 /* iLast */
+  241,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -83,8 +83,8 @@ static emlrtBCInfo kc_emlrtBCI = { 1,  /* iFirst */
 
 /* Function Definitions */
 boolean_T step(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
-               int32_T *STEP_TYPE, real_T Hessian[103041], const real_T lb[321],
-               const real_T ub[321], g_struct_T *TrialState, k_struct_T
+               int32_T *STEP_TYPE, real_T Hessian[58081], const real_T lb[241],
+               const real_T ub[241], g_struct_T *TrialState, k_struct_T
                *MeritFunction, d_struct_T *memspace, j_struct_T *WorkingSet,
                l_struct_T *QRManager, m_struct_T *CholManager, i_struct_T
                *QPObjective, c_struct_T *qpoptions)
@@ -92,8 +92,8 @@ boolean_T step(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   emlrtStack b_st;
   emlrtStack c_st;
   emlrtStack st;
-  real_T tmp_data[2323];
-  real_T b_tmp_data[1282];
+  real_T tmp_data[1743];
+  real_T b_tmp_data[962];
   real_T nrmDirInf;
   real_T nrmGradInf;
   int32_T tmp_size[1];
@@ -335,7 +335,7 @@ boolean_T step(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
         st.site = &qe_emlrtRSI;
         nrmGradInf = 0.0;
         nrmDirInf = 1.0;
-        for (idx = 0; idx < 321; idx++) {
+        for (idx = 0; idx < 241; idx++) {
           nrmGradInf = muDoubleScalarMax(nrmGradInf, muDoubleScalarAbs
             (TrialState->grad.data[idx]));
           nrmDirInf = muDoubleScalarMax(nrmDirInf, muDoubleScalarAbs
@@ -344,14 +344,14 @@ boolean_T step(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
         nrmGradInf = muDoubleScalarMax(2.2204460492503131E-16, nrmGradInf /
           nrmDirInf);
-        for (loop_ub = 0; loop_ub < 321; loop_ub++) {
-          iH0 = 321 * loop_ub;
+        for (loop_ub = 0; loop_ub < 241; loop_ub++) {
+          iH0 = 241 * loop_ub;
           b_st.site = &lh_emlrtRSI;
           h_xcopy(&b_st, loop_ub, Hessian, iH0 + 1);
-          Hessian[loop_ub + 321 * loop_ub] = nrmGradInf;
+          Hessian[loop_ub + 241 * loop_ub] = nrmGradInf;
           iH0 += loop_ub;
           b_st.site = &lh_emlrtRSI;
-          h_xcopy(&b_st, 320 - loop_ub, Hessian, iH0 + 2);
+          h_xcopy(&b_st, 240 - loop_ub, Hessian, iH0 + 2);
         }
       }
     }
@@ -381,8 +381,8 @@ boolean_T step(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
       }
 
       if ((WorkingSet->indexLB.data[idx] < 1) || (WorkingSet->indexLB.data[idx] >
-           321)) {
-        emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 321,
+           241)) {
+        emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 241,
           &kc_emlrtBCI, &st);
       }
 
@@ -393,8 +393,8 @@ boolean_T step(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
       }
 
       if ((WorkingSet->indexLB.data[idx] < 1) || (WorkingSet->indexLB.data[idx] >
-           321)) {
-        emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 321,
+           241)) {
+        emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 241,
           &kc_emlrtBCI, &st);
       }
 

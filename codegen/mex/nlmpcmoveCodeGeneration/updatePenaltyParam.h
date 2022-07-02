@@ -20,7 +20,7 @@
 /* Function Declarations */
 void updatePenaltyParam(const emlrtStack *sp, k_struct_T *obj, real_T fval,
   const real_T ineq_workspace_data[], const int32_T ineq_workspace_size[1],
-  int32_T mIneq, const real_T eq_workspace[240], int32_T sqpiter, real_T qpval,
+  int32_T mIneq, const real_T eq_workspace[180], int32_T sqpiter, real_T qpval,
   const real_T x_data[], int32_T iReg0, int32_T nRegularized);
 
 /* End of code generation (updatePenaltyParam.h) */

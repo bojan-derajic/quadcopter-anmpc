@@ -58,7 +58,7 @@ static emlrtBCInfo ae_emlrtBCI = { -1, /* iFirst */
 };
 
 static emlrtBCInfo be_emlrtBCI = { 1,  /* iFirst */
-  321,                                 /* iLast */
+  241,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -89,7 +89,7 @@ static emlrtBCInfo de_emlrtBCI = { -1, /* iFirst */
 
 /* Function Definitions */
 void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
-             real_T Hessian[103041], const real_T grad_data[], const int32_T
+             real_T Hessian[58081], const real_T grad_data[], const int32_T
              grad_size[1], g_struct_T *TrialState, k_struct_T *MeritFunction,
              d_struct_T *memspace, j_struct_T *WorkingSet, l_struct_T *QRManager,
              m_struct_T *CholManager, i_struct_T *QPObjective, c_struct_T
@@ -132,11 +132,11 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   }
 
   for (idx = 0; idx < nVarOrig; idx++) {
-    if ((idx + 1 < 1) || (idx + 1 > 321)) {
-      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, 321, &be_emlrtBCI, sp);
+    if ((idx + 1 < 1) || (idx + 1 > 241)) {
+      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, 241, &be_emlrtBCI, sp);
     }
 
-    beta += Hessian[idx + 321 * idx];
+    beta += Hessian[idx + 241 * idx];
   }
 
   beta /= (real_T)WorkingSet->nVar;
@@ -166,7 +166,7 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   setProblemType(&st, WorkingSet, 2);
   st.site = &dh_emlrtRSI;
   b_mIneq = WorkingSet->sizes[2] - 1;
-  temp = (WorkingSet->sizes[3] - WorkingSet->sizes[2]) - 480;
+  temp = (WorkingSet->sizes[3] - WorkingSet->sizes[2]) - 360;
   b_st.site = &eh_emlrtRSI;
   c_xcopy(WorkingSet->sizes[2], WorkingSet->bineq.data,
           memspace->workspace_double.data);
@@ -197,13 +197,13 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   }
 
   b_st.site = &eh_emlrtRSI;
-  memcpy(&memspace->workspace_double.data[0], &WorkingSet->beq[0], 240U * sizeof
+  memcpy(&memspace->workspace_double.data[0], &WorkingSet->beq[0], 180U * sizeof
          (real_T));
   b_st.site = &eh_emlrtRSI;
   d_xgemv(nVarOrig, WorkingSet->Aeq.data, WorkingSet->ldA,
           TrialState->xstar.data, memspace->workspace_double.data);
   b_st.site = &eh_emlrtRSI;
-  for (idx = 0; idx < 240; idx++) {
+  for (idx = 0; idx < 180; idx++) {
     iIneqEnd = b_mIneq + idx;
     if (memspace->workspace_double.data[idx] <= 0.0) {
       i = TrialState->xstar.size[0];
@@ -214,7 +214,7 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
 
       TrialState->xstar.data[i1 - 1] = 0.0;
       i = TrialState->xstar.size[0];
-      i1 = (nVarOrig + iIneqEnd) + 242;
+      i1 = (nVarOrig + iIneqEnd) + 182;
       if ((i1 < 1) || (i1 > i)) {
         emlrtDynamicBoundsCheckR2012b(i1, 1, i, &ce_emlrtBCI, &st);
       }
@@ -226,7 +226,7 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
       if (memspace->workspace_double.data[idx] >= -1.0E-6) {
         b_st.site = &eh_emlrtRSI;
         c_st.site = &me_emlrtRSI;
-        addBoundToActiveSetMatrix_(&c_st, WorkingSet, 4, (temp + iIneqEnd) + 242);
+        addBoundToActiveSetMatrix_(&c_st, WorkingSet, 4, (temp + iIneqEnd) + 182);
       }
     } else {
       i = TrialState->xstar.size[0];
@@ -237,14 +237,14 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
 
       TrialState->xstar.data[i1 + 1] = memspace->workspace_double.data[idx];
       i = TrialState->xstar.size[0];
-      if ((i1 + 242 < 1) || (i1 + 242 > i)) {
-        emlrtDynamicBoundsCheckR2012b(i1 + 242, 1, i, &ce_emlrtBCI, &st);
+      if ((i1 + 182 < 1) || (i1 + 182 > i)) {
+        emlrtDynamicBoundsCheckR2012b(i1 + 182, 1, i, &ce_emlrtBCI, &st);
       }
 
-      TrialState->xstar.data[i1 + 241] = 0.0;
+      TrialState->xstar.data[i1 + 181] = 0.0;
       b_st.site = &eh_emlrtRSI;
       c_st.site = &me_emlrtRSI;
-      addBoundToActiveSetMatrix_(&c_st, WorkingSet, 4, (temp + iIneqEnd) + 242);
+      addBoundToActiveSetMatrix_(&c_st, WorkingSet, 4, (temp + iIneqEnd) + 182);
       if (memspace->workspace_double.data[idx] <= 1.0E-6) {
         b_st.site = &eh_emlrtRSI;
         c_st.site = &me_emlrtRSI;
@@ -265,12 +265,12 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   qpoptions->MaxIterations = temp;
   st.site = &dh_emlrtRSI;
   b_mIneq = WorkingSet->sizes[2] - 2;
-  temp = WorkingSet->sizes[3] - 480;
+  temp = WorkingSet->sizes[3] - 360;
   nActiveLBArtificial = 0;
   b_st.site = &fh_emlrtRSI;
   i = WorkingSet->isActiveConstr.size[0];
   i1 = WorkingSet->isActiveConstr.size[0];
-  for (idx = 0; idx < 240; idx++) {
+  for (idx = 0; idx < 180; idx++) {
     b_st.site = &fh_emlrtRSI;
     i2 = (WorkingSet->isActiveIdx[3] + temp) + idx;
     if ((i2 < 1) || (i2 > i)) {
@@ -279,13 +279,13 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
 
     tf = WorkingSet->isActiveConstr.data[i2 - 1];
     b_st.site = &fh_emlrtRSI;
-    if ((i2 + 240 < 1) || (i2 + 240 > i1)) {
-      emlrtDynamicBoundsCheckR2012b(i2 + 240, 1, i1, &hc_emlrtBCI, &b_st);
+    if ((i2 + 180 < 1) || (i2 + 180 > i1)) {
+      emlrtDynamicBoundsCheckR2012b(i2 + 180, 1, i1, &hc_emlrtBCI, &b_st);
     }
 
-    b_tf = WorkingSet->isActiveConstr.data[i2 + 239];
+    b_tf = WorkingSet->isActiveConstr.data[i2 + 179];
     memspace->workspace_int.data[idx] = tf;
-    memspace->workspace_int.data[idx + 240] = b_tf;
+    memspace->workspace_int.data[idx + 180] = b_tf;
     nActiveLBArtificial = (nActiveLBArtificial + tf) + b_tf;
   }
 
@@ -304,7 +304,7 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
     }
 
     tf = WorkingSet->isActiveConstr.data[i1 - 1];
-    memspace->workspace_int.data[idx + 480] = tf;
+    memspace->workspace_int.data[idx + 360] = tf;
     nActiveLBArtificial += tf;
   }
 
@@ -321,9 +321,9 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
                        - 1);
     temp = WorkingSet->isActiveIdx[1];
     st.site = &dh_emlrtRSI;
-    for (idx = 0; idx < 240; idx++) {
+    for (idx = 0; idx < 180; idx++) {
       if ((memspace->workspace_int.data[idx] != 0) &&
-          (memspace->workspace_int.data[idx + 240] != 0)) {
+          (memspace->workspace_int.data[idx + 180] != 0)) {
         tf = true;
       } else {
         tf = false;
@@ -366,8 +366,8 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
       if (WorkingSet->Wid.data[idx - 1] == 3) {
         i = memspace->workspace_int.size[0];
         i1 = WorkingSet->Wlocalidx.data[idx - 1];
-        if ((i1 + 480 < 1) || (i1 + 480 > i)) {
-          emlrtDynamicBoundsCheckR2012b(i1 + 480, 1, i, &ae_emlrtBCI, sp);
+        if ((i1 + 360 < 1) || (i1 + 360 > i)) {
+          emlrtDynamicBoundsCheckR2012b(i1 + 360, 1, i, &ae_emlrtBCI, sp);
         }
 
         i = TrialState->lambda.size[0];
@@ -381,16 +381,16 @@ void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
         }
 
         TrialState->lambda.data[idx - 1] *= (real_T)memspace->
-          workspace_int.data[i1 + 479];
+          workspace_int.data[i1 + 359];
       }
     }
   }
 
   st.site = &dh_emlrtRSI;
   temp = WorkingSet->sizes[0];
-  i = (WorkingSet->sizes[3] - WorkingSet->sizes[2]) - 480;
+  i = (WorkingSet->sizes[3] - WorkingSet->sizes[2]) - 360;
   idx = WorkingSet->nActiveConstr;
-  while ((idx > temp + 240) && (nActiveLBArtificial > 0)) {
+  while ((idx > temp + 180) && (nActiveLBArtificial > 0)) {
     i1 = WorkingSet->Wid.size[0];
     if ((idx < 1) || (idx > i1)) {
       emlrtDynamicBoundsCheckR2012b(idx, 1, i1, &de_emlrtBCI, &st);

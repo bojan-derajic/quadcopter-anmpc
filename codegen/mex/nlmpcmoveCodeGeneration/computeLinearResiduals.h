@@ -17,10 +17,10 @@
 #include <string.h>
 
 /* Function Declarations */
-void b_computeLinearResiduals(const real_T x[321], int32_T nVar, real_T
+void b_computeLinearResiduals(const real_T x[241], int32_T nVar, real_T
   workspaceIneq_data[], int32_T workspaceIneq_size[1], int32_T mLinIneq, const
   real_T AineqT_data[], const real_T bineq_data[], int32_T ldAi);
-void computeLinearResiduals(const real_T x[321], real_T workspaceIneq_data[],
+void computeLinearResiduals(const real_T x[241], real_T workspaceIneq_data[],
   int32_T workspaceIneq_size[1], int32_T mLinIneq, const real_T AineqT_data[],
   const real_T bineq_data[], int32_T ldAi);
 

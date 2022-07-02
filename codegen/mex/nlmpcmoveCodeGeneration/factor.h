@@ -18,7 +18,7 @@
 #include <string.h>
 
 /* Function Declarations */
-void factor(const emlrtStack *sp, m_struct_T *obj, const real_T A[103041],
+void factor(const emlrtStack *sp, m_struct_T *obj, const real_T A[58081],
             int32_T ndims, int32_T ldA);
 
 /* End of code generation (factor.h) */

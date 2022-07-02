@@ -46,8 +46,9 @@ u_nmpc = u0;
 W_data(:, :, k) = W0;
 Wf_data(:, :, k) = Wf0;
 
-REF = ref_traj('circ', T + Np*Ta, Ta);
+REF = ref_traj('lin', T + Np*Ta, Ta);
 
+hbar = waitbar(0,'Simulation Progress');
 tic
 for i = 1:T/Ts
     
@@ -101,7 +102,7 @@ for i = 1:T/Ts
         W = W + Ta*Wd;
         Wf = Wf + Ta*Wfd;
         
-        u = -W'*sigma
+        u = -W'*sigma;
         
         U(k, :) = u;
         U_nmpc(k, :) = u_nmpc;
@@ -110,15 +111,15 @@ for i = 1:T/Ts
         W_data(:, :, k+1) = W;
         Wf_data(:, :, k+1) = Wf;
         
-        [t, x] = ode45(@(t, x) quadcopter_model(x, u, t), 0:dt:Ta, x);
+        [t, x] = ode45(@(t, x) quadcopter_model(x, u, (k-1)*Ta), 0:dt:Ta, x);
     
         X(k+1, :) = x(end, :);
-        
         
         k = k + 1;
     end
     
+    waitbar(k*Ta/T,hbar);
 end
 toc
 
-plot_trajectory
+plot_trajectory;

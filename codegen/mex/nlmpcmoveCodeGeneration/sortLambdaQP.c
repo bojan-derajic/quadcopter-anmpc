@@ -51,7 +51,7 @@ void sortLambdaQP(const emlrtStack *sp, real_T lambda_data[], const int32_T
   st.tls = sp->tls;
   if (WorkingSet_nActiveConstr != 0) {
     mAll = (((WorkingSet_sizes[0] + WorkingSet_sizes[3]) + WorkingSet_sizes[4])
-            + WorkingSet_sizes[2]) + 240;
+            + WorkingSet_sizes[2]) + 180;
     n_t = (ptrdiff_t)mAll;
     incx_t = (ptrdiff_t)1;
     incy_t = (ptrdiff_t)1;

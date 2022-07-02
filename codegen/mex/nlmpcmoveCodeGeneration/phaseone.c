@@ -36,7 +36,7 @@ static emlrtBCInfo gd_emlrtBCI = { -1, /* iFirst */
 
 /* Function Definitions */
 void phaseone(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
-              real_T H[103041], const real_T f_data[], const int32_T f_size[1],
+              real_T H[58081], const real_T f_data[], const int32_T f_size[1],
               g_struct_T *solution, d_struct_T *memspace, j_struct_T *workingset,
               l_struct_T *qrmanager, m_struct_T *cholmanager, i_struct_T
               *objective, c_struct_T *options, const c_struct_T *runTimeOptions)
@@ -102,13 +102,13 @@ void phaseone(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
 
   if (workingset->isActiveConstr.data[i1 - 2]) {
     st.site = &wf_emlrtRSI;
-    if ((workingset->sizes[0] + 241 <= workingset->nActiveConstr) &&
+    if ((workingset->sizes[0] + 181 <= workingset->nActiveConstr) &&
         (workingset->nActiveConstr > 2147483646)) {
       b_st.site = &db_emlrtRSI;
       check_forloop_overflow_error(&b_st);
     }
 
-    PHASEONE = workingset->sizes[0] + 241;
+    PHASEONE = workingset->sizes[0] + 181;
     exitg1 = false;
     while ((!exitg1) && (PHASEONE <= workingset->nActiveConstr)) {
       i = workingset->Wid.size[0];
@@ -157,7 +157,7 @@ void phaseone(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   }
 
   PHASEONE = workingset->nActiveConstr;
-  mEqFixed = workingset->sizes[0] + 240;
+  mEqFixed = workingset->sizes[0] + 180;
   while ((PHASEONE > mEqFixed) && (PHASEONE > nVar)) {
     st.site = &wf_emlrtRSI;
     i = workingset->Wid.size[0];

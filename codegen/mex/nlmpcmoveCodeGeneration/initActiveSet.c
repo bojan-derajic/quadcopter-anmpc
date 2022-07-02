@@ -69,11 +69,11 @@ void initActiveSet(const emlrtStack *sp, j_struct_T *obj)
   }
 
   obj->nWConstr[0] = obj->sizes[0];
-  obj->nWConstr[1] = 240;
+  obj->nWConstr[1] = 180;
   obj->nWConstr[2] = 0;
   obj->nWConstr[3] = 0;
   obj->nWConstr[4] = 0;
-  obj->nActiveConstr = obj->nWConstr[0] + 240;
+  obj->nActiveConstr = obj->nWConstr[0] + 180;
   nWFixed = obj->sizes[0];
   st.site = &bd_emlrtRSI;
   if ((1 <= obj->sizes[0]) && (obj->sizes[0] > 2147483646)) {
@@ -132,7 +132,7 @@ void initActiveSet(const emlrtStack *sp, j_struct_T *obj)
   }
 
   st.site = &bd_emlrtRSI;
-  for (idx_local = 0; idx_local < 240; idx_local++) {
+  for (idx_local = 0; idx_local < 180; idx_local++) {
     idxFillStart = nWFixed + idx_local;
     obj->Wid.data[idxFillStart] = 2;
     obj->Wlocalidx.data[idxFillStart] = idx_local + 1;
@@ -141,7 +141,7 @@ void initActiveSet(const emlrtStack *sp, j_struct_T *obj)
     iATw0 = obj->ldA * idxFillStart;
     i = obj->nVar - 1;
     for (b_i = 0; b_i <= i; b_i++) {
-      i1 = obj->Aeq.size[0] * 240;
+      i1 = obj->Aeq.size[0] * 180;
       i2 = iAeq0 + b_i;
       if ((i2 < 1) || (i2 > i1)) {
         emlrtDynamicBoundsCheckR2012b(i2, 1, i1, &sb_emlrtBCI, sp);

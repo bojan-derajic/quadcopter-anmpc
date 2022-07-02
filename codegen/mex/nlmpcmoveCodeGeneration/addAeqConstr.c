@@ -30,7 +30,7 @@ static emlrtBCInfo xd_emlrtBCI = { -1, /* iFirst */
 };
 
 static emlrtBCInfo yd_emlrtBCI = { 1,  /* iFirst */
-  240,                                 /* iLast */
+  180,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -90,7 +90,7 @@ void addAeqConstr(const emlrtStack *sp, j_struct_T *obj, int32_T idx_local)
     }
 
     for (idx = 0; idx < b; idx++) {
-      i = obj->Aeq.size[0] * 240;
+      i = obj->Aeq.size[0] * 180;
       i1 = (iAeq0 + idx) + 1;
       if ((i1 < 1) || (i1 > i)) {
         emlrtDynamicBoundsCheckR2012b(i1, 1, i, &xd_emlrtBCI, sp);
@@ -105,8 +105,8 @@ void addAeqConstr(const emlrtStack *sp, j_struct_T *obj, int32_T idx_local)
       obj->ATwset.data[i2 - 1] = obj->Aeq.data[i1 - 1];
     }
 
-    if ((idx_local < 1) || (idx_local > 240)) {
-      emlrtDynamicBoundsCheckR2012b(idx_local, 1, 240, &yd_emlrtBCI, sp);
+    if ((idx_local < 1) || (idx_local > 180)) {
+      emlrtDynamicBoundsCheckR2012b(idx_local, 1, 180, &yd_emlrtBCI, sp);
     }
 
     i = obj->bwset.size[0];
@@ -149,7 +149,7 @@ void addAeqConstr(const emlrtStack *sp, j_struct_T *obj, int32_T idx_local)
     }
 
     for (idx = 0; idx < b; idx++) {
-      i = obj->Aeq.size[0] * 240;
+      i = obj->Aeq.size[0] * 180;
       i1 = (iAeq0 + idx) + 1;
       if ((i1 < 1) || (i1 > i)) {
         emlrtDynamicBoundsCheckR2012b(i1, 1, i, &xd_emlrtBCI, sp);
@@ -164,8 +164,8 @@ void addAeqConstr(const emlrtStack *sp, j_struct_T *obj, int32_T idx_local)
       obj->ATwset.data[i2 - 1] = obj->Aeq.data[i1 - 1];
     }
 
-    if ((idx_local < 1) || (idx_local > 240)) {
-      emlrtDynamicBoundsCheckR2012b(idx_local, 1, 240, &yd_emlrtBCI, sp);
+    if ((idx_local < 1) || (idx_local > 180)) {
+      emlrtDynamicBoundsCheckR2012b(idx_local, 1, 180, &yd_emlrtBCI, sp);
     }
 
     i = obj->bwset.size[0];

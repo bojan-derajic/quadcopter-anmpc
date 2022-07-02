@@ -88,7 +88,7 @@ void computeDeltaLag(const emlrtStack *sp, int32_T nVar, int32_T ldJ, int32_T
   beta1 = 1.0;
   TRANSA = 'N';
   m_t = (ptrdiff_t)nVar;
-  n_t = (ptrdiff_t)240;
+  n_t = (ptrdiff_t)180;
   lda_t = (ptrdiff_t)ldJ;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;
@@ -99,7 +99,7 @@ void computeDeltaLag(const emlrtStack *sp, int32_T nVar, int32_T ldJ, int32_T
   beta1 = 1.0;
   TRANSA = 'N';
   m_t = (ptrdiff_t)nVar;
-  n_t = (ptrdiff_t)240;
+  n_t = (ptrdiff_t)180;
   lda_t = (ptrdiff_t)ldJ;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;

@@ -18,8 +18,8 @@ static emlrtRSInfo nd_emlrtRSI = { 1,  /* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+fminconsqp\\+stopping\\isDeltaXTooSmall.p"/* pathName */
 };
 
-static emlrtBCInfo mb_emlrtBCI = { 1,  /* iFirst */
-  321,                                 /* iLast */
+static emlrtBCInfo u_emlrtBCI = { 1,   /* iFirst */
+  241,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -28,7 +28,7 @@ static emlrtBCInfo mb_emlrtBCI = { 1,  /* iFirst */
   0                                    /* checkKind */
 };
 
-static emlrtBCInfo nb_emlrtBCI = { -1, /* iFirst */
+static emlrtBCInfo v_emlrtBCI = { -1,  /* iFirst */
   -1,                                  /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
@@ -39,7 +39,7 @@ static emlrtBCInfo nb_emlrtBCI = { -1, /* iFirst */
 };
 
 /* Function Definitions */
-boolean_T isDeltaXTooSmall(const emlrtStack *sp, const real_T xCurrent[321],
+boolean_T isDeltaXTooSmall(const emlrtStack *sp, const real_T xCurrent[241],
   const real_T delta_x_data[], const int32_T delta_x_size[1], int32_T nVar)
 {
   emlrtStack b_st;
@@ -61,13 +61,12 @@ boolean_T isDeltaXTooSmall(const emlrtStack *sp, const real_T xCurrent[321],
   idx = 0;
   exitg1 = false;
   while ((!exitg1) && (idx <= nVar - 1)) {
-    if ((idx + 1 < 1) || (idx + 1 > 321)) {
-      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, 321, &mb_emlrtBCI, sp);
+    if ((idx + 1 < 1) || (idx + 1 > 241)) {
+      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, 241, &u_emlrtBCI, sp);
     }
 
     if ((idx + 1 < 1) || (idx + 1 > delta_x_size[0])) {
-      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, delta_x_size[0], &nb_emlrtBCI,
-        sp);
+      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, delta_x_size[0], &v_emlrtBCI, sp);
     }
 
     if (1.0E-6 * muDoubleScalarMax(1.0, muDoubleScalarAbs(xCurrent[idx])) <=

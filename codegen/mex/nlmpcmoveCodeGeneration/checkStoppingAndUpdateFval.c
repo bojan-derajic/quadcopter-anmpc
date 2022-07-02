@@ -44,7 +44,7 @@ void checkStoppingAndUpdateFval(c_nlmpcmoveCodeGenerationStackD *SD, const
 {
   emlrtStack b_st;
   emlrtStack st;
-  real_T tmp_data[2323];
+  real_T tmp_data[1743];
   real_T constrViolation_new;
   int32_T loop_ub;
   int32_T nVar;

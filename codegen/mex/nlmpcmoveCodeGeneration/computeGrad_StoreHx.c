@@ -33,7 +33,7 @@ static emlrtBCInfo od_emlrtBCI = { -1, /* iFirst */
 
 /* Function Definitions */
 void computeGrad_StoreHx(const emlrtStack *sp, i_struct_T *obj, const real_T H
-  [103041], const real_T f_data[], const real_T x_data[], const int32_T x_size[1])
+  [58081], const real_T f_data[], const real_T x_data[], const int32_T x_size[1])
 {
   emlrtStack b_st;
   emlrtStack st;

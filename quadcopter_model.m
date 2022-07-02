@@ -5,8 +5,8 @@ g = 9.81;
 cT = 1.51*1e-6;
 cM = 2.37*1e-8;
 Tm = 0.0;
-d = 0.14;
-m = 0.9;
+d = 0.16;
+m = 0.6;
 
 % JR = 1e-5;
 Jxx = 0.0024;
@@ -15,15 +15,14 @@ Jzz = 0.0043;
 J = diag([Jxx, Jyy, Jzz]);
 
 if t > 3
-    u = [1; 0.9; 1; 0.9].*u;
+    u = [1; 0.8; 1; 0.7].*u;
+elseif t > 7
+    u = [1; 1.2; 1.6; 1.7].*u;
 end
 
-if t > 7
-    u = [1; 1.2; 1; 1.2].*u;
-end
-
-if t > 15
-    m = 0.5;
+if t > 17
+    u = u + [0; -0.2; 0; 0.3];
+    m = 0.9;
 end
 
 
@@ -59,15 +58,10 @@ R = Rz*Ry*Rx;
 T = [1  tan(theta)*sin(phi)  tan(theta)*cos(phi)
      0       cos(phi)             -sin(phi)
      0  sin(phi)/cos(theta)  cos(phi)/cos(theta)];
-
+ 
 f(1:3) = v;
 f(4:6) = [0; 0; -g] + 1/m*R*B1*u;
 f(7:9) = T*omega;
 f(10:12) = J^(-1)*(-cross(omega, J*omega) + B2*u);
-
-if x(3) <= 0 && v(3) < 0
-    f(3) = 0;
-    f(6) = 0;
-end
 
 f = f';

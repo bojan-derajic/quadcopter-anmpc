@@ -17,7 +17,7 @@
 #include <string.h>
 
 /* Function Declarations */
-void znlmpc_getXUe(const real_T z[321], const real_T x[12], real_T X[252],
-                   real_T U[84], real_T *e);
+void znlmpc_getXUe(const real_T z[241], const real_T x[12], real_T X[192],
+                   real_T U[64], real_T *e);
 
 /* End of code generation (znlmpc_getXUe.h) */
