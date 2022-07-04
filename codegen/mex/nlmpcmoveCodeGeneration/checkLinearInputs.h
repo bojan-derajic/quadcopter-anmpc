@@ -19,8 +19,8 @@
 
 /* Function Declarations */
 void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
-  const real_T x0[321], const real_T Aineq_data[], const int32_T Aineq_size[2],
-  const real_T bineq_data[], const int32_T bineq_size[1], const real_T lb[321],
-  const real_T ub[321]);
+  const real_T x0[241], const real_T Aineq_data[], const int32_T Aineq_size[2],
+  const real_T bineq_data[], const int32_T bineq_size[1], const real_T lb[241],
+  const real_T ub[241]);
 
 /* End of code generation (checkLinearInputs.h) */

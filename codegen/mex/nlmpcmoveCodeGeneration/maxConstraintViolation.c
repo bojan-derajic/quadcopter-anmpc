@@ -71,24 +71,24 @@ real_T b_maxConstraintViolation(const emlrtStack *sp, j_struct_T *obj, const
       }
 
       for (idx = 0; idx < mIneq; idx++) {
-        obj->maxConstrWorkspace.data[idx] -= x_data[idx + 321];
+        obj->maxConstrWorkspace.data[idx] -= x_data[idx + 241];
         v = muDoubleScalarMax(v, obj->maxConstrWorkspace.data[idx]);
       }
     }
 
     b_st.site = &tf_emlrtRSI;
-    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 240U * sizeof(real_T));
+    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 180U * sizeof(real_T));
     b_st.site = &tf_emlrtRSI;
-    d_xgemv(321, obj->Aeq.data, obj->ldA, x_data, obj->maxConstrWorkspace.data);
+    d_xgemv(241, obj->Aeq.data, obj->ldA, x_data, obj->maxConstrWorkspace.data);
     b_st.site = &tf_emlrtRSI;
     i = x_size[0];
-    for (idx = 0; idx < 240; idx++) {
-      i1 = (mIneq + idx) + 322;
+    for (idx = 0; idx < 180; idx++) {
+      i1 = (mIneq + idx) + 242;
       if ((i1 < 1) || (i1 > i)) {
         emlrtDynamicBoundsCheckR2012b(i1, 1, i, &dd_emlrtBCI, &st);
       }
 
-      i2 = (obj->sizes[2] + idx) + 562;
+      i2 = (obj->sizes[2] + idx) + 422;
       if ((i2 < 1) || (i2 > i)) {
         emlrtDynamicBoundsCheckR2012b(i2, 1, i, &dd_emlrtBCI, &st);
       }
@@ -122,12 +122,12 @@ real_T b_maxConstraintViolation(const emlrtStack *sp, j_struct_T *obj, const
     }
 
     b_st.site = &uf_emlrtRSI;
-    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 240U * sizeof(real_T));
+    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 180U * sizeof(real_T));
     b_st.site = &uf_emlrtRSI;
     d_xgemv(obj->nVar, obj->Aeq.data, obj->ldA, x_data,
             obj->maxConstrWorkspace.data);
     b_st.site = &uf_emlrtRSI;
-    for (idx = 0; idx < 240; idx++) {
+    for (idx = 0; idx < 180; idx++) {
       v = muDoubleScalarMax(v, muDoubleScalarAbs(obj->
         maxConstrWorkspace.data[idx]));
     }
@@ -233,19 +233,19 @@ real_T maxConstraintViolation(const emlrtStack *sp, j_struct_T *obj, const
       }
 
       for (idx = 0; idx < mIneq; idx++) {
-        obj->maxConstrWorkspace.data[idx] -= x_data[idx + 321];
+        obj->maxConstrWorkspace.data[idx] -= x_data[idx + 241];
         v = muDoubleScalarMax(v, obj->maxConstrWorkspace.data[idx]);
       }
     }
 
     b_st.site = &tf_emlrtRSI;
-    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 240U * sizeof(real_T));
+    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 180U * sizeof(real_T));
     b_st.site = &tf_emlrtRSI;
-    d_xgemv(321, obj->Aeq.data, obj->ldA, x_data, obj->maxConstrWorkspace.data);
+    d_xgemv(241, obj->Aeq.data, obj->ldA, x_data, obj->maxConstrWorkspace.data);
     b_st.site = &tf_emlrtRSI;
-    for (idx = 0; idx < 240; idx++) {
+    for (idx = 0; idx < 180; idx++) {
       obj->maxConstrWorkspace.data[idx] = (obj->maxConstrWorkspace.data[idx] -
-        x_data[(mIneq + idx) + 321]) + x_data[(obj->sizes[2] + idx) + 561];
+        x_data[(mIneq + idx) + 241]) + x_data[(obj->sizes[2] + idx) + 421];
       v = muDoubleScalarMax(v, muDoubleScalarAbs(obj->
         maxConstrWorkspace.data[idx]));
     }
@@ -273,12 +273,12 @@ real_T maxConstraintViolation(const emlrtStack *sp, j_struct_T *obj, const
     }
 
     b_st.site = &uf_emlrtRSI;
-    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 240U * sizeof(real_T));
+    memcpy(&obj->maxConstrWorkspace.data[0], &obj->beq[0], 180U * sizeof(real_T));
     b_st.site = &uf_emlrtRSI;
     d_xgemv(obj->nVar, obj->Aeq.data, obj->ldA, x_data,
             obj->maxConstrWorkspace.data);
     b_st.site = &uf_emlrtRSI;
-    for (idx = 0; idx < 240; idx++) {
+    for (idx = 0; idx < 180; idx++) {
       v = muDoubleScalarMax(v, muDoubleScalarAbs(obj->
         maxConstrWorkspace.data[idx]));
     }

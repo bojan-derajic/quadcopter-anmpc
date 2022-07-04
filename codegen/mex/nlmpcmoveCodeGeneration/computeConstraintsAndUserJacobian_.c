@@ -33,7 +33,7 @@ static emlrtBCInfo ob_emlrtBCI = { -1, /* iFirst */
 };
 
 static emlrtBCInfo pb_emlrtBCI = { 1,  /* iFirst */
-  240,                                 /* iLast */
+  180,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -55,17 +55,17 @@ static emlrtBCInfo qb_emlrtBCI = { -1, /* iFirst */
 /* Function Definitions */
 int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
   const emlrtStack *sp, const real_T c_obj_nonlcon_tunableEnvironmen[12], const
-  real_T d_obj_nonlcon_tunableEnvironmen[80], const real_T
-  e_obj_nonlcon_tunableEnvironmen[80], int32_T obj_mCineq, const real_T x[321],
+  real_T d_obj_nonlcon_tunableEnvironmen[60], const real_T
+  e_obj_nonlcon_tunableEnvironmen[60], int32_T obj_mCineq, const real_T x[241],
   real_T Cineq_workspace_data[], const int32_T Cineq_workspace_size[1], int32_T
-  ineq0, real_T Ceq_workspace[240], real_T JacIneqTrans_workspace_data[], const
+  ineq0, real_T Ceq_workspace[180], real_T JacIneqTrans_workspace_data[], const
   int32_T JacIneqTrans_workspace_size[2], int32_T iJI_col, real_T
   JacEqTrans_workspace_data[], const int32_T JacEqTrans_workspace_size[2])
 {
   emlrtStack b_st;
   emlrtStack st;
-  real_T varargout_2[240];
-  real_T varargout_1_data[160];
+  real_T varargout_2[180];
+  real_T varargout_1_data[120];
   real_T b_x;
   int32_T varargout_1_size[2];
   int32_T varargout_3_size[2];
@@ -87,11 +87,11 @@ int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
     anon(SD, &b_st, c_obj_nonlcon_tunableEnvironmen,
          d_obj_nonlcon_tunableEnvironmen, e_obj_nonlcon_tunableEnvironmen, x,
          varargout_1_data, varargout_1_size, varargout_2,
-         SD->u3.f8.varargout_3_data, varargout_3_size, SD->u3.f8.varargout_4);
+         SD->u3.f7.varargout_3_data, varargout_3_size, SD->u3.f7.varargout_4);
     st.site = &tc_emlrtRSI;
     b_xcopy(obj_mCineq, varargout_1_data, Cineq_workspace_data, ineq0);
     st.site = &tc_emlrtRSI;
-    memcpy(&Ceq_workspace[0], &varargout_2[0], 240U * sizeof(real_T));
+    memcpy(&Ceq_workspace[0], &varargout_2[0], 180U * sizeof(real_T));
     col_end = varargout_3_size[0];
     st.site = &tc_emlrtRSI;
     for (col = 0; col < col_end; col++) {
@@ -120,14 +120,14 @@ int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
         }
 
         JacIneqTrans_workspace_data[col + JacIneqTrans_workspace_size[0] * (i1 -
-          1)] = SD->u3.f8.varargout_3_data[col + varargout_3_size[0] * idx_col];
+          1)] = SD->u3.f7.varargout_3_data[col + varargout_3_size[0] * idx_col];
       }
     }
 
-    for (col = 0; col < 321; col++) {
-      for (idx_col = 0; idx_col < 240; idx_col++) {
+    for (col = 0; col < 241; col++) {
+      for (idx_col = 0; idx_col < 180; idx_col++) {
         JacEqTrans_workspace_data[col + JacEqTrans_workspace_size[0] * idx_col] =
-          SD->u3.f8.varargout_4[col + 321 * idx_col];
+          SD->u3.f7.varargout_4[col + 241 * idx_col];
       }
     }
   } else {
@@ -136,13 +136,13 @@ int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
     anon(SD, &b_st, c_obj_nonlcon_tunableEnvironmen,
          d_obj_nonlcon_tunableEnvironmen, e_obj_nonlcon_tunableEnvironmen, x,
          varargout_1_data, varargout_1_size, varargout_2,
-         SD->u3.f8.varargout_3_data, varargout_3_size, SD->u3.f8.varargout_4);
+         SD->u3.f7.varargout_3_data, varargout_3_size, SD->u3.f7.varargout_4);
     st.site = &tc_emlrtRSI;
-    memcpy(&Ceq_workspace[0], &varargout_2[0], 240U * sizeof(real_T));
-    for (col = 0; col < 321; col++) {
-      for (idx_col = 0; idx_col < 240; idx_col++) {
+    memcpy(&Ceq_workspace[0], &varargout_2[0], 180U * sizeof(real_T));
+    for (col = 0; col < 241; col++) {
+      for (idx_col = 0; idx_col < 180; idx_col++) {
         JacEqTrans_workspace_data[col + JacEqTrans_workspace_size[0] * idx_col] =
-          SD->u3.f8.varargout_4[col + 321 * idx_col];
+          SD->u3.f7.varargout_4[col + 241 * idx_col];
       }
     }
   }
@@ -161,7 +161,7 @@ int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
       col_end = (iJI_col + obj_mCineq) - 1;
       while (allFinite && (col <= col_end)) {
         row = 1;
-        while (allFinite && (row <= 321)) {
+        while (allFinite && (row <= 241)) {
           i = JacIneqTrans_workspace_size[0];
           if (row > i) {
             emlrtDynamicBoundsCheckR2012b(row, 1, i, &ob_emlrtBCI, &st);
@@ -221,9 +221,9 @@ int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
         allFinite = true;
         row = -1;
         col = -1;
-        while (allFinite && (col + 2 <= 240)) {
+        while (allFinite && (col + 2 <= 180)) {
           row = -1;
-          while (allFinite && (row + 2 <= 321)) {
+          while (allFinite && (row + 2 <= 241)) {
             b_x = JacEqTrans_workspace_data[(row + JacEqTrans_workspace_size[0] *
               (col + 1)) + 1];
             allFinite = ((!muDoubleScalarIsInf(b_x)) && (!muDoubleScalarIsNaN
@@ -240,8 +240,8 @@ int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
             emlrtDynamicBoundsCheckR2012b(row + 1, 1, i, &ob_emlrtBCI, &st);
           }
 
-          if ((col + 1 < 1) || (col + 1 > 240)) {
-            emlrtDynamicBoundsCheckR2012b(col + 1, 1, 240, &pb_emlrtBCI, &st);
+          if ((col + 1 < 1) || (col + 1 > 180)) {
+            emlrtDynamicBoundsCheckR2012b(col + 1, 1, 180, &pb_emlrtBCI, &st);
           }
 
           b_x = JacEqTrans_workspace_data[row + JacEqTrans_workspace_size[0] *

@@ -18,13 +18,13 @@
 #include <string.h>
 
 /* Function Declarations */
-void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[321],
+void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
   j_struct_T *WorkingSet, int32_T mIneq, int32_T mNonlinIneq, const real_T
-  cIneq_data[], const int32_T cIneq_size[1], const real_T cEq[240], int32_T mLB,
-  const real_T lb[321], int32_T mUB, const real_T ub[321], int32_T mFixed);
-void updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[321],
+  cIneq_data[], const int32_T cIneq_size[1], const real_T cEq[180], int32_T mLB,
+  const real_T lb[241], int32_T mUB, const real_T ub[241], int32_T mFixed);
+void updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
   j_struct_T *WorkingSet, int32_T mIneq, const real_T cIneq_data[], const
-  int32_T cIneq_size[1], const real_T cEq[240], int32_T mLB, const real_T lb[321],
-  int32_T mUB, const real_T ub[321], int32_T mFixed);
+  int32_T cIneq_size[1], const real_T cEq[180], int32_T mLB, const real_T lb[241],
+  int32_T mUB, const real_T ub[241], int32_T mFixed);
 
 /* End of code generation (updateWorkingSetForNewQP.h) */

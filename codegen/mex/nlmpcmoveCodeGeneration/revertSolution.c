@@ -19,11 +19,11 @@ void revertSolution(g_struct_T *obj)
   ptrdiff_t incx_t;
   ptrdiff_t incy_t;
   ptrdiff_t n_t;
-  real_T y_data[2323];
+  real_T y_data[1743];
   int32_T loop_ub;
   int32_T y_size_idx_0;
   obj->sqpFval = obj->sqpFval_old;
-  memcpy(&obj->xstarsqp[0], &obj->xstarsqp_old[0], 321U * sizeof(real_T));
+  memcpy(&obj->xstarsqp[0], &obj->xstarsqp_old[0], 241U * sizeof(real_T));
   y_size_idx_0 = obj->cIneq.size[0];
   loop_ub = obj->cIneq.size[0];
   if (0 <= loop_ub - 1) {
@@ -42,7 +42,7 @@ void revertSolution(g_struct_T *obj)
     memcpy(&obj->cIneq.data[0], &y_data[0], y_size_idx_0 * sizeof(real_T));
   }
 
-  memcpy(&obj->cEq[0], &obj->cEq_old[0], 240U * sizeof(real_T));
+  memcpy(&obj->cEq[0], &obj->cEq_old[0], 180U * sizeof(real_T));
 }
 
 /* End of code generation (revertSolution.c) */

@@ -54,7 +54,7 @@ boolean_T feasibleX0ForWorkingSet(c_nlmpcmoveCodeGenerationStackD *SD, const
   emlrtStack c_st;
   emlrtStack d_st;
   emlrtStack st;
-  real_T tmp_data[2323];
+  real_T tmp_data[1743];
   real_T constrViolation_minnormX;
   real_T v;
   int32_T exitg1;
@@ -257,7 +257,7 @@ boolean_T feasibleX0ForWorkingSet(c_nlmpcmoveCodeGenerationStackD *SD, const
             c_xcopy(workingset->sizes[2], workingset->bineq.data,
                     workingset->maxConstrWorkspace.data);
             c_st.site = &tf_emlrtRSI;
-            f_xgemv(321, workingset->sizes[2], workingset->Aineq.data,
+            f_xgemv(241, workingset->sizes[2], workingset->Aineq.data,
                     workingset->ldA, workspace_data, workspace_size[0] + 1,
                     workingset->maxConstrWorkspace.data);
             c_st.site = &tf_emlrtRSI;
@@ -269,23 +269,23 @@ boolean_T feasibleX0ForWorkingSet(c_nlmpcmoveCodeGenerationStackD *SD, const
 
             for (idx = 0; idx < mWConstr; idx++) {
               workingset->maxConstrWorkspace.data[idx] -= workspace_data
-                [(idx_row + idx) + 321];
+                [(idx_row + idx) + 241];
               v = muDoubleScalarMax(v, workingset->maxConstrWorkspace.data[idx]);
             }
           }
 
           c_st.site = &tf_emlrtRSI;
           memcpy(&workingset->maxConstrWorkspace.data[0], &workingset->beq[0],
-                 240U * sizeof(real_T));
+                 180U * sizeof(real_T));
           c_st.site = &tf_emlrtRSI;
-          g_xgemv(321, workingset->Aeq.data, workingset->ldA, workspace_data,
+          g_xgemv(241, workingset->Aeq.data, workingset->ldA, workspace_data,
                   workspace_size[0] + 1, workingset->maxConstrWorkspace.data);
           c_st.site = &tf_emlrtRSI;
-          for (idx = 0; idx < 240; idx++) {
+          for (idx = 0; idx < 180; idx++) {
             workingset->maxConstrWorkspace.data[idx] =
               (workingset->maxConstrWorkspace.data[idx] - workspace_data
-               [((idx_row + mWConstr) + idx) + 321]) + workspace_data[((idx_row
-              + workingset->sizes[2]) + idx) + 561];
+               [((idx_row + mWConstr) + idx) + 241]) + workspace_data[((idx_row
+              + workingset->sizes[2]) + idx) + 421];
             v = muDoubleScalarMax(v, muDoubleScalarAbs
                                   (workingset->maxConstrWorkspace.data[idx]));
           }
@@ -318,13 +318,13 @@ boolean_T feasibleX0ForWorkingSet(c_nlmpcmoveCodeGenerationStackD *SD, const
 
           c_st.site = &uf_emlrtRSI;
           memcpy(&workingset->maxConstrWorkspace.data[0], &workingset->beq[0],
-                 240U * sizeof(real_T));
+                 180U * sizeof(real_T));
           c_st.site = &uf_emlrtRSI;
           g_xgemv(workingset->nVar, workingset->Aeq.data, workingset->ldA,
                   workspace_data, workspace_size[0] + 1,
                   workingset->maxConstrWorkspace.data);
           c_st.site = &uf_emlrtRSI;
-          for (idx = 0; idx < 240; idx++) {
+          for (idx = 0; idx < 180; idx++) {
             v = muDoubleScalarMax(v, muDoubleScalarAbs
                                   (workingset->maxConstrWorkspace.data[idx]));
           }

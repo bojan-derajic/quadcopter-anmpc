@@ -69,5 +69,6 @@ f(1:3) = v;
 f(4:6) = [0; 0; -g] + 1/m*R*B1*u;
 f(7:9) = T*omega;
 f(10:12) = J^(-1)*(-cross(omega, J*omega) + B2*u);
+f(13:16) = -1/Tm*uT + 1/Tm*u;
 
 f = f';

@@ -12,8 +12,8 @@
 #include "mwmathutil.h"
 
 /* Variable Definitions */
-static emlrtBCInfo fb_emlrtBCI = { 1,  /* iFirst */
-  240,                                 /* iLast */
+static emlrtBCInfo n_emlrtBCI = { 1,   /* iFirst */
+  180,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -23,7 +23,7 @@ static emlrtBCInfo fb_emlrtBCI = { 1,  /* iFirst */
 };
 
 /* Function Definitions */
-int32_T b_checkVectorNonFinite(const emlrtStack *sp, const real_T vec[240])
+int32_T b_checkVectorNonFinite(const emlrtStack *sp, const real_T vec[180])
 {
   real_T d;
   int32_T idx_current;
@@ -32,15 +32,15 @@ int32_T b_checkVectorNonFinite(const emlrtStack *sp, const real_T vec[240])
   status = 1;
   allFinite = true;
   idx_current = 0;
-  while (allFinite && (idx_current + 1 <= 240)) {
+  while (allFinite && (idx_current + 1 <= 180)) {
     allFinite = ((!muDoubleScalarIsInf(vec[idx_current])) &&
                  (!muDoubleScalarIsNaN(vec[idx_current])));
     idx_current++;
   }
 
   if (!allFinite) {
-    if ((idx_current < 1) || (idx_current > 240)) {
-      emlrtDynamicBoundsCheckR2012b(idx_current, 1, 240, &fb_emlrtBCI, sp);
+    if ((idx_current < 1) || (idx_current > 180)) {
+      emlrtDynamicBoundsCheckR2012b(idx_current, 1, 180, &n_emlrtBCI, sp);
     }
 
     d = vec[idx_current - 1];
@@ -70,8 +70,8 @@ int32_T checkVectorNonFinite(const emlrtStack *sp, int32_T N, const real_T
   idx_end = (iv0 + N) - 1;
   while (allFinite && (idx_current + 1 <= idx_end)) {
     if ((idx_current + 1 < 1) || (idx_current + 1 > vec_size[0])) {
-      emlrtDynamicBoundsCheckR2012b(idx_current + 1, 1, vec_size[0],
-        &eb_emlrtBCI, sp);
+      emlrtDynamicBoundsCheckR2012b(idx_current + 1, 1, vec_size[0], &m_emlrtBCI,
+        sp);
     }
 
     allFinite = ((!muDoubleScalarIsInf(vec_data[idx_current])) &&
@@ -81,8 +81,7 @@ int32_T checkVectorNonFinite(const emlrtStack *sp, int32_T N, const real_T
 
   if (!allFinite) {
     if ((idx_current < 1) || (idx_current > vec_size[0])) {
-      emlrtDynamicBoundsCheckR2012b(idx_current, 1, vec_size[0], &eb_emlrtBCI,
-        sp);
+      emlrtDynamicBoundsCheckR2012b(idx_current, 1, vec_size[0], &m_emlrtBCI, sp);
     }
 
     d = vec_data[idx_current - 1];
@@ -90,7 +89,7 @@ int32_T checkVectorNonFinite(const emlrtStack *sp, int32_T N, const real_T
       status = -3;
     } else {
       if (idx_current > vec_size[0]) {
-        emlrtDynamicBoundsCheckR2012b(idx_current, 1, vec_size[0], &eb_emlrtBCI,
+        emlrtDynamicBoundsCheckR2012b(idx_current, 1, vec_size[0], &m_emlrtBCI,
           sp);
       }
 

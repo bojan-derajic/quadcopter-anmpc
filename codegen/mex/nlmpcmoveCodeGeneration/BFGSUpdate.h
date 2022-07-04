@@ -17,7 +17,7 @@
 #include <string.h>
 
 /* Function Declarations */
-boolean_T BFGSUpdate(int32_T nvar, real_T Bk[103041], const real_T sk_data[],
+boolean_T BFGSUpdate(int32_T nvar, real_T Bk[58081], const real_T sk_data[],
                      real_T yk_data[], real_T workspace_data[]);
 
 /* End of code generation (BFGSUpdate.h) */

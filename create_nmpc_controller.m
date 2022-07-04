@@ -8,9 +8,9 @@ nu = 4;
 
 NMPC = nlmpc(nx, ny, nu);
 
-Ts = 0.1;
-Np = 20;
-Nc = 20;
+Ts = 0.2;
+Np = 15;
+Nc = 15;
 
 NMPC.Ts = Ts;
 NMPC.PredictionHorizon = Np;
@@ -36,10 +36,10 @@ NMPC.Weights.ManipulatedVariables = [1, 1, 1, 1];
 
 NMPC.Weights.ManipulatedVariablesRate = [0, 0, 0, 0];
 
-NMPC.Weights.OutputVariables = [0.8, 0.8, 4, 0.5];
+NMPC.Weights.OutputVariables = [1, 1, 3, 5];
 
 NMPC.Optimization.UseSuboptimalSolution = true;
-NMPC.Optimization.SolverOptions.MaxIterations = 100;
+NMPC.Optimization.SolverOptions.MaxIterations = 200;
 
 x0 = zeros(12, 1);
 u0 = zeros(4, 1);

@@ -25,7 +25,7 @@ void e_xcopy(const emlrtStack *sp, int32_T n, real_T y_data[]);
 void f_xcopy(int32_T n, const real_T x_data[], int32_T ix0, real_T y_data[],
              int32_T iy0);
 void g_xcopy(int32_T n, const real_T x_data[], int32_T ix0, real_T y_data[]);
-void h_xcopy(const emlrtStack *sp, int32_T n, real_T y[103041], int32_T iy0);
-void xcopy(const emlrtStack *sp, int32_T n, const real_T x[321], real_T y_data[]);
+void h_xcopy(const emlrtStack *sp, int32_T n, real_T y[58081], int32_T iy0);
+void xcopy(const emlrtStack *sp, int32_T n, const real_T x[241], real_T y_data[]);
 
 /* End of code generation (xcopy.h) */

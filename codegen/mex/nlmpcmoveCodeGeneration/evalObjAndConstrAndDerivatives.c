@@ -33,17 +33,17 @@ static emlrtRSInfo sc_emlrtRSI = { 1,  /* lineNo */
 void evalObjAndConstrAndDerivatives(c_nlmpcmoveCodeGenerationStackD *SD, const
   emlrtStack *sp, const real_T c_obj_objfun_tunableEnvironment[12], const real_T
   d_obj_objfun_tunableEnvironment[4], const real_T
-  e_obj_objfun_tunableEnvironment[80], const real_T
-  f_obj_objfun_tunableEnvironment[80], const real_T
-  g_obj_objfun_tunableEnvironment[80], const real_T
-  h_obj_objfun_tunableEnvironment[80], const real_T
-  i_obj_objfun_tunableEnvironment[80], const real_T
+  e_obj_objfun_tunableEnvironment[60], const real_T
+  f_obj_objfun_tunableEnvironment[60], const real_T
+  g_obj_objfun_tunableEnvironment[60], const real_T
+  h_obj_objfun_tunableEnvironment[60], const real_T
+  i_obj_objfun_tunableEnvironment[60], const real_T
   c_obj_nonlcon_tunableEnvironmen[12], const real_T
-  d_obj_nonlcon_tunableEnvironmen[80], const real_T
-  e_obj_nonlcon_tunableEnvironmen[80], int32_T obj_mCineq, const real_T x[321],
+  d_obj_nonlcon_tunableEnvironmen[60], const real_T
+  e_obj_nonlcon_tunableEnvironmen[60], int32_T obj_mCineq, const real_T x[241],
   real_T grad_workspace_data[], const int32_T grad_workspace_size[1], real_T
   Cineq_workspace_data[], const int32_T Cineq_workspace_size[1], int32_T ineq0,
-  real_T Ceq_workspace[240], real_T JacIneqTrans_workspace_data[], const int32_T
+  real_T Ceq_workspace[180], real_T JacIneqTrans_workspace_data[], const int32_T
   JacIneqTrans_workspace_size[2], int32_T iJI_col, real_T
   JacEqTrans_workspace_data[], const int32_T JacEqTrans_workspace_size[2],
   real_T *fval, int32_T *status)
@@ -53,12 +53,12 @@ void evalObjAndConstrAndDerivatives(c_nlmpcmoveCodeGenerationStackD *SD, const
   emlrtStack d_st;
   emlrtStack e_st;
   emlrtStack st;
-  real_T b_gfX[321];
-  real_T X[252];
-  real_T gfX[240];
-  real_T U[84];
-  real_T gfU[80];
-  real_T y[80];
+  real_T b_gfX[241];
+  real_T X[192];
+  real_T gfX[180];
+  real_T U[64];
+  real_T gfU[60];
+  real_T y[60];
   real_T e;
   real_T gfE;
   int32_T i;
@@ -88,11 +88,11 @@ void evalObjAndConstrAndDerivatives(c_nlmpcmoveCodeGenerationStackD *SD, const
                      i_obj_objfun_tunableEnvironment, X, U, e, fval, gfX, gfU,
                      &gfE);
   c_mtimes(dv, gfU, y);
-  memcpy(&b_gfX[0], &gfX[0], 240U * sizeof(real_T));
-  memcpy(&b_gfX[240], &y[0], 80U * sizeof(real_T));
-  b_gfX[320] = gfE;
+  memcpy(&b_gfX[0], &gfX[0], 180U * sizeof(real_T));
+  memcpy(&b_gfX[180], &y[0], 60U * sizeof(real_T));
+  b_gfX[240] = gfE;
   b_st.site = &jc_emlrtRSI;
-  xcopy(&b_st, 321, b_gfX, grad_workspace_data);
+  xcopy(&b_st, 241, b_gfX, grad_workspace_data);
   *status = 1;
   if (muDoubleScalarIsInf(*fval) || muDoubleScalarIsNaN(*fval)) {
     if (muDoubleScalarIsNaN(*fval)) {
@@ -106,7 +106,7 @@ void evalObjAndConstrAndDerivatives(c_nlmpcmoveCodeGenerationStackD *SD, const
     b_st.site = &jc_emlrtRSI;
     allFinite = true;
     idx_current = 0;
-    while (allFinite && (idx_current + 1 <= 321)) {
+    while (allFinite && (idx_current + 1 <= 241)) {
       allFinite = ((!muDoubleScalarIsInf(grad_workspace_data[idx_current])) && (
         !muDoubleScalarIsNaN(grad_workspace_data[idx_current])));
       idx_current++;
@@ -115,7 +115,7 @@ void evalObjAndConstrAndDerivatives(c_nlmpcmoveCodeGenerationStackD *SD, const
     if (!allFinite) {
       i = grad_workspace_size[0];
       if ((idx_current < 1) || (idx_current > i)) {
-        emlrtDynamicBoundsCheckR2012b(idx_current, 1, i, &eb_emlrtBCI, &b_st);
+        emlrtDynamicBoundsCheckR2012b(idx_current, 1, i, &m_emlrtBCI, &b_st);
       }
 
       e = grad_workspace_data[idx_current - 1];

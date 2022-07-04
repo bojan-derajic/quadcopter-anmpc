@@ -19,11 +19,11 @@ void saveState(g_struct_T *obj)
   ptrdiff_t incx_t;
   ptrdiff_t incy_t;
   ptrdiff_t n_t;
-  real_T y_data[2323];
+  real_T y_data[1743];
   int32_T k;
   int32_T loop_ub;
   obj->sqpFval_old = obj->sqpFval;
-  for (k = 0; k < 321; k++) {
+  for (k = 0; k < 241; k++) {
     obj->xstarsqp_old[k] = obj->xstarsqp[k];
     obj->grad_old.data[k] = obj->grad.data[k];
   }
@@ -46,7 +46,7 @@ void saveState(g_struct_T *obj)
     memcpy(&obj->cIneq_old.data[0], &y_data[0], k * sizeof(real_T));
   }
 
-  memcpy(&obj->cEq_old[0], &obj->cEq[0], 240U * sizeof(real_T));
+  memcpy(&obj->cEq_old[0], &obj->cEq[0], 180U * sizeof(real_T));
 }
 
 /* End of code generation (saveState.c) */

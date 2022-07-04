@@ -18,7 +18,7 @@ static emlrtRSInfo kd_emlrtRSI = { 1,  /* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+fminconsqp\\+stopping\\computePrimalFeasError.p"/* pathName */
 };
 
-static emlrtBCInfo hb_emlrtBCI = { -1, /* iFirst */
+static emlrtBCInfo p_emlrtBCI = { -1,  /* iFirst */
   -1,                                  /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
@@ -28,8 +28,8 @@ static emlrtBCInfo hb_emlrtBCI = { -1, /* iFirst */
   0                                    /* checkKind */
 };
 
-static emlrtBCInfo ib_emlrtBCI = { 1,  /* iFirst */
-  321,                                 /* iLast */
+static emlrtBCInfo q_emlrtBCI = { 1,   /* iFirst */
+  241,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -39,11 +39,11 @@ static emlrtBCInfo ib_emlrtBCI = { 1,  /* iFirst */
 };
 
 /* Function Definitions */
-real_T computePrimalFeasError(const emlrtStack *sp, const real_T x[321], int32_T
+real_T computePrimalFeasError(const emlrtStack *sp, const real_T x[241], int32_T
   mLinIneq, int32_T mNonlinIneq, const real_T cIneq_data[], const int32_T
-  cIneq_size[1], const real_T cEq[240], const int32_T finiteLB_data[], const
-  int32_T finiteLB_size[1], int32_T mLB, const real_T lb[321], const int32_T
-  finiteUB_data[], int32_T mUB, const real_T ub[321])
+  cIneq_size[1], const real_T cEq[180], const int32_T finiteLB_data[], const
+  int32_T finiteLB_size[1], int32_T mLB, const real_T lb[241], const int32_T
+  finiteUB_data[], int32_T mUB, const real_T ub[241])
 {
   emlrtStack b_st;
   emlrtStack st;
@@ -57,7 +57,7 @@ real_T computePrimalFeasError(const emlrtStack *sp, const real_T x[321], int32_T
   feasError = 0.0;
   mIneq = mNonlinIneq + mLinIneq;
   st.site = &kd_emlrtRSI;
-  for (idx = 0; idx < 240; idx++) {
+  for (idx = 0; idx < 180; idx++) {
     feasError = muDoubleScalarMax(feasError, muDoubleScalarAbs(cEq[idx]));
   }
 
@@ -69,7 +69,7 @@ real_T computePrimalFeasError(const emlrtStack *sp, const real_T x[321], int32_T
 
   for (idx = 0; idx < mIneq; idx++) {
     if ((idx + 1 < 1) || (idx + 1 > cIneq_size[0])) {
-      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, cIneq_size[0], &hb_emlrtBCI, sp);
+      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, cIneq_size[0], &p_emlrtBCI, sp);
     }
 
     feasError = muDoubleScalarMax(feasError, cIneq_data[idx]);
@@ -83,13 +83,13 @@ real_T computePrimalFeasError(const emlrtStack *sp, const real_T x[321], int32_T
 
   for (idx = 0; idx < mLB; idx++) {
     if ((idx + 1 < 1) || (idx + 1 > finiteLB_size[0])) {
-      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, finiteLB_size[0], &hb_emlrtBCI,
+      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, finiteLB_size[0], &p_emlrtBCI,
         sp);
     }
 
     mIneq = finiteLB_data[idx] - 1;
-    if ((finiteLB_data[idx] < 1) || (finiteLB_data[idx] > 321)) {
-      emlrtDynamicBoundsCheckR2012b(finiteLB_data[idx], 1, 321, &ib_emlrtBCI, sp);
+    if ((finiteLB_data[idx] < 1) || (finiteLB_data[idx] > 241)) {
+      emlrtDynamicBoundsCheckR2012b(finiteLB_data[idx], 1, 241, &q_emlrtBCI, sp);
     }
 
     feasError = muDoubleScalarMax(feasError, lb[mIneq] - x[mIneq]);

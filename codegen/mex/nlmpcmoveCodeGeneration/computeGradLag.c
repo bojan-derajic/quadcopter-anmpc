@@ -86,7 +86,7 @@ void b_computeGradLag(const emlrtStack *sp, real_T workspace_data[], const
   beta1 = 1.0;
   TRANSA = 'N';
   m_t = (ptrdiff_t)nVar;
-  n_t = (ptrdiff_t)240;
+  n_t = (ptrdiff_t)180;
   lda_t = (ptrdiff_t)ldA;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;
@@ -103,11 +103,11 @@ void b_computeGradLag(const emlrtStack *sp, real_T workspace_data[], const
     incx_t = (ptrdiff_t)1;
     incy_t = (ptrdiff_t)1;
     dgemv(&TRANSA, &m_t, &n_t, &alpha1, &AineqTrans_data[0], &lda_t,
-          &lambda_data[mFixed + 240], &incx_t, &beta1, &workspace_data[0],
+          &lambda_data[mFixed + 180], &incx_t, &beta1, &workspace_data[0],
           &incy_t);
   }
 
-  iL0 = (mFixed + mIneq) + 241;
+  iL0 = (mFixed + mIneq) + 181;
   st.site = &jd_emlrtRSI;
   if ((1 <= mLB) && (mLB > 2147483646)) {
     b_st.site = &db_emlrtRSI;
@@ -213,7 +213,7 @@ void computeGradLag(const emlrtStack *sp, real_T workspace_data[], const int32_T
   beta1 = 1.0;
   TRANSA = 'N';
   m_t = (ptrdiff_t)nVar;
-  n_t = (ptrdiff_t)240;
+  n_t = (ptrdiff_t)180;
   lda_t = (ptrdiff_t)ldA;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;
@@ -230,11 +230,11 @@ void computeGradLag(const emlrtStack *sp, real_T workspace_data[], const int32_T
     incx_t = (ptrdiff_t)1;
     incy_t = (ptrdiff_t)1;
     dgemv(&TRANSA, &m_t, &n_t, &alpha1, &AineqTrans_data[0], &lda_t,
-          &lambda_data[mFixed + 240], &incx_t, &beta1, &workspace_data[0],
+          &lambda_data[mFixed + 180], &incx_t, &beta1, &workspace_data[0],
           &incy_t);
   }
 
-  iL0 = (mFixed + mIneq) + 241;
+  iL0 = (mFixed + mIneq) + 181;
   st.site = &jd_emlrtRSI;
   if ((1 <= mLB) && (mLB > 2147483646)) {
     b_st.site = &db_emlrtRSI;

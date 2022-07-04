@@ -36,8 +36,8 @@ static emlrtRSInfo gc_emlrtRSI = { 168,/* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\mpc\\mpcutils\\znlmpc_confun.m"/* pathName */
 };
 
-static emlrtBCInfo s_emlrtBCI = { 1,   /* iFirst */
-  240,                                 /* iLast */
+static emlrtBCInfo b_emlrtBCI = { 1,   /* iFirst */
+  180,                                 /* iLast */
   215,                                 /* lineNo */
   9,                                   /* colNo */
   "",                                  /* aName */
@@ -46,8 +46,8 @@ static emlrtBCInfo s_emlrtBCI = { 1,   /* iFirst */
   3                                    /* checkKind */
 };
 
-static emlrtBCInfo t_emlrtBCI = { 1,   /* iFirst */
-  160,                                 /* iLast */
+static emlrtBCInfo c_emlrtBCI = { 1,   /* iFirst */
+  120,                                 /* iLast */
   116,                                 /* lineNo */
   5,                                   /* colNo */
   "",                                  /* aName */
@@ -56,8 +56,8 @@ static emlrtBCInfo t_emlrtBCI = { 1,   /* iFirst */
   3                                    /* checkKind */
 };
 
-static emlrtBCInfo u_emlrtBCI = { 1,   /* iFirst */
-  160,                                 /* iLast */
+static emlrtBCInfo d_emlrtBCI = { 1,   /* iFirst */
+  120,                                 /* iLast */
   117,                                 /* lineNo */
   5,                                   /* colNo */
   "",                                  /* aName */
@@ -66,8 +66,8 @@ static emlrtBCInfo u_emlrtBCI = { 1,   /* iFirst */
   3                                    /* checkKind */
 };
 
-static emlrtBCInfo v_emlrtBCI = { 1,   /* iFirst */
-  160,                                 /* iLast */
+static emlrtBCInfo e_emlrtBCI = { 1,   /* iFirst */
+  120,                                 /* iLast */
   118,                                 /* lineNo */
   16,                                  /* colNo */
   "",                                  /* aName */
@@ -76,8 +76,8 @@ static emlrtBCInfo v_emlrtBCI = { 1,   /* iFirst */
   0                                    /* checkKind */
 };
 
-static emlrtBCInfo w_emlrtBCI = { 1,   /* iFirst */
-  160,                                 /* iLast */
+static emlrtBCInfo f_emlrtBCI = { 1,   /* iFirst */
+  120,                                 /* iLast */
   145,                                 /* lineNo */
   9,                                   /* colNo */
   "",                                  /* aName */
@@ -86,8 +86,8 @@ static emlrtBCInfo w_emlrtBCI = { 1,   /* iFirst */
   3                                    /* checkKind */
 };
 
-static emlrtBCInfo x_emlrtBCI = { 1,   /* iFirst */
-  160,                                 /* iLast */
+static emlrtBCInfo g_emlrtBCI = { 1,   /* iFirst */
+  120,                                 /* iLast */
   155,                                 /* lineNo */
   13,                                  /* colNo */
   "",                                  /* aName */
@@ -96,8 +96,8 @@ static emlrtBCInfo x_emlrtBCI = { 1,   /* iFirst */
   3                                    /* checkKind */
 };
 
-static emlrtBCInfo y_emlrtBCI = { 1,   /* iFirst */
-  160,                                 /* iLast */
+static emlrtBCInfo h_emlrtBCI = { 1,   /* iFirst */
+  120,                                 /* iLast */
   158,                                 /* lineNo */
   9,                                   /* colNo */
   "",                                  /* aName */
@@ -108,8 +108,8 @@ static emlrtBCInfo y_emlrtBCI = { 1,   /* iFirst */
 
 /* Function Definitions */
 void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
-                  const real_T runtimedata_OutputMin[80], const real_T
-                  runtimedata_OutputMax[80], const real_T X[252], real_T e,
+                  const real_T runtimedata_OutputMin[60], const real_T
+                  runtimedata_OutputMax[60], const real_T X[192], real_T e,
                   real_T c_data[], int32_T c_size[2], real_T Jc_data[], int32_T
                   Jc_size[2])
 {
@@ -125,8 +125,8 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   emlrtStack c_st;
   emlrtStack d_st;
   emlrtStack st;
-  real_T b_c_data[160];
-  real_T c[160];
+  real_T b_c_data[120];
+  real_T c[120];
   real_T d;
   real_T d1;
   real_T d2;
@@ -146,20 +146,20 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   int32_T maxdimlen;
   int32_T nx;
   int32_T trueCount;
-  int8_T Jx_data[38400];
-  int8_T Je[160];
-  int8_T Je_data[160];
+  int8_T Jx[21600];
+  int8_T Jx_data[21600];
+  int8_T Je[120];
+  int8_T b_tmp_data[120];
+  int8_T tmp_data[120];
+  int8_T ic[8];
   int8_T input_sizes_idx_0;
   int8_T sizes_idx_0;
-  uint8_T b_tmp_data[160];
-  uint8_T tmp_data[160];
-  uint8_T ic[8];
   uint8_T ic_idx_0;
   uint8_T ic_idx_1;
   uint8_T ic_idx_2;
   uint8_T ic_idx_3;
-  boolean_T icf[160];
-  boolean_T bv[80];
+  boolean_T icf[120];
+  boolean_T bv[60];
   boolean_T x[4];
   boolean_T empty_non_axis_sizes;
   boolean_T exitg1;
@@ -172,7 +172,7 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   c_st.tls = b_st.tls;
   d_st.prev = &c_st;
   d_st.tls = c_st.tls;
-  for (i = 0; i < 80; i++) {
+  for (i = 0; i < 60; i++) {
     bv[i] = muDoubleScalarIsInf(runtimedata_OutputMin[i]);
   }
 
@@ -192,7 +192,7 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
   guard1 = false;
   if (empty_non_axis_sizes) {
-    for (i = 0; i < 80; i++) {
+    for (i = 0; i < 60; i++) {
       bv[i] = muDoubleScalarIsInf(runtimedata_OutputMax[i]);
     }
 
@@ -223,105 +223,101 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   }
 
   if (guard1) {
-    for (b_i = 0; b_i < 160; b_i++) {
+    for (b_i = 0; b_i < 120; b_i++) {
       c[b_i] = 0.0;
       icf[b_i] = true;
     }
 
-    memset(&SD->u1.f0.Jx[0], 0, 38400U * sizeof(int8_T));
-    memset(&Je[0], 0, 160U * sizeof(int8_T));
+    memset(&Jx[0], 0, 21600U * sizeof(int8_T));
+    memset(&Je[0], 0, 120U * sizeof(int8_T));
     ic_idx_0 = 1U;
     ic_idx_1 = 2U;
     ic_idx_2 = 3U;
     ic_idx_3 = 4U;
-    for (b_i = 0; b_i < 20; b_i++) {
+    for (b_i = 0; b_i < 15; b_i++) {
       yk_idx_0 = runtimedata_OutputMin[b_i];
-      d = runtimedata_OutputMin[b_i + 20];
-      d1 = runtimedata_OutputMin[b_i + 40];
-      d2 = runtimedata_OutputMin[b_i + 60];
-      if (ic_idx_0 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_0, 1, 160, &t_emlrtBCI, sp);
+      d = runtimedata_OutputMin[b_i + 15];
+      d1 = runtimedata_OutputMin[b_i + 30];
+      d2 = runtimedata_OutputMin[b_i + 45];
+      if (ic_idx_0 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_0, 1, 120, &c_emlrtBCI, sp);
       }
 
       icf[ic_idx_0 - 1] = ((!muDoubleScalarIsInf(yk_idx_0)) &&
                            (!muDoubleScalarIsNaN(yk_idx_0)));
-      if (ic_idx_1 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_1, 1, 160, &t_emlrtBCI, sp);
+      if (ic_idx_1 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_1, 1, 120, &c_emlrtBCI, sp);
       }
 
       icf[ic_idx_1 - 1] = ((!muDoubleScalarIsInf(d)) && (!muDoubleScalarIsNaN(d)));
-      if (ic_idx_2 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_2, 1, 160, &t_emlrtBCI, sp);
+      if (ic_idx_2 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_2, 1, 120, &c_emlrtBCI, sp);
       }
 
       icf[ic_idx_2 - 1] = ((!muDoubleScalarIsInf(d1)) && (!muDoubleScalarIsNaN
         (d1)));
-      if (ic_idx_3 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_3, 1, 160, &t_emlrtBCI, sp);
+      if (ic_idx_3 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_3, 1, 120, &c_emlrtBCI, sp);
       }
 
       icf[ic_idx_3 - 1] = ((!muDoubleScalarIsInf(d2)) && (!muDoubleScalarIsNaN
         (d2)));
       yk_idx_0 = runtimedata_OutputMax[b_i];
-      d3 = runtimedata_OutputMax[b_i + 20];
-      d4 = runtimedata_OutputMax[b_i + 40];
-      d5 = runtimedata_OutputMax[b_i + 60];
-      if (ic_idx_0 + 4 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 160, &u_emlrtBCI, sp);
+      d3 = runtimedata_OutputMax[b_i + 15];
+      d4 = runtimedata_OutputMax[b_i + 30];
+      d5 = runtimedata_OutputMax[b_i + 45];
+      if (ic_idx_0 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 120, &d_emlrtBCI, sp);
       }
 
       icf[ic_idx_0 + 3] = ((!muDoubleScalarIsInf(yk_idx_0)) &&
                            (!muDoubleScalarIsNaN(yk_idx_0)));
-      if (ic_idx_1 + 4 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 160, &u_emlrtBCI, sp);
+      if (ic_idx_1 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 120, &d_emlrtBCI, sp);
       }
 
       icf[ic_idx_1 + 3] = ((!muDoubleScalarIsInf(d3)) && (!muDoubleScalarIsNaN
         (d3)));
-      if (ic_idx_2 + 4 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 160, &u_emlrtBCI, sp);
+      if (ic_idx_2 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 120, &d_emlrtBCI, sp);
       }
 
       icf[ic_idx_2 + 3] = ((!muDoubleScalarIsInf(d4)) && (!muDoubleScalarIsNaN
         (d4)));
-      if (ic_idx_3 + 4 > 160) {
-        emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 160, &u_emlrtBCI, sp);
+      if (ic_idx_3 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 120, &d_emlrtBCI, sp);
       }
 
       icf[ic_idx_3 + 3] = ((!muDoubleScalarIsInf(d5)) && (!muDoubleScalarIsNaN
         (d5)));
-      if ((int32_T)(ic_idx_0 + 4U) > 160) {
-        emlrtDynamicBoundsCheckR2012b((int32_T)(ic_idx_0 + 4U), 1, 160,
-          &v_emlrtBCI, sp);
+      if (ic_idx_0 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 120, &e_emlrtBCI, sp);
       }
 
-      if ((int32_T)(ic_idx_1 + 4U) > 160) {
-        emlrtDynamicBoundsCheckR2012b((int32_T)(ic_idx_1 + 4U), 1, 160,
-          &v_emlrtBCI, sp);
+      if (ic_idx_1 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 120, &e_emlrtBCI, sp);
       }
 
-      if ((int32_T)(ic_idx_2 + 4U) > 160) {
-        emlrtDynamicBoundsCheckR2012b((int32_T)(ic_idx_2 + 4U), 1, 160,
-          &v_emlrtBCI, sp);
+      if (ic_idx_2 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 120, &e_emlrtBCI, sp);
       }
 
-      if ((int32_T)(ic_idx_3 + 4U) > 160) {
-        emlrtDynamicBoundsCheckR2012b((int32_T)(ic_idx_3 + 4U), 1, 160,
-          &v_emlrtBCI, sp);
+      if (ic_idx_3 + 4 > 120) {
+        emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 120, &e_emlrtBCI, sp);
       }
 
       empty_non_axis_sizes = false;
       nx = 0;
       exitg1 = false;
       while ((!exitg1) && (nx <= 7)) {
-        ic[0] = (uint8_T)(ic_idx_0 - 1);
-        ic[4] = (uint8_T)(ic_idx_0 + 3);
-        ic[1] = (uint8_T)(ic_idx_1 - 1);
-        ic[5] = (uint8_T)(ic_idx_1 + 3);
-        ic[2] = (uint8_T)(ic_idx_2 - 1);
-        ic[6] = (uint8_T)(ic_idx_2 + 3);
-        ic[3] = (uint8_T)(ic_idx_3 - 1);
-        ic[7] = (uint8_T)(ic_idx_3 + 3);
+        ic[0] = (int8_T)(ic_idx_0 - 1);
+        ic[4] = (int8_T)(ic_idx_0 + 3);
+        ic[1] = (int8_T)(ic_idx_1 - 1);
+        ic[5] = (int8_T)(ic_idx_1 + 3);
+        ic[2] = (int8_T)(ic_idx_2 - 1);
+        ic[6] = (int8_T)(ic_idx_2 + 3);
+        ic[3] = (int8_T)(ic_idx_3 - 1);
+        ic[7] = (int8_T)(ic_idx_3 + 3);
         if (!icf[ic[nx]]) {
           nx++;
         } else {
@@ -334,94 +330,88 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
         /* OUTPUT_FCN */
         /*     H = OUTPUT_FCN(IN1,IN2) */
         /*     This function was generated by the Symbolic Math Toolbox version 8.6. */
-        /*     04-Jul-2022 12:12:12 */
+        /*     04-Jul-2022 15:43:18 */
         yk_idx_0 = X[b_i + 1];
-        yk_idx_1 = X[b_i + 22];
-        yk_idx_2 = X[b_i + 43];
-        yk_idx_3 = X[b_i + 169];
+        yk_idx_1 = X[b_i + 17];
+        yk_idx_2 = X[b_i + 33];
+        yk_idx_3 = X[b_i + 129];
         c[ic_idx_0 - 1] = (runtimedata_OutputMin[b_i] - e) - yk_idx_0;
         c[ic_idx_1 - 1] = (d - e) - yk_idx_1;
         c[ic_idx_2 - 1] = (d1 - e) - yk_idx_2;
         c[ic_idx_3 - 1] = (d2 - e) - yk_idx_3;
-        if (ic_idx_0 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 160, &w_emlrtBCI, sp);
+        if (ic_idx_0 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 120, &f_emlrtBCI, sp);
         }
 
         c[ic_idx_0 + 3] = (yk_idx_0 - runtimedata_OutputMax[b_i]) - e;
-        if (ic_idx_1 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 160, &w_emlrtBCI, sp);
+        if (ic_idx_1 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 120, &f_emlrtBCI, sp);
         }
 
         c[ic_idx_1 + 3] = (yk_idx_1 - d3) - e;
-        if (ic_idx_2 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 160, &w_emlrtBCI, sp);
+        if (ic_idx_2 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 120, &f_emlrtBCI, sp);
         }
 
         c[ic_idx_2 + 3] = (yk_idx_2 - d4) - e;
-        if (ic_idx_3 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 160, &w_emlrtBCI, sp);
+        if (ic_idx_3 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 120, &f_emlrtBCI, sp);
         }
 
         c[ic_idx_3 + 3] = (yk_idx_3 - d5) - e;
         for (nx = 0; nx < 12; nx++) {
           maxdimlen = nx << 2;
-          SD->u1.f0.Jx[((ic_idx_0 + 160 * nx) + 1920 * b_i) - 1] = val[maxdimlen];
-          SD->u1.f0.Jx[((ic_idx_1 + 160 * nx) + 1920 * b_i) - 1] = val[maxdimlen
-            + 1];
-          SD->u1.f0.Jx[((ic_idx_2 + 160 * nx) + 1920 * b_i) - 1] = val[maxdimlen
-            + 2];
-          SD->u1.f0.Jx[((ic_idx_3 + 160 * nx) + 1920 * b_i) - 1] = val[maxdimlen
-            + 3];
+          Jx[((ic_idx_0 + 120 * nx) + 1440 * b_i) - 1] = val[maxdimlen];
+          Jx[((ic_idx_1 + 120 * nx) + 1440 * b_i) - 1] = val[maxdimlen + 1];
+          Jx[((ic_idx_2 + 120 * nx) + 1440 * b_i) - 1] = val[maxdimlen + 2];
+          Jx[((ic_idx_3 + 120 * nx) + 1440 * b_i) - 1] = val[maxdimlen + 3];
         }
 
         for (nx = 0; nx < 12; nx++) {
-          if (ic_idx_0 + 4 > 160) {
-            emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 160, &x_emlrtBCI, sp);
+          if (ic_idx_0 + 4 > 120) {
+            emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 120, &g_emlrtBCI, sp);
           }
 
           maxdimlen = nx << 2;
-          SD->u1.f0.Jx[((ic_idx_0 + 160 * nx) + 1920 * b_i) + 3] = Ck[maxdimlen];
-          if (ic_idx_1 + 4 > 160) {
-            emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 160, &x_emlrtBCI, sp);
+          Jx[((ic_idx_0 + 120 * nx) + 1440 * b_i) + 3] = Ck[maxdimlen];
+          if (ic_idx_1 + 4 > 120) {
+            emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 120, &g_emlrtBCI, sp);
           }
 
-          SD->u1.f0.Jx[((ic_idx_1 + 160 * nx) + 1920 * b_i) + 3] = Ck[maxdimlen
-            + 1];
-          if (ic_idx_2 + 4 > 160) {
-            emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 160, &x_emlrtBCI, sp);
+          Jx[((ic_idx_1 + 120 * nx) + 1440 * b_i) + 3] = Ck[maxdimlen + 1];
+          if (ic_idx_2 + 4 > 120) {
+            emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 120, &g_emlrtBCI, sp);
           }
 
-          SD->u1.f0.Jx[((ic_idx_2 + 160 * nx) + 1920 * b_i) + 3] = Ck[maxdimlen
-            + 2];
-          if (ic_idx_3 + 4 > 160) {
-            emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 160, &x_emlrtBCI, sp);
+          Jx[((ic_idx_2 + 120 * nx) + 1440 * b_i) + 3] = Ck[maxdimlen + 2];
+          if (ic_idx_3 + 4 > 120) {
+            emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 120, &g_emlrtBCI, sp);
           }
 
-          SD->u1.f0.Jx[((ic_idx_3 + 160 * nx) + 1920 * b_i) + 3] = Ck[maxdimlen
-            + 3];
+          Jx[((ic_idx_3 + 120 * nx) + 1440 * b_i) + 3] = Ck[maxdimlen + 3];
         }
 
         Je[ic_idx_0 - 1] = -1;
         Je[ic_idx_1 - 1] = -1;
         Je[ic_idx_2 - 1] = -1;
         Je[ic_idx_3 - 1] = -1;
-        if (ic_idx_0 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 160, &y_emlrtBCI, sp);
+        if (ic_idx_0 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_0 + 4, 1, 120, &h_emlrtBCI, sp);
         }
 
         Je[ic_idx_0 + 3] = -1;
-        if (ic_idx_1 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 160, &y_emlrtBCI, sp);
+        if (ic_idx_1 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_1 + 4, 1, 120, &h_emlrtBCI, sp);
         }
 
         Je[ic_idx_1 + 3] = -1;
-        if (ic_idx_2 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 160, &y_emlrtBCI, sp);
+        if (ic_idx_2 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_2 + 4, 1, 120, &h_emlrtBCI, sp);
         }
 
         Je[ic_idx_2 + 3] = -1;
-        if (ic_idx_3 + 4 > 160) {
-          emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 160, &y_emlrtBCI, sp);
+        if (ic_idx_3 + 4 > 120) {
+          emlrtDynamicBoundsCheckR2012b(ic_idx_3 + 4, 1, 120, &h_emlrtBCI, sp);
         }
 
         Je[ic_idx_3 + 3] = -1;
@@ -435,10 +425,10 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
     trueCount = 0;
     maxdimlen = 0;
-    for (b_i = 0; b_i < 160; b_i++) {
+    for (b_i = 0; b_i < 120; b_i++) {
       if (icf[b_i]) {
         trueCount++;
-        tmp_data[maxdimlen] = (uint8_T)(b_i + 1);
+        tmp_data[maxdimlen] = (int8_T)(b_i + 1);
         maxdimlen++;
       }
     }
@@ -455,10 +445,10 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
     trueCount = 0;
     maxdimlen = 0;
-    for (b_i = 0; b_i < 160; b_i++) {
+    for (b_i = 0; b_i < 120; b_i++) {
       if (icf[b_i]) {
         trueCount++;
-        b_tmp_data[maxdimlen] = (uint8_T)(b_i + 1);
+        b_tmp_data[maxdimlen] = (int8_T)(b_i + 1);
         maxdimlen++;
       }
     }
@@ -469,7 +459,7 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
       Jc_size[1] = 0;
     } else {
       b_st.site = &ec_emlrtRSI;
-      nx = trueCount * 12 * 20;
+      nx = trueCount * 12 * 15;
       c_st.site = &bb_emlrtRSI;
       computeDimsData(&c_st, trueCount);
       maxdimlen = trueCount;
@@ -477,31 +467,31 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
         maxdimlen = 12;
       }
 
-      if (20 > maxdimlen) {
-        maxdimlen = 20;
+      if (15 > maxdimlen) {
+        maxdimlen = 15;
       }
 
       maxdimlen = muIntScalarMax_sint32(nx, maxdimlen);
       if (trueCount > maxdimlen) {
-        emlrtErrorWithMessageIdR2018a(&b_st, &f_emlrtRTEI,
+        emlrtErrorWithMessageIdR2018a(&b_st, &m_emlrtRTEI,
           "Coder:toolbox:reshape_emptyReshapeLimit",
           "Coder:toolbox:reshape_emptyReshapeLimit", 0);
       }
 
-      if (240 > maxdimlen) {
-        emlrtErrorWithMessageIdR2018a(&b_st, &f_emlrtRTEI,
+      if (180 > maxdimlen) {
+        emlrtErrorWithMessageIdR2018a(&b_st, &m_emlrtRTEI,
           "Coder:toolbox:reshape_emptyReshapeLimit",
           "Coder:toolbox:reshape_emptyReshapeLimit", 0);
       }
 
-      if (trueCount * 240 != nx) {
-        emlrtErrorWithMessageIdR2018a(&b_st, &e_emlrtRTEI,
+      if (trueCount * 180 != nx) {
+        emlrtErrorWithMessageIdR2018a(&b_st, &n_emlrtRTEI,
           "Coder:MATLAB:getReshapeDims_notSameNumel",
           "Coder:MATLAB:getReshapeDims_notSameNumel", 0);
       }
 
       b_st.site = &ec_emlrtRSI;
-      nx = (trueCount << 2) * 20;
+      nx = (trueCount << 2) * 15;
       c_st.site = &bb_emlrtRSI;
       computeDimsData(&c_st, trueCount);
       maxdimlen = trueCount;
@@ -509,33 +499,33 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
         maxdimlen = 4;
       }
 
-      if (20 > maxdimlen) {
-        maxdimlen = 20;
+      if (15 > maxdimlen) {
+        maxdimlen = 15;
       }
 
       maxdimlen = muIntScalarMax_sint32(nx, maxdimlen);
       if (trueCount > maxdimlen) {
-        emlrtErrorWithMessageIdR2018a(&b_st, &f_emlrtRTEI,
+        emlrtErrorWithMessageIdR2018a(&b_st, &m_emlrtRTEI,
           "Coder:toolbox:reshape_emptyReshapeLimit",
           "Coder:toolbox:reshape_emptyReshapeLimit", 0);
       }
 
-      if (80 > maxdimlen) {
-        emlrtErrorWithMessageIdR2018a(&b_st, &f_emlrtRTEI,
+      if (60 > maxdimlen) {
+        emlrtErrorWithMessageIdR2018a(&b_st, &m_emlrtRTEI,
           "Coder:toolbox:reshape_emptyReshapeLimit",
           "Coder:toolbox:reshape_emptyReshapeLimit", 0);
       }
 
-      if (trueCount * 80 != nx) {
-        emlrtErrorWithMessageIdR2018a(&b_st, &e_emlrtRTEI,
+      if (trueCount * 60 != nx) {
+        emlrtErrorWithMessageIdR2018a(&b_st, &n_emlrtRTEI,
           "Coder:MATLAB:getReshapeDims_notSameNumel",
           "Coder:MATLAB:getReshapeDims_notSameNumel", 0);
       }
 
       b_st.site = &ec_emlrtRSI;
       tmp_size[0] = trueCount;
-      tmp_size[1] = 80;
-      nx = trueCount * 80;
+      tmp_size[1] = 60;
+      nx = trueCount * 60;
       if (0 <= nx - 1) {
         memset(&SD->u1.f0.tmp_data[0], 0, nx * sizeof(real_T));
       }
@@ -543,25 +533,25 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
       c_st.site = &r_emlrtRSI;
       mtimes(SD->u1.f0.tmp_data, tmp_size, SD->u1.f0.y_data, y_size);
       b_st.site = &ec_emlrtRSI;
-      for (i = 0; i < 20; i++) {
+      for (i = 0; i < 15; i++) {
         for (i1 = 0; i1 < 12; i1++) {
           for (maxdimlen = 0; maxdimlen < trueCount; maxdimlen++) {
-            Jx_data[(maxdimlen + trueCount * i1) + trueCount * 12 * i] =
-              SD->u1.f0.Jx[((b_tmp_data[maxdimlen] + 160 * i1) + 1920 * i) - 1];
+            Jx_data[(maxdimlen + trueCount * i1) + trueCount * 12 * i] = Jx
+              [((b_tmp_data[maxdimlen] + 120 * i1) + 1440 * i) - 1];
           }
         }
       }
 
       for (i = 0; i < trueCount; i++) {
-        for (i1 = 0; i1 < 240; i1++) {
-          SD->u1.f0.Jx[i1 + 240 * i] = Jx_data[i + trueCount * i1];
+        for (i1 = 0; i1 < 180; i1++) {
+          Jx[i1 + 180 * i] = Jx_data[i + trueCount * i1];
         }
       }
 
       nx = y_size[0];
       for (i = 0; i < nx; i++) {
-        for (i1 = 0; i1 < 80; i1++) {
-          SD->u1.f0.varargin_2_data[i1 + 80 * i] = SD->u1.f0.y_data[i + y_size[0]
+        for (i1 = 0; i1 < 60; i1++) {
+          SD->u1.f0.varargin_2_data[i1 + 60 * i] = SD->u1.f0.y_data[i + y_size[0]
             * i1];
         }
       }
@@ -571,48 +561,48 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
         b_i = trueCount;
       } else if (y_size[0] != 0) {
         b_i = y_size[0];
-      } else if ((uint8_T)trueCount != 0) {
-        b_i = (uint8_T)trueCount;
+      } else if ((int8_T)trueCount != 0) {
+        b_i = (int8_T)trueCount;
       } else {
         b_i = 0;
-        if ((uint8_T)trueCount > 0) {
-          b_i = (uint8_T)trueCount;
+        if ((int8_T)trueCount > 0) {
+          b_i = (int8_T)trueCount;
         }
       }
 
       d_st.site = &fb_emlrtRSI;
       if ((trueCount != b_i) && (trueCount != 0)) {
-        emlrtErrorWithMessageIdR2018a(&d_st, &d_emlrtRTEI,
+        emlrtErrorWithMessageIdR2018a(&d_st, &l_emlrtRTEI,
           "MATLAB:catenate:matrixDimensionMismatch",
           "MATLAB:catenate:matrixDimensionMismatch", 0);
       }
 
       if ((y_size[0] != b_i) && (y_size[0] != 0)) {
-        emlrtErrorWithMessageIdR2018a(&d_st, &d_emlrtRTEI,
+        emlrtErrorWithMessageIdR2018a(&d_st, &l_emlrtRTEI,
           "MATLAB:catenate:matrixDimensionMismatch",
           "MATLAB:catenate:matrixDimensionMismatch", 0);
       }
 
-      if (((uint8_T)trueCount != b_i) && ((uint8_T)trueCount != 0)) {
-        emlrtErrorWithMessageIdR2018a(&d_st, &d_emlrtRTEI,
+      if (((int8_T)trueCount != b_i) && ((int8_T)trueCount != 0)) {
+        emlrtErrorWithMessageIdR2018a(&d_st, &l_emlrtRTEI,
           "MATLAB:catenate:matrixDimensionMismatch",
           "MATLAB:catenate:matrixDimensionMismatch", 0);
       }
 
       empty_non_axis_sizes = (b_i == 0);
       if (empty_non_axis_sizes || (trueCount != 0)) {
-        ic_idx_0 = 240U;
+        ic_idx_0 = 180U;
       } else {
         ic_idx_0 = 0U;
       }
 
       if (empty_non_axis_sizes || (y_size[0] != 0)) {
-        input_sizes_idx_0 = 80;
+        input_sizes_idx_0 = 60;
       } else {
         input_sizes_idx_0 = 0;
       }
 
-      if (empty_non_axis_sizes || ((uint8_T)trueCount != 0)) {
+      if (empty_non_axis_sizes || ((int8_T)trueCount != 0)) {
         sizes_idx_0 = 1;
       } else {
         sizes_idx_0 = 0;
@@ -620,7 +610,7 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
       b_input_sizes_idx_0 = input_sizes_idx_0;
       for (i = 0; i < trueCount; i++) {
-        Je_data[i] = Je[b_tmp_data[i] - 1];
+        tmp_data[i] = Je[b_tmp_data[i] - 1];
       }
 
       maxdimlen = ic_idx_0 + input_sizes_idx_0;
@@ -629,21 +619,21 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
       for (i = 0; i < b_i; i++) {
         nx = ic_idx_0;
         for (i1 = 0; i1 < nx; i1++) {
-          Jc_data[i1 + Jc_size[0] * i] = SD->u1.f0.Jx[i1 + 240 * i];
+          Jc_data[i1 + Jc_size[0] * i] = Jx[i1 + 180 * i];
         }
       }
 
       for (i = 0; i < b_i; i++) {
         for (i1 = 0; i1 < b_input_sizes_idx_0; i1++) {
           Jc_data[(i1 + ic_idx_0) + Jc_size[0] * i] = SD->
-            u1.f0.varargin_2_data[i1 + 80 * i];
+            u1.f0.varargin_2_data[i1 + 60 * i];
         }
       }
 
       for (i = 0; i < b_i; i++) {
         nx = sizes_idx_0;
         if (0 <= nx - 1) {
-          Jc_data[maxdimlen + Jc_size[0] * i] = Je_data[sizes_idx_0 * i];
+          Jc_data[maxdimlen + Jc_size[0] * i] = tmp_data[sizes_idx_0 * i];
         }
       }
     }
@@ -651,20 +641,19 @@ void outputBounds(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 }
 
 void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
-                    const real_T X[252], const real_T U[84], real_T c[240],
-                    real_T J[77040])
+                    const real_T X[192], const real_T U[64], real_T c[180],
+                    real_T J[43380])
 {
-  static const real_T a[144] = { 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05
-  };
+  static const real_T a[144] = { 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1 };
 
   static const real_T b[144] = { 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -706,9 +695,9 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   int8_T Ix[144];
   uint8_T ic[12];
   uint8_T u;
-  memset(&SD->u1.f1.Jx[0], 0, 57600U * sizeof(real_T));
-  memset(&SD->u1.f1.Jmv[0], 0, 19200U * sizeof(real_T));
-  memset(&c[0], 0, 240U * sizeof(real_T));
+  memset(&SD->u1.f1.Jx[0], 0, 32400U * sizeof(real_T));
+  memset(&SD->u1.f1.Jmv[0], 0, 10800U * sizeof(real_T));
+  memset(&c[0], 0, 180U * sizeof(real_T));
   for (i = 0; i < 12; i++) {
     ic[i] = (uint8_T)(i + 1U);
   }
@@ -728,22 +717,22 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   lda_t = (ptrdiff_t)12;
   ldb_t = (ptrdiff_t)12;
   ldc_t = (ptrdiff_t)12;
-  for (b_i = 0; b_i < 20; b_i++) {
+  for (b_i = 0; b_i < 15; b_i++) {
     for (i = 0; i < 12; i++) {
-      b_X[i] = X[b_i + 21 * i];
+      b_X[i] = X[b_i + (i << 4)];
     }
 
     d = U[b_i];
     b_U[0] = d;
-    U_tmp = U[b_i + 21];
+    U_tmp = U[b_i + 16];
     b_U[1] = U_tmp;
-    b_U_tmp = U[b_i + 42];
+    b_U_tmp = U[b_i + 32];
     b_U[2] = b_U_tmp;
-    c_U_tmp = U[b_i + 63];
+    c_U_tmp = U[b_i + 48];
     b_U[3] = c_U_tmp;
     state_jacob_fcn(b_X, b_U, val, Bk);
     for (i = 0; i < 12; i++) {
-      b_X[i] = X[(b_i + 21 * i) + 1];
+      b_X[i] = X[(b_i + (i << 4)) + 1];
     }
 
     b_U[0] = d;
@@ -752,7 +741,7 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
     b_U[3] = c_U_tmp;
     state_jacob_fcn(b_X, b_U, Ak1, b_val);
     for (i = 0; i < 12; i++) {
-      b_X[i] = X[b_i + 21 * i];
+      b_X[i] = X[b_i + (i << 4)];
     }
 
     b_U[0] = d;
@@ -761,7 +750,7 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
     b_U[3] = c_U_tmp;
     state_fcn(b_X, b_U, b_dv);
     for (i = 0; i < 12; i++) {
-      b_X[i] = X[(b_i + 21 * i) + 1];
+      b_X[i] = X[(b_i + (i << 4)) + 1];
     }
 
     b_U[0] = d;
@@ -771,12 +760,12 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
     state_fcn(b_X, b_U, dv1);
     for (i = 0; i < 12; i++) {
       u = ic[i];
-      if ((u < 1) || (u > 240)) {
-        emlrtDynamicBoundsCheckR2012b(u, 1, 240, &s_emlrtBCI, sp);
+      if ((u < 1) || (u > 180)) {
+        emlrtDynamicBoundsCheckR2012b(u, 1, 180, &b_emlrtBCI, sp);
       }
 
-      k = b_i + 21 * i;
-      c[ic[i] - 1] = (X[k] + 0.05 * (b_dv[i] + dv1[i])) - X[k + 1];
+      k = b_i + (i << 4);
+      c[ic[i] - 1] = (X[k] + 0.1 * (b_dv[i] + dv1[i])) - X[k + 1];
     }
 
     if (b_i + 1 > 1) {
@@ -788,7 +777,7 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
       for (k = 0; k < 12; k++) {
         for (i = 0; i < 12; i++) {
-          SD->u1.f1.Jx[((ic[i] + 240 * k) + 2880 * (b_i - 1)) - 1] = val[i + 12 *
+          SD->u1.f1.Jx[((ic[i] + 180 * k) + 2160 * (b_i - 1)) - 1] = val[i + 12 *
             k];
         }
       }
@@ -802,7 +791,7 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
 
     for (k = 0; k < 12; k++) {
       for (i = 0; i < 12; i++) {
-        SD->u1.f1.Jx[((ic[i] + 240 * k) + 2880 * b_i) - 1] = val[i + 12 * k];
+        SD->u1.f1.Jx[((ic[i] + 180 * k) + 2160 * b_i) - 1] = val[i + 12 * k];
       }
     }
 
@@ -814,7 +803,7 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
           &ldb_t, &beta1, &b_val[0], &ldc_t);
     for (k = 0; k < 4; k++) {
       for (i = 0; i < 12; i++) {
-        SD->u1.f1.Jmv[((ic[i] + 240 * k) + 960 * b_i) - 1] = b_val[i + 12 * k];
+        SD->u1.f1.Jmv[((ic[i] + 180 * k) + 720 * b_i) - 1] = b_val[i + 12 * k];
       }
     }
 
@@ -827,24 +816,24 @@ void stateEvolution(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
   TRANSA1 = 'N';
   alpha1 = 1.0;
   beta1 = 0.0;
-  m_t = (ptrdiff_t)240;
-  n_t = (ptrdiff_t)80;
-  k_t = (ptrdiff_t)80;
-  lda_t = (ptrdiff_t)240;
-  ldb_t = (ptrdiff_t)80;
-  ldc_t = (ptrdiff_t)240;
+  m_t = (ptrdiff_t)180;
+  n_t = (ptrdiff_t)60;
+  k_t = (ptrdiff_t)60;
+  lda_t = (ptrdiff_t)180;
+  ldb_t = (ptrdiff_t)60;
+  ldc_t = (ptrdiff_t)180;
   dgemm(&TRANSA1, &TRANSB1, &m_t, &n_t, &k_t, &alpha1, &SD->u1.f1.Jmv[0], &lda_t,
         &dv[0], &ldb_t, &beta1, &SD->u1.f1.y[0], &ldc_t);
-  for (i = 0; i < 240; i++) {
-    for (k = 0; k < 240; k++) {
-      J[k + 321 * i] = SD->u1.f1.Jx[i + 240 * k];
+  for (i = 0; i < 180; i++) {
+    for (k = 0; k < 180; k++) {
+      J[k + 241 * i] = SD->u1.f1.Jx[i + 180 * k];
     }
 
-    for (k = 0; k < 80; k++) {
-      J[(k + 321 * i) + 240] = SD->u1.f1.y[i + 240 * k];
+    for (k = 0; k < 60; k++) {
+      J[(k + 241 * i) + 180] = SD->u1.f1.y[i + 180 * k];
     }
 
-    J[321 * i + 320] = 0.0;
+    J[241 * i + 240] = 0.0;
   }
 }
 

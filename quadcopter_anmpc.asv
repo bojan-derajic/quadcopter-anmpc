@@ -20,6 +20,7 @@ W_data = zeros(mw, nw, T/Ta+1);
 Wf_data = zeros(mw, nw, T/Ta+1);
 
 x0 = zeros(12, 1);
+uT0 = zeros(4, 1);
 u0 = zeros(4, 1);
 
 onlineData.X0 = repmat(x0', Np, 1);
@@ -28,16 +29,16 @@ onlineData.MV0 = repmat(u0', Nc, 1);
 W0 = [zeros(13, 4); eye(4, 4); -eye(4, 4)];
 Wf0 = [zeros(13, 4); eye(4, 4); -eye(4, 4)];
 
-gamma = 0.05;
+gamma = 0.01;
 gamma_f = 50;
-ksi = 1000;
+ksi = 1500;
 
 Ap = -eye(3);
 Av = -eye(3);
 Aeta = -eye(3);
 Aomega = -eye(3);
 
-Ae = 0.02*blkdiag(Ap, Av, Aeta, Aomega);
+Ae = 0.1*blkdiag(Ap, Av, Aeta, Aomega);
 
 Q = 0.1*eye(12);
 
@@ -45,6 +46,7 @@ P = lyap(Ae, Q);
 
 k = 1;
 X(k, :) = x0;
+UT(k, :) = uT0;
 Xr(k, :) = x0;
 u_nmpc = u0;
 W_data(:, :, k) = W0;
@@ -109,12 +111,15 @@ for i = 1:T/Ts
         
         u = -W'*sigma
         
-        [t, x] = ode45(@(t, x) quadcopter_model(x, u, (k-1)*Ta), 0:dt:Ta, x);
+        s = [x, uT];
+                
+        [t, s] = ode45(@(t, s) quadcopter_model(s, u, (k-1)*Ta), 0:dt:Ta, s);
     
         U(k, :) = u;
         U_nmpc(k, :) = u_nmpc;
         
-        X(k+1, :) = x(end, :);
+        X(k+1, :) = s(end, 1:12);
+        UT(k+1, :) = s(end, 13:16);
         Xr(k+1, :) = xr + Ta*xrd';
         W_data(:, :, k+1) = W;
         Wf_data(:, :, k+1) = Wf;

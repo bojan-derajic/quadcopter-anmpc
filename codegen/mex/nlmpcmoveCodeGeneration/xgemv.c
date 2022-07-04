@@ -54,7 +54,7 @@ void c_xgemv(int32_T n, const real_T A_data[], int32_T lda, const real_T x_data[
     alpha1 = 1.0;
     beta1 = -1.0;
     TRANSA = 'T';
-    m_t = (ptrdiff_t)321;
+    m_t = (ptrdiff_t)241;
     n_t = (ptrdiff_t)n;
     lda_t = (ptrdiff_t)lda;
     incx_t = (ptrdiff_t)1;
@@ -79,7 +79,7 @@ void d_xgemv(int32_T m, const real_T A_data[], int32_T lda, const real_T x_data[
   beta1 = -1.0;
   TRANSA = 'T';
   m_t = (ptrdiff_t)m;
-  n_t = (ptrdiff_t)240;
+  n_t = (ptrdiff_t)180;
   lda_t = (ptrdiff_t)lda;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;
@@ -152,7 +152,7 @@ void g_xgemv(int32_T m, const real_T A_data[], int32_T lda, const real_T x_data[
   beta1 = -1.0;
   TRANSA = 'T';
   m_t = (ptrdiff_t)m;
-  n_t = (ptrdiff_t)240;
+  n_t = (ptrdiff_t)180;
   lda_t = (ptrdiff_t)lda;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;
@@ -160,7 +160,7 @@ void g_xgemv(int32_T m, const real_T A_data[], int32_T lda, const real_T x_data[
         &incx_t, &beta1, &y_data[0], &incy_t);
 }
 
-void h_xgemv(int32_T m, int32_T n, const real_T A[103041], int32_T lda, const
+void h_xgemv(int32_T m, int32_T n, const real_T A[58081], int32_T lda, const
              real_T x_data[], real_T y_data[])
 {
   ptrdiff_t incx_t;
@@ -286,7 +286,7 @@ void l_xgemv(int32_T m, int32_T n, const real_T A_data[], int32_T lda, const
 }
 
 void m_xgemv(int32_T m, const real_T A_data[], int32_T lda, const real_T x_data[],
-             real_T y[240])
+             real_T y[180])
 {
   ptrdiff_t incx_t;
   ptrdiff_t incy_t;
@@ -300,7 +300,7 @@ void m_xgemv(int32_T m, const real_T A_data[], int32_T lda, const real_T x_data[
   beta1 = 1.0;
   TRANSA = 'T';
   m_t = (ptrdiff_t)m;
-  n_t = (ptrdiff_t)240;
+  n_t = (ptrdiff_t)180;
   lda_t = (ptrdiff_t)lda;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;

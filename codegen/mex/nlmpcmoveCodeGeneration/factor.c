@@ -14,7 +14,7 @@
 #include "xpotrf.h"
 
 /* Function Definitions */
-void factor(const emlrtStack *sp, m_struct_T *obj, const real_T A[103041],
+void factor(const emlrtStack *sp, m_struct_T *obj, const real_T A[58081],
             int32_T ndims, int32_T ldA)
 {
   emlrtStack b_st;

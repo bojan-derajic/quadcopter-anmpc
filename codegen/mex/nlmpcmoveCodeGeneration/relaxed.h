@@ -20,7 +20,7 @@
 
 /* Function Declarations */
 void relaxed(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
-             real_T Hessian[103041], const real_T grad_data[], const int32_T
+             real_T Hessian[58081], const real_T grad_data[], const int32_T
              grad_size[1], g_struct_T *TrialState, k_struct_T *MeritFunction,
              d_struct_T *memspace, j_struct_T *WorkingSet, l_struct_T *QRManager,
              m_struct_T *CholManager, i_struct_T *QPObjective, c_struct_T

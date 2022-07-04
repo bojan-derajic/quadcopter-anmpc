@@ -17,7 +17,7 @@ static emlrtRSInfo gd_emlrtRSI = { 1,  /* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+fminconsqp\\+MeritFunction\\computeConstrViolationIneq_.p"/* pathName */
 };
 
-static emlrtBCInfo gb_emlrtBCI = { -1, /* iFirst */
+static emlrtBCInfo o_emlrtBCI = { -1,  /* iFirst */
   -1,                                  /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
@@ -50,14 +50,14 @@ real_T computeConstrViolationIneq_(const emlrtStack *sp, int32_T mIneq, const
   for (idx = 0; idx < mIneq; idx++) {
     if ((idx + 1 < 1) || (idx + 1 > ineq_workspace_size[0])) {
       emlrtDynamicBoundsCheckR2012b(idx + 1, 1, ineq_workspace_size[0],
-        &gb_emlrtBCI, sp);
+        &o_emlrtBCI, sp);
     }
 
     d = ineq_workspace_data[idx];
     if (d > 0.0) {
       if ((idx + 1 < 1) || (idx + 1 > ineq_workspace_size[0])) {
         emlrtDynamicBoundsCheckR2012b(idx + 1, 1, ineq_workspace_size[0],
-          &gb_emlrtBCI, sp);
+          &o_emlrtBCI, sp);
       }
 
       normResid += d;

@@ -30,7 +30,7 @@ boolean_T all(const boolean_T x_data[], const int32_T x_size[1])
   return y;
 }
 
-void b_all(const boolean_T x[80], boolean_T y[4])
+void b_all(const boolean_T x[60], boolean_T y[4])
 {
   int32_T ix;
   boolean_T exitg1;
@@ -40,7 +40,7 @@ void b_all(const boolean_T x[80], boolean_T y[4])
   y[3] = true;
   ix = 1;
   exitg1 = false;
-  while ((!exitg1) && (ix <= 20)) {
+  while ((!exitg1) && (ix <= 15)) {
     if (!x[ix - 1]) {
       y[0] = false;
       exitg1 = true;
@@ -49,9 +49,9 @@ void b_all(const boolean_T x[80], boolean_T y[4])
     }
   }
 
-  ix = 21;
+  ix = 16;
   exitg1 = false;
-  while ((!exitg1) && (ix <= 40)) {
+  while ((!exitg1) && (ix <= 30)) {
     if (!x[ix - 1]) {
       y[1] = false;
       exitg1 = true;
@@ -60,9 +60,9 @@ void b_all(const boolean_T x[80], boolean_T y[4])
     }
   }
 
-  ix = 41;
+  ix = 31;
   exitg1 = false;
-  while ((!exitg1) && (ix <= 60)) {
+  while ((!exitg1) && (ix <= 45)) {
     if (!x[ix - 1]) {
       y[2] = false;
       exitg1 = true;
@@ -71,9 +71,9 @@ void b_all(const boolean_T x[80], boolean_T y[4])
     }
   }
 
-  ix = 61;
+  ix = 46;
   exitg1 = false;
-  while ((!exitg1) && (ix <= 80)) {
+  while ((!exitg1) && (ix <= 60)) {
     if (!x[ix - 1]) {
       y[3] = false;
       exitg1 = true;
