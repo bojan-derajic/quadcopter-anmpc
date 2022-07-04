@@ -93,9 +93,9 @@ xlabel('t [s]');
 ylabel('u4 [N]');
 
 E = REF(1:end-Np, :) - [x, y, z, yaw];
-MSE = mean(E.^(2), 1);
-disp('Mean Squared Error:')
-disp(MSE);
+RMSE = sqrt(mean(E.^(2), 1));
+disp('RMSE:')
+disp(RMSE);
 
 MP = mean(U.^(2), 1);
 disp('Mean Control Signal Effort');

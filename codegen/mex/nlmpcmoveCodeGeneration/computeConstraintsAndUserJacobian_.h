@@ -20,10 +20,10 @@
 /* Function Declarations */
 int32_T c_computeConstraintsAndUserJaco(c_nlmpcmoveCodeGenerationStackD *SD,
   const emlrtStack *sp, const real_T c_obj_nonlcon_tunableEnvironmen[12], const
-  real_T d_obj_nonlcon_tunableEnvironmen[60], const real_T
-  e_obj_nonlcon_tunableEnvironmen[60], int32_T obj_mCineq, const real_T x[241],
+  real_T d_obj_nonlcon_tunableEnvironmen[80], const real_T
+  e_obj_nonlcon_tunableEnvironmen[80], int32_T obj_mCineq, const real_T x[321],
   real_T Cineq_workspace_data[], const int32_T Cineq_workspace_size[1], int32_T
-  ineq0, real_T Ceq_workspace[180], real_T JacIneqTrans_workspace_data[], const
+  ineq0, real_T Ceq_workspace[240], real_T JacIneqTrans_workspace_data[], const
   int32_T JacIneqTrans_workspace_size[2], int32_T iJI_col, real_T
   JacEqTrans_workspace_data[], const int32_T JacEqTrans_workspace_size[2]);
 

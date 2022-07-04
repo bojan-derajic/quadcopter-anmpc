@@ -54,7 +54,7 @@ void saveJacobian(const emlrtStack *sp, g_struct_T *obj, int32_T nVar, int32_T
   iCol = 1;
   iCol_old = 1;
   st.site = &je_emlrtRSI;
-  for (idx_col = 0; idx_col < 180; idx_col++) {
+  for (idx_col = 0; idx_col < 240; idx_col++) {
     st.site = &je_emlrtRSI;
     f_xcopy(nVar, JacCeqTrans_data, iCol, obj->JacCeqTrans_old.data, iCol_old);
     iCol += ldJ;

@@ -48,9 +48,9 @@ static emlrtBCInfo id_emlrtBCI = { -1, /* iFirst */
 
 /* Function Definitions */
 real_T computeFval(const emlrtStack *sp, const i_struct_T *obj, real_T
-                   workspace_data[], const real_T H[58081], const real_T f_data[],
-                   const int32_T f_size[1], const real_T x_data[], const int32_T
-                   x_size[1])
+                   workspace_data[], const real_T H[103041], const real_T
+                   f_data[], const int32_T f_size[1], const real_T x_data[],
+                   const int32_T x_size[1])
 {
   ptrdiff_t incx_t;
   ptrdiff_t incy_t;

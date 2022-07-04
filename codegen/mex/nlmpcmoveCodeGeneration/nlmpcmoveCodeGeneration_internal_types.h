@@ -61,23 +61,23 @@ typedef struct {
 
 #endif                                 /*typedef_c_struct_T*/
 
-#ifndef struct_emxArray_real_T_961
-#define struct_emxArray_real_T_961
+#ifndef struct_emxArray_real_T_1281
+#define struct_emxArray_real_T_1281
 
-struct emxArray_real_T_961
+struct emxArray_real_T_1281
 {
-  real_T data[961];
+  real_T data[1281];
   int32_T size[1];
 };
 
-#endif                                 /*struct_emxArray_real_T_961*/
+#endif                                 /*struct_emxArray_real_T_1281*/
 
-#ifndef typedef_emxArray_real_T_961
-#define typedef_emxArray_real_T_961
+#ifndef typedef_emxArray_real_T_1281
+#define typedef_emxArray_real_T_1281
 
-typedef struct emxArray_real_T_961 emxArray_real_T_961;
+typedef struct emxArray_real_T_1281 emxArray_real_T_1281;
 
-#endif                                 /*typedef_emxArray_real_T_961*/
+#endif                                 /*typedef_emxArray_real_T_1281*/
 
 #ifndef typedef_e_struct_T
 #define typedef_e_struct_T
@@ -86,8 +86,8 @@ typedef struct {
   real_T Ts;
   real_T CurrentStates[12];
   real_T LastMV[4];
-  real_T References[60];
-  real_T MVTarget[60];
+  real_T References[80];
+  real_T MVTarget[80];
   real_T PredictionHorizon;
   real_T NumOfStates;
   real_T NumOfOutputs;
@@ -103,20 +103,20 @@ typedef struct {
 typedef struct {
   real_T x[12];
   real_T lastMV[4];
-  real_T ref[60];
-  real_T OutputWeights[60];
-  real_T MVWeights[60];
-  real_T MVRateWeights[60];
+  real_T ref[80];
+  real_T OutputWeights[80];
+  real_T MVWeights[80];
+  real_T MVRateWeights[80];
   real_T ECRWeight;
-  real_T OutputMin[60];
-  real_T OutputMax[60];
-  real_T StateMin[180];
-  real_T StateMax[180];
-  real_T MVMin[60];
-  real_T MVMax[60];
-  real_T MVRateMin[60];
-  real_T MVRateMax[60];
-  real_T MVScaledTarget[60];
+  real_T OutputMin[80];
+  real_T OutputMax[80];
+  real_T StateMin[240];
+  real_T StateMax[240];
+  real_T MVMin[80];
+  real_T MVMax[80];
+  real_T MVRateMin[80];
+  real_T MVRateMax[80];
+  real_T MVScaledTarget[80];
 } f_struct_T;
 
 #endif                                 /*typedef_f_struct_T*/
@@ -161,8 +161,8 @@ typedef struct {
 #define typedef_i_struct_T
 
 typedef struct {
-  emxArray_real_T_962 grad;
-  emxArray_real_T_961 Hx;
+  emxArray_real_T_1282 grad;
+  emxArray_real_T_1281 Hx;
   boolean_T hasLinear;
   int32_T nvar;
   int32_T maxVar;

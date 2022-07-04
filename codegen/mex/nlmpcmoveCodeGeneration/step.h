@@ -20,8 +20,8 @@
 
 /* Function Declarations */
 boolean_T step(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
-               int32_T *STEP_TYPE, real_T Hessian[58081], const real_T lb[241],
-               const real_T ub[241], g_struct_T *TrialState, k_struct_T
+               int32_T *STEP_TYPE, real_T Hessian[103041], const real_T lb[321],
+               const real_T ub[321], g_struct_T *TrialState, k_struct_T
                *MeritFunction, d_struct_T *memspace, j_struct_T *WorkingSet,
                l_struct_T *QRManager, m_struct_T *CholManager, i_struct_T
                *QPObjective, c_struct_T *qpoptions);

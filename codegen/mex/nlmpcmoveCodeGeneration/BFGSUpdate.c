@@ -12,7 +12,7 @@
 #include <stddef.h>
 
 /* Function Definitions */
-boolean_T BFGSUpdate(int32_T nvar, real_T Bk[58081], const real_T sk_data[],
+boolean_T BFGSUpdate(int32_T nvar, real_T Bk[103041], const real_T sk_data[],
                      real_T yk_data[], real_T workspace_data[])
 {
   ptrdiff_t incx_t;
@@ -39,7 +39,7 @@ boolean_T BFGSUpdate(int32_T nvar, real_T Bk[58081], const real_T sk_data[],
   TRANSA = 'N';
   m_t = (ptrdiff_t)nvar;
   n_t = (ptrdiff_t)nvar;
-  lda_t = (ptrdiff_t)241;
+  lda_t = (ptrdiff_t)321;
   incx_t = (ptrdiff_t)1;
   incy_t = (ptrdiff_t)1;
   dgemv(&TRANSA, &m_t, &n_t, &theta, &Bk[0], &lda_t, &sk_data[0], &incx_t,
@@ -86,7 +86,7 @@ boolean_T BFGSUpdate(int32_T nvar, real_T Bk[58081], const real_T sk_data[],
     n_t = (ptrdiff_t)nvar;
     incx_t = (ptrdiff_t)1;
     incy_t = (ptrdiff_t)1;
-    lda_t = (ptrdiff_t)241;
+    lda_t = (ptrdiff_t)321;
     dger(&m_t, &n_t, &theta, &workspace_data[0], &incx_t, &workspace_data[0],
          &incy_t, &Bk[0], &lda_t);
     theta = 1.0 / dotSY;
@@ -94,7 +94,7 @@ boolean_T BFGSUpdate(int32_T nvar, real_T Bk[58081], const real_T sk_data[],
     n_t = (ptrdiff_t)nvar;
     incx_t = (ptrdiff_t)1;
     incy_t = (ptrdiff_t)1;
-    lda_t = (ptrdiff_t)241;
+    lda_t = (ptrdiff_t)321;
     dger(&m_t, &n_t, &theta, &yk_data[0], &incx_t, &yk_data[0], &incy_t, &Bk[0],
          &lda_t);
   }

@@ -80,11 +80,20 @@ static emlrtRTEInfo c_emlrtRTEI = { 14,/* lineNo */
 
 /* Function Definitions */
 void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
-  real_T lastMV[4], const real_T ref0[4], const real_T MVTarget0[4], const
-  real_T X0[180], const real_T MV0[60], real_T Slack0, f_struct_T *runtimedata,
-  e_struct_T *userdata, real_T z0[241])
+  real_T lastMV[4], const real_T ref0[80], const real_T MVTarget0[4], const
+  real_T X0[240], const real_T MV0[80], real_T Slack0, f_struct_T *runtimedata,
+  e_struct_T *userdata, real_T z0[321])
 {
-  static real_T b_dv[180] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+  static const real_T dv3[80] = { 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8,
+    0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8,
+    0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8,
+    0.8, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 4.0,
+    4.0, 4.0, 4.0, 4.0, 4.0, 4.0, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5,
+    0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5 };
+
+  static real_T b_dv[240] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -95,12 +104,17 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
     3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
     3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
     3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
-    3.1415926535897931, 1.5707963267948966, 1.5707963267948966,
+    3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
+    3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
     1.5707963267948966, 1.5707963267948966, 1.5707963267948966,
     1.5707963267948966, 1.5707963267948966, 1.5707963267948966,
     1.5707963267948966, 1.5707963267948966, 1.5707963267948966,
     1.5707963267948966, 1.5707963267948966, 1.5707963267948966,
-    1.5707963267948966, 3.1415926535897931, 3.1415926535897931,
+    1.5707963267948966, 1.5707963267948966, 1.5707963267948966,
+    1.5707963267948966, 1.5707963267948966, 1.5707963267948966,
+    1.5707963267948966, 1.5707963267948966, 3.1415926535897931,
+    3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
+    3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
     3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
     3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
     3.1415926535897931, 3.1415926535897931, 3.1415926535897931,
@@ -108,9 +122,12 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
     3.1415926535897931, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0 };
 
-  static real_T dv1[180] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+  static real_T dv1[240] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
@@ -121,12 +138,17 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
     -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
     -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
     -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
-    -3.1415926535897931, -1.5707963267948966, -1.5707963267948966,
+    -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
+    -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
     -1.5707963267948966, -1.5707963267948966, -1.5707963267948966,
     -1.5707963267948966, -1.5707963267948966, -1.5707963267948966,
     -1.5707963267948966, -1.5707963267948966, -1.5707963267948966,
     -1.5707963267948966, -1.5707963267948966, -1.5707963267948966,
-    -1.5707963267948966, -3.1415926535897931, -3.1415926535897931,
+    -1.5707963267948966, -1.5707963267948966, -1.5707963267948966,
+    -1.5707963267948966, -1.5707963267948966, -1.5707963267948966,
+    -1.5707963267948966, -1.5707963267948966, -3.1415926535897931,
+    -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
+    -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
     -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
     -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
     -3.1415926535897931, -3.1415926535897931, -3.1415926535897931,
@@ -134,17 +156,15 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
     -3.1415926535897931, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0 };
 
-  static real_T dv2[60] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+  static real_T dv2[80] = { 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
     0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-    0.0, 0.0, 0.0, 0.0, 0.0 };
-
-  static const int8_T iv[60] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    2, 2, 2, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+    0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 };
 
   ptrdiff_t k_t;
   ptrdiff_t lda_t;
@@ -155,13 +175,13 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
   emlrtStack b_st;
   emlrtStack c_st;
   emlrtStack st;
-  real_T b_X0[180];
-  real_T b_MV0[60];
-  real_T uz[60];
+  real_T b_X0[240];
+  real_T b_MV0[80];
+  real_T uz[80];
   real_T alpha1;
   real_T beta1;
-  int32_T b_i;
   int32_T i;
+  int32_T k;
   char_T TRANSA1;
   char_T TRANSB1;
   boolean_T exitg1;
@@ -262,51 +282,96 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
   b_dv[87U] = rtInf;
   b_dv[88U] = rtInf;
   b_dv[89U] = rtInf;
-  b_dv[135U] = rtInf;
-  b_dv[136U] = rtInf;
-  b_dv[137U] = rtInf;
-  b_dv[138U] = rtInf;
-  b_dv[139U] = rtInf;
-  b_dv[140U] = rtInf;
-  b_dv[141U] = rtInf;
-  b_dv[142U] = rtInf;
-  b_dv[143U] = rtInf;
-  b_dv[144U] = rtInf;
-  b_dv[145U] = rtInf;
-  b_dv[146U] = rtInf;
-  b_dv[147U] = rtInf;
-  b_dv[148U] = rtInf;
-  b_dv[149U] = rtInf;
-  b_dv[150U] = rtInf;
-  b_dv[151U] = rtInf;
-  b_dv[152U] = rtInf;
-  b_dv[153U] = rtInf;
-  b_dv[154U] = rtInf;
-  b_dv[155U] = rtInf;
-  b_dv[156U] = rtInf;
-  b_dv[157U] = rtInf;
-  b_dv[158U] = rtInf;
-  b_dv[159U] = rtInf;
-  b_dv[160U] = rtInf;
-  b_dv[161U] = rtInf;
-  b_dv[162U] = rtInf;
-  b_dv[163U] = rtInf;
-  b_dv[164U] = rtInf;
-  b_dv[165U] = rtInf;
-  b_dv[166U] = rtInf;
-  b_dv[167U] = rtInf;
-  b_dv[168U] = rtInf;
-  b_dv[169U] = rtInf;
-  b_dv[170U] = rtInf;
-  b_dv[171U] = rtInf;
-  b_dv[172U] = rtInf;
-  b_dv[173U] = rtInf;
-  b_dv[174U] = rtInf;
-  b_dv[175U] = rtInf;
-  b_dv[176U] = rtInf;
-  b_dv[177U] = rtInf;
-  b_dv[178U] = rtInf;
-  b_dv[179U] = rtInf;
+  b_dv[90U] = rtInf;
+  b_dv[91U] = rtInf;
+  b_dv[92U] = rtInf;
+  b_dv[93U] = rtInf;
+  b_dv[94U] = rtInf;
+  b_dv[95U] = rtInf;
+  b_dv[96U] = rtInf;
+  b_dv[97U] = rtInf;
+  b_dv[98U] = rtInf;
+  b_dv[99U] = rtInf;
+  b_dv[100U] = rtInf;
+  b_dv[101U] = rtInf;
+  b_dv[102U] = rtInf;
+  b_dv[103U] = rtInf;
+  b_dv[104U] = rtInf;
+  b_dv[105U] = rtInf;
+  b_dv[106U] = rtInf;
+  b_dv[107U] = rtInf;
+  b_dv[108U] = rtInf;
+  b_dv[109U] = rtInf;
+  b_dv[110U] = rtInf;
+  b_dv[111U] = rtInf;
+  b_dv[112U] = rtInf;
+  b_dv[113U] = rtInf;
+  b_dv[114U] = rtInf;
+  b_dv[115U] = rtInf;
+  b_dv[116U] = rtInf;
+  b_dv[117U] = rtInf;
+  b_dv[118U] = rtInf;
+  b_dv[119U] = rtInf;
+  b_dv[180U] = rtInf;
+  b_dv[181U] = rtInf;
+  b_dv[182U] = rtInf;
+  b_dv[183U] = rtInf;
+  b_dv[184U] = rtInf;
+  b_dv[185U] = rtInf;
+  b_dv[186U] = rtInf;
+  b_dv[187U] = rtInf;
+  b_dv[188U] = rtInf;
+  b_dv[189U] = rtInf;
+  b_dv[190U] = rtInf;
+  b_dv[191U] = rtInf;
+  b_dv[192U] = rtInf;
+  b_dv[193U] = rtInf;
+  b_dv[194U] = rtInf;
+  b_dv[195U] = rtInf;
+  b_dv[196U] = rtInf;
+  b_dv[197U] = rtInf;
+  b_dv[198U] = rtInf;
+  b_dv[199U] = rtInf;
+  b_dv[200U] = rtInf;
+  b_dv[201U] = rtInf;
+  b_dv[202U] = rtInf;
+  b_dv[203U] = rtInf;
+  b_dv[204U] = rtInf;
+  b_dv[205U] = rtInf;
+  b_dv[206U] = rtInf;
+  b_dv[207U] = rtInf;
+  b_dv[208U] = rtInf;
+  b_dv[209U] = rtInf;
+  b_dv[210U] = rtInf;
+  b_dv[211U] = rtInf;
+  b_dv[212U] = rtInf;
+  b_dv[213U] = rtInf;
+  b_dv[214U] = rtInf;
+  b_dv[215U] = rtInf;
+  b_dv[216U] = rtInf;
+  b_dv[217U] = rtInf;
+  b_dv[218U] = rtInf;
+  b_dv[219U] = rtInf;
+  b_dv[220U] = rtInf;
+  b_dv[221U] = rtInf;
+  b_dv[222U] = rtInf;
+  b_dv[223U] = rtInf;
+  b_dv[224U] = rtInf;
+  b_dv[225U] = rtInf;
+  b_dv[226U] = rtInf;
+  b_dv[227U] = rtInf;
+  b_dv[228U] = rtInf;
+  b_dv[229U] = rtInf;
+  b_dv[230U] = rtInf;
+  b_dv[231U] = rtInf;
+  b_dv[232U] = rtInf;
+  b_dv[233U] = rtInf;
+  b_dv[234U] = rtInf;
+  b_dv[235U] = rtInf;
+  b_dv[236U] = rtInf;
+  b_dv[237U] = rtInf;
+  b_dv[238U] = rtInf;
+  b_dv[239U] = rtInf;
   dv1[0U] = rtMinusInf;
   dv1[1U] = rtMinusInf;
   dv1[2U] = rtMinusInf;
@@ -397,51 +462,96 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
   dv1[87U] = rtMinusInf;
   dv1[88U] = rtMinusInf;
   dv1[89U] = rtMinusInf;
-  dv1[135U] = rtMinusInf;
-  dv1[136U] = rtMinusInf;
-  dv1[137U] = rtMinusInf;
-  dv1[138U] = rtMinusInf;
-  dv1[139U] = rtMinusInf;
-  dv1[140U] = rtMinusInf;
-  dv1[141U] = rtMinusInf;
-  dv1[142U] = rtMinusInf;
-  dv1[143U] = rtMinusInf;
-  dv1[144U] = rtMinusInf;
-  dv1[145U] = rtMinusInf;
-  dv1[146U] = rtMinusInf;
-  dv1[147U] = rtMinusInf;
-  dv1[148U] = rtMinusInf;
-  dv1[149U] = rtMinusInf;
-  dv1[150U] = rtMinusInf;
-  dv1[151U] = rtMinusInf;
-  dv1[152U] = rtMinusInf;
-  dv1[153U] = rtMinusInf;
-  dv1[154U] = rtMinusInf;
-  dv1[155U] = rtMinusInf;
-  dv1[156U] = rtMinusInf;
-  dv1[157U] = rtMinusInf;
-  dv1[158U] = rtMinusInf;
-  dv1[159U] = rtMinusInf;
-  dv1[160U] = rtMinusInf;
-  dv1[161U] = rtMinusInf;
-  dv1[162U] = rtMinusInf;
-  dv1[163U] = rtMinusInf;
-  dv1[164U] = rtMinusInf;
-  dv1[165U] = rtMinusInf;
-  dv1[166U] = rtMinusInf;
-  dv1[167U] = rtMinusInf;
-  dv1[168U] = rtMinusInf;
-  dv1[169U] = rtMinusInf;
-  dv1[170U] = rtMinusInf;
-  dv1[171U] = rtMinusInf;
-  dv1[172U] = rtMinusInf;
-  dv1[173U] = rtMinusInf;
-  dv1[174U] = rtMinusInf;
-  dv1[175U] = rtMinusInf;
-  dv1[176U] = rtMinusInf;
-  dv1[177U] = rtMinusInf;
-  dv1[178U] = rtMinusInf;
-  dv1[179U] = rtMinusInf;
+  dv1[90U] = rtMinusInf;
+  dv1[91U] = rtMinusInf;
+  dv1[92U] = rtMinusInf;
+  dv1[93U] = rtMinusInf;
+  dv1[94U] = rtMinusInf;
+  dv1[95U] = rtMinusInf;
+  dv1[96U] = rtMinusInf;
+  dv1[97U] = rtMinusInf;
+  dv1[98U] = rtMinusInf;
+  dv1[99U] = rtMinusInf;
+  dv1[100U] = rtMinusInf;
+  dv1[101U] = rtMinusInf;
+  dv1[102U] = rtMinusInf;
+  dv1[103U] = rtMinusInf;
+  dv1[104U] = rtMinusInf;
+  dv1[105U] = rtMinusInf;
+  dv1[106U] = rtMinusInf;
+  dv1[107U] = rtMinusInf;
+  dv1[108U] = rtMinusInf;
+  dv1[109U] = rtMinusInf;
+  dv1[110U] = rtMinusInf;
+  dv1[111U] = rtMinusInf;
+  dv1[112U] = rtMinusInf;
+  dv1[113U] = rtMinusInf;
+  dv1[114U] = rtMinusInf;
+  dv1[115U] = rtMinusInf;
+  dv1[116U] = rtMinusInf;
+  dv1[117U] = rtMinusInf;
+  dv1[118U] = rtMinusInf;
+  dv1[119U] = rtMinusInf;
+  dv1[180U] = rtMinusInf;
+  dv1[181U] = rtMinusInf;
+  dv1[182U] = rtMinusInf;
+  dv1[183U] = rtMinusInf;
+  dv1[184U] = rtMinusInf;
+  dv1[185U] = rtMinusInf;
+  dv1[186U] = rtMinusInf;
+  dv1[187U] = rtMinusInf;
+  dv1[188U] = rtMinusInf;
+  dv1[189U] = rtMinusInf;
+  dv1[190U] = rtMinusInf;
+  dv1[191U] = rtMinusInf;
+  dv1[192U] = rtMinusInf;
+  dv1[193U] = rtMinusInf;
+  dv1[194U] = rtMinusInf;
+  dv1[195U] = rtMinusInf;
+  dv1[196U] = rtMinusInf;
+  dv1[197U] = rtMinusInf;
+  dv1[198U] = rtMinusInf;
+  dv1[199U] = rtMinusInf;
+  dv1[200U] = rtMinusInf;
+  dv1[201U] = rtMinusInf;
+  dv1[202U] = rtMinusInf;
+  dv1[203U] = rtMinusInf;
+  dv1[204U] = rtMinusInf;
+  dv1[205U] = rtMinusInf;
+  dv1[206U] = rtMinusInf;
+  dv1[207U] = rtMinusInf;
+  dv1[208U] = rtMinusInf;
+  dv1[209U] = rtMinusInf;
+  dv1[210U] = rtMinusInf;
+  dv1[211U] = rtMinusInf;
+  dv1[212U] = rtMinusInf;
+  dv1[213U] = rtMinusInf;
+  dv1[214U] = rtMinusInf;
+  dv1[215U] = rtMinusInf;
+  dv1[216U] = rtMinusInf;
+  dv1[217U] = rtMinusInf;
+  dv1[218U] = rtMinusInf;
+  dv1[219U] = rtMinusInf;
+  dv1[220U] = rtMinusInf;
+  dv1[221U] = rtMinusInf;
+  dv1[222U] = rtMinusInf;
+  dv1[223U] = rtMinusInf;
+  dv1[224U] = rtMinusInf;
+  dv1[225U] = rtMinusInf;
+  dv1[226U] = rtMinusInf;
+  dv1[227U] = rtMinusInf;
+  dv1[228U] = rtMinusInf;
+  dv1[229U] = rtMinusInf;
+  dv1[230U] = rtMinusInf;
+  dv1[231U] = rtMinusInf;
+  dv1[232U] = rtMinusInf;
+  dv1[233U] = rtMinusInf;
+  dv1[234U] = rtMinusInf;
+  dv1[235U] = rtMinusInf;
+  dv1[236U] = rtMinusInf;
+  dv1[237U] = rtMinusInf;
+  dv1[238U] = rtMinusInf;
+  dv1[239U] = rtMinusInf;
   dv2[0U] = rtMinusInf;
   dv2[1U] = rtMinusInf;
   dv2[2U] = rtMinusInf;
@@ -472,29 +582,44 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
   dv2[27U] = rtMinusInf;
   dv2[28U] = rtMinusInf;
   dv2[29U] = rtMinusInf;
-  dv2[45U] = rtMinusInf;
-  dv2[46U] = rtMinusInf;
-  dv2[47U] = rtMinusInf;
-  dv2[48U] = rtMinusInf;
-  dv2[49U] = rtMinusInf;
-  dv2[50U] = rtMinusInf;
-  dv2[51U] = rtMinusInf;
-  dv2[52U] = rtMinusInf;
-  dv2[53U] = rtMinusInf;
-  dv2[54U] = rtMinusInf;
-  dv2[55U] = rtMinusInf;
-  dv2[56U] = rtMinusInf;
-  dv2[57U] = rtMinusInf;
-  dv2[58U] = rtMinusInf;
-  dv2[59U] = rtMinusInf;
+  dv2[30U] = rtMinusInf;
+  dv2[31U] = rtMinusInf;
+  dv2[32U] = rtMinusInf;
+  dv2[33U] = rtMinusInf;
+  dv2[34U] = rtMinusInf;
+  dv2[35U] = rtMinusInf;
+  dv2[36U] = rtMinusInf;
+  dv2[37U] = rtMinusInf;
+  dv2[38U] = rtMinusInf;
+  dv2[39U] = rtMinusInf;
+  dv2[60U] = rtMinusInf;
+  dv2[61U] = rtMinusInf;
+  dv2[62U] = rtMinusInf;
+  dv2[63U] = rtMinusInf;
+  dv2[64U] = rtMinusInf;
+  dv2[65U] = rtMinusInf;
+  dv2[66U] = rtMinusInf;
+  dv2[67U] = rtMinusInf;
+  dv2[68U] = rtMinusInf;
+  dv2[69U] = rtMinusInf;
+  dv2[70U] = rtMinusInf;
+  dv2[71U] = rtMinusInf;
+  dv2[72U] = rtMinusInf;
+  dv2[73U] = rtMinusInf;
+  dv2[74U] = rtMinusInf;
+  dv2[75U] = rtMinusInf;
+  dv2[76U] = rtMinusInf;
+  dv2[77U] = rtMinusInf;
+  dv2[78U] = rtMinusInf;
+  dv2[79U] = rtMinusInf;
   st.site = &h_emlrtRSI;
   b_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 4)) {
-    if (!muDoubleScalarIsNaN(ref0[i])) {
-      i++;
+  while ((!exitg1) && (k < 80)) {
+    if (!muDoubleScalarIsNaN(ref0[k])) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -509,11 +634,11 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
 
   b_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 4)) {
-    if ((!muDoubleScalarIsInf(ref0[i])) && (!muDoubleScalarIsNaN(ref0[i]))) {
-      i++;
+  while ((!exitg1) && (k < 80)) {
+    if ((!muDoubleScalarIsInf(ref0[k])) && (!muDoubleScalarIsNaN(ref0[k]))) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -524,23 +649,16 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
     emlrtErrorWithMessageIdR2018a(&b_st, &b_emlrtRTEI,
       "Coder:toolbox:ValidateattributesexpectedFinite", "MATLAB:expectedFinite",
       3, 4, 5, "\"ref\"");
-  }
-
-  for (b_i = 0; b_i < 4; b_i++) {
-    userdata->References[15 * b_i] = ref0[b_i];
-    for (i = 0; i < 14; i++) {
-      userdata->References[(i + 15 * b_i) + 1] = ref0[b_i];
-    }
   }
 
   st.site = &i_emlrtRSI;
   b_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 4)) {
-    if (!muDoubleScalarIsNaN(MVTarget0[i])) {
-      i++;
+  while ((!exitg1) && (k < 4)) {
+    if (!muDoubleScalarIsNaN(MVTarget0[k])) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -555,12 +673,12 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
 
   b_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 4)) {
-    if ((!muDoubleScalarIsInf(MVTarget0[i])) && (!muDoubleScalarIsNaN
-         (MVTarget0[i]))) {
-      i++;
+  while ((!exitg1) && (k < 4)) {
+    if ((!muDoubleScalarIsInf(MVTarget0[k])) && (!muDoubleScalarIsNaN
+         (MVTarget0[k]))) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -573,10 +691,10 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
       3, 4, 10, "\"MVTarget\"");
   }
 
-  for (b_i = 0; b_i < 4; b_i++) {
-    userdata->MVTarget[15 * b_i] = MVTarget0[b_i];
-    for (i = 0; i < 14; i++) {
-      userdata->MVTarget[(i + 15 * b_i) + 1] = MVTarget0[b_i];
+  for (i = 0; i < 4; i++) {
+    userdata->MVTarget[20 * i] = MVTarget0[i];
+    for (k = 0; k < 19; k++) {
+      userdata->MVTarget[(k + 20 * i) + 1] = MVTarget0[i];
     }
   }
 
@@ -584,11 +702,11 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
   b_st.site = &n_emlrtRSI;
   c_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 180)) {
-    if ((!muDoubleScalarIsInf(X0[i])) && (!muDoubleScalarIsNaN(X0[i]))) {
-      i++;
+  while ((!exitg1) && (k < 240)) {
+    if ((!muDoubleScalarIsInf(X0[k])) && (!muDoubleScalarIsNaN(X0[k]))) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -603,11 +721,11 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
 
   c_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 180)) {
-    if (!muDoubleScalarIsNaN(X0[i])) {
-      i++;
+  while ((!exitg1) && (k < 240)) {
+    if (!muDoubleScalarIsNaN(X0[k])) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -624,11 +742,11 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
   b_st.site = &o_emlrtRSI;
   c_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 60)) {
-    if ((!muDoubleScalarIsInf(MV0[i])) && (!muDoubleScalarIsNaN(MV0[i]))) {
-      i++;
+  while ((!exitg1) && (k < 80)) {
+    if ((!muDoubleScalarIsInf(MV0[k])) && (!muDoubleScalarIsNaN(MV0[k]))) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -643,11 +761,11 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
 
   c_st.site = &g_emlrtRSI;
   p = true;
-  i = 0;
+  k = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 60)) {
-    if (!muDoubleScalarIsNaN(MV0[i])) {
-      i++;
+  while ((!exitg1) && (k < 80)) {
+    if (!muDoubleScalarIsNaN(MV0[k])) {
+      k++;
     } else {
       p = false;
       exitg1 = true;
@@ -680,76 +798,73 @@ void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
 
   st.site = &m_emlrtRSI;
   b_st.site = &q_emlrtRSI;
-  for (b_i = 0; b_i < 15; b_i++) {
-    i = b_i << 2;
-    b_MV0[i] = MV0[b_i];
-    b_MV0[i + 1] = MV0[b_i + 15];
-    b_MV0[i + 2] = MV0[b_i + 30];
-    b_MV0[i + 3] = MV0[b_i + 45];
+  for (i = 0; i < 20; i++) {
+    k = i << 2;
+    b_MV0[k] = MV0[i];
+    b_MV0[k + 1] = MV0[i + 20];
+    b_MV0[k + 2] = MV0[i + 40];
+    b_MV0[k + 3] = MV0[i + 60];
   }
 
   TRANSB1 = 'N';
   TRANSA1 = 'N';
   alpha1 = 1.0;
   beta1 = 0.0;
-  m_t = (ptrdiff_t)60;
+  m_t = (ptrdiff_t)80;
   n_t = (ptrdiff_t)1;
-  k_t = (ptrdiff_t)60;
-  lda_t = (ptrdiff_t)60;
-  ldb_t = (ptrdiff_t)60;
-  ldc_t = (ptrdiff_t)60;
+  k_t = (ptrdiff_t)80;
+  lda_t = (ptrdiff_t)80;
+  ldb_t = (ptrdiff_t)80;
+  ldc_t = (ptrdiff_t)80;
   dgemm(&TRANSA1, &TRANSB1, &m_t, &n_t, &k_t, &alpha1, &dv[0], &lda_t, &b_MV0[0],
         &ldb_t, &beta1, &uz[0], &ldc_t);
-  for (b_i = 0; b_i < 15; b_i++) {
-    for (i = 0; i < 12; i++) {
-      b_X0[i + 12 * b_i] = X0[b_i + 15 * i];
+  for (i = 0; i < 20; i++) {
+    for (k = 0; k < 12; k++) {
+      b_X0[k + 12 * i] = X0[i + 20 * k];
     }
   }
 
-  memcpy(&z0[0], &b_X0[0], 180U * sizeof(real_T));
-  memcpy(&z0[180], &uz[0], 60U * sizeof(real_T));
-  z0[240] = Slack0;
-  userdata->Ts = 0.2;
-  userdata->PredictionHorizon = 15.0;
+  memcpy(&z0[0], &b_X0[0], 240U * sizeof(real_T));
+  memcpy(&z0[240], &uz[0], 80U * sizeof(real_T));
+  z0[320] = Slack0;
+  userdata->Ts = 0.1;
+  memcpy(&userdata->CurrentStates[0], &x[0], 12U * sizeof(real_T));
+  userdata->LastMV[0] = lastMV[0];
+  userdata->LastMV[1] = lastMV[1];
+  userdata->LastMV[2] = lastMV[2];
+  userdata->LastMV[3] = lastMV[3];
+  memcpy(&userdata->References[0], &ref0[0], 80U * sizeof(real_T));
+  userdata->PredictionHorizon = 20.0;
   userdata->NumOfStates = 12.0;
   userdata->NumOfOutputs = 4.0;
   userdata->NumOfInputs = 4.0;
-  userdata->LastMV[0] = lastMV[0];
   userdata->MVIndex[0] = 1.0;
-  userdata->LastMV[1] = lastMV[1];
   userdata->MVIndex[1] = 2.0;
-  userdata->LastMV[2] = lastMV[2];
   userdata->MVIndex[2] = 3.0;
-  userdata->LastMV[3] = lastMV[3];
   userdata->MVIndex[3] = 4.0;
-  for (i = 0; i < 12; i++) {
-    alpha1 = x[i];
-    userdata->CurrentStates[i] = alpha1;
-    runtimedata->x[i] = alpha1;
-  }
-
+  memcpy(&runtimedata->x[0], &x[0], 12U * sizeof(real_T));
   runtimedata->lastMV[0] = lastMV[0];
   runtimedata->lastMV[1] = lastMV[1];
   runtimedata->lastMV[2] = lastMV[2];
   runtimedata->lastMV[3] = lastMV[3];
   runtimedata->ECRWeight = 100000.0;
-  for (b_i = 0; b_i < 60; b_i++) {
-    runtimedata->ref[b_i] = userdata->References[b_i];
-    runtimedata->OutputWeights[b_i] = iv[b_i];
-    runtimedata->MVWeights[b_i] = 1.0;
-    runtimedata->MVRateWeights[b_i] = 0.0;
-    runtimedata->OutputMin[b_i] = dv2[b_i];
-    runtimedata->OutputMax[b_i] = rtInf;
+  for (i = 0; i < 80; i++) {
+    runtimedata->ref[i] = ref0[i];
+    runtimedata->OutputWeights[i] = dv3[i];
+    runtimedata->MVWeights[i] = 1.0;
+    runtimedata->MVRateWeights[i] = 0.0;
+    runtimedata->OutputMin[i] = dv2[i];
+    runtimedata->OutputMax[i] = rtInf;
   }
 
-  memcpy(&runtimedata->StateMin[0], &dv1[0], 180U * sizeof(real_T));
-  memcpy(&runtimedata->StateMax[0], &b_dv[0], 180U * sizeof(real_T));
-  for (b_i = 0; b_i < 60; b_i++) {
-    runtimedata->MVMin[b_i] = 0.0;
-    runtimedata->MVMax[b_i] = 8.5;
-    runtimedata->MVRateMin[b_i] = rtMinusInf;
-    runtimedata->MVRateMax[b_i] = rtInf;
-    runtimedata->MVScaledTarget[b_i] = userdata->MVTarget[b_i];
+  memcpy(&runtimedata->StateMin[0], &dv1[0], 240U * sizeof(real_T));
+  memcpy(&runtimedata->StateMax[0], &b_dv[0], 240U * sizeof(real_T));
+  for (i = 0; i < 80; i++) {
+    runtimedata->MVMin[i] = 0.0;
+    runtimedata->MVMax[i] = 8.5;
+    runtimedata->MVRateMin[i] = rtMinusInf;
+    runtimedata->MVRateMax[i] = rtInf;
+    runtimedata->MVScaledTarget[i] = userdata->MVTarget[i];
   }
 }
 

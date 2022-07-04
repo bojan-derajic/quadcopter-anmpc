@@ -6,9 +6,10 @@ create_nmpc_controller;
 clc
 T = 30;
 dt = 0.001;
-Ta = 0.005;
+Ta = 0.002;
 
 X = zeros(T/Ta+1, nx);
+UT = zeros(T/Ta+1, nu);
 Xr = zeros(T/Ta+1, nx);
 U = zeros(T/Ta, nu);
 U_nmpc = zeros(T/Ta, nu);
@@ -19,28 +20,33 @@ W_data = zeros(mw, nw, T/Ta+1);
 Wf_data = zeros(mw, nw, T/Ta+1);
 
 x0 = zeros(12, 1);
+uT0 = zeros(4, 1);
 u0 = zeros(4, 1);
+
+onlineData.X0 = repmat(x0', Np, 1);
+onlineData.MV0 = repmat(u0', Nc, 1);
 
 W0 = [zeros(13, 4); eye(4, 4); -eye(4, 4)];
 Wf0 = [zeros(13, 4); eye(4, 4); -eye(4, 4)];
 
-gamma = 0.05;
-gamma_f = 50;
-ksi = 1000;
+gamma = 1.2;
+gamma_f = 10;
+ksi = 600;
 
 Ap = -eye(3);
 Av = -eye(3);
 Aeta = -eye(3);
 Aomega = -eye(3);
 
-Ae = 0.02*blkdiag(Ap, Av, Aeta, Aomega);
+Ae = 0.8*blkdiag(Ap, Av, Aeta, Aomega);
 
-Q = 0.1*eye(12);
+Q = eye(12);
 
 P = lyap(Ae, Q);
 
 k = 1;
 X(k, :) = x0;
+UT(k, :) = uT0;
 Xr(k, :) = x0;
 u_nmpc = u0;
 W_data(:, :, k) = W0;
@@ -52,7 +58,7 @@ hbar = waitbar(0,'Simulation Progress');
 tic
 for i = 1:T/Ts
     
-    onlineData.ref = REF(k, :);
+    onlineData.ref = REF(k+1:k+Np, :);
     x = X(k, :);
     Xr(k, :) = x;
 
@@ -61,6 +67,7 @@ for i = 1:T/Ts
     for j = 1:Ts/Ta
         
         x = X(k, :);
+        uT = UT(k, :);
         xr = Xr(k, :);
         e = x - xr;
         
@@ -102,24 +109,30 @@ for i = 1:T/Ts
         W = W + Ta*Wd;
         Wf = Wf + Ta*Wfd;
         
-        u = -W'*sigma;
+        u = -W'*sigma
         
+        u(u>8.5) = 8.5;
+        u(u<0) = 0;
+        
+        s = [x, uT];
+                
+        [t, s] = ode45(@(t, s) quadcopter_model(s, u, (k-1)*Ta), 0:dt:Ta, s);
+    
         U(k, :) = u;
         U_nmpc(k, :) = u_nmpc;
         
+        X(k+1, :) = s(end, 1:12);
+        UT(k+1, :) = s(end, 13:16);
         Xr(k+1, :) = xr + Ta*xrd';
         W_data(:, :, k+1) = W;
         Wf_data(:, :, k+1) = Wf;
         
-        [t, x] = ode45(@(t, x) quadcopter_model(x, u, (k-1)*Ta), 0:dt:Ta, x);
-    
-        X(k+1, :) = x(end, :);
-        
         k = k + 1;
     end
     
-    waitbar(k*Ta/T,hbar);
+    waitbar(k*Ta/T, hbar);
 end
 toc
+close(hbar);
 
 plot_trajectory;

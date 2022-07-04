@@ -18,19 +18,19 @@ static emlrtRSInfo hb_emlrtRSI = { 1,  /* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+validate\\checkLinearInputs.p"/* pathName */
 };
 
-static emlrtRTEInfo g_emlrtRTEI = { 1, /* lineNo */
+static emlrtRTEInfo j_emlrtRTEI = { 1, /* lineNo */
   1,                                   /* colNo */
   "checkLinearInputs",                 /* fName */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+validate\\checkLinearInputs.p"/* pName */
 };
 
-static emlrtRTEInfo h_emlrtRTEI = { 1, /* lineNo */
+static emlrtRTEInfo k_emlrtRTEI = { 1, /* lineNo */
   1,                                   /* colNo */
   "checkX0",                           /* fName */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+validate\\checkX0.p"/* pName */
 };
 
-static emlrtRTEInfo i_emlrtRTEI = { 1, /* lineNo */
+static emlrtRTEInfo l_emlrtRTEI = { 1, /* lineNo */
   1,                                   /* colNo */
   "checkBounds",                       /* fName */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+validate\\checkBounds.p"/* pName */
@@ -38,18 +38,18 @@ static emlrtRTEInfo i_emlrtRTEI = { 1, /* lineNo */
 
 /* Function Definitions */
 void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp,
-  const real_T x0[241], const real_T Aineq_data[], const int32_T Aineq_size[2],
-  const real_T bineq_data[], const int32_T bineq_size[1], const real_T lb[241],
-  const real_T ub[241])
+  const real_T x0[321], const real_T Aineq_data[], const int32_T Aineq_size[2],
+  const real_T bineq_data[], const int32_T bineq_size[1], const real_T lb[321],
+  const real_T ub[321])
 {
   emlrtStack st;
   real_T d;
   int32_T tmp_size[1];
   int32_T b_i;
   int32_T i;
-  boolean_T tmp_data[57840];
-  boolean_T b[241];
-  boolean_T b_b[241];
+  boolean_T tmp_data[102720];
+  boolean_T b[321];
+  boolean_T b_b[321];
   boolean_T exitg1;
   boolean_T guard1 = false;
   boolean_T y;
@@ -71,7 +71,7 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
     }
 
     if (!all(SD->u1.f4.tmp_data, tmp_size)) {
-      emlrtErrorWithMessageIdR2018a(sp, &g_emlrtRTEI,
+      emlrtErrorWithMessageIdR2018a(sp, &j_emlrtRTEI,
         "optim_codegen:common:InfNaNComplexDetected",
         "optim_codegen:common:InfNaNComplexDetected", 3, 4, 1, "A");
     }
@@ -95,14 +95,14 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
     }
 
     if (!all(SD->u1.f4.tmp_data, tmp_size)) {
-      emlrtErrorWithMessageIdR2018a(sp, &g_emlrtRTEI,
+      emlrtErrorWithMessageIdR2018a(sp, &j_emlrtRTEI,
         "optim_codegen:common:InfNaNComplexDetected",
         "optim_codegen:common:InfNaNComplexDetected", 3, 4, 1, "B");
     }
   }
 
   st.site = &hb_emlrtRSI;
-  for (i = 0; i < 241; i++) {
+  for (i = 0; i < 321; i++) {
     d = x0[i];
     b[i] = muDoubleScalarIsInf(d);
     b_b[i] = muDoubleScalarIsNaN(d);
@@ -111,7 +111,7 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
   y = true;
   i = 0;
   exitg1 = false;
-  while ((!exitg1) && (i < 241)) {
+  while ((!exitg1) && (i < 321)) {
     if (b[i] || b_b[i]) {
       y = false;
       exitg1 = true;
@@ -121,20 +121,20 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
   }
 
   if (!y) {
-    emlrtErrorWithMessageIdR2018a(&st, &h_emlrtRTEI,
+    emlrtErrorWithMessageIdR2018a(&st, &k_emlrtRTEI,
       "optim_codegen:common:InfNaNComplexDetected",
       "optim_codegen:common:InfNaNComplexDetected", 3, 4, 2, "x0");
   }
 
   st.site = &hb_emlrtRSI;
-  for (b_i = 0; b_i < 241; b_i++) {
+  for (b_i = 0; b_i < 321; b_i++) {
     b[b_i] = (lb[b_i] == rtInf);
   }
 
   y = false;
   i = 0;
   exitg1 = false;
-  while ((!exitg1) && (i <= 240)) {
+  while ((!exitg1) && (i <= 320)) {
     if (!b[i]) {
       i++;
     } else {
@@ -147,14 +147,14 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
   if (y) {
     guard1 = true;
   } else {
-    for (i = 0; i < 241; i++) {
+    for (i = 0; i < 321; i++) {
       b[i] = muDoubleScalarIsNaN(lb[i]);
     }
 
     y = false;
     i = 0;
     exitg1 = false;
-    while ((!exitg1) && (i <= 240)) {
+    while ((!exitg1) && (i <= 320)) {
       if (!b[i]) {
         i++;
       } else {
@@ -169,19 +169,19 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
   }
 
   if (guard1) {
-    emlrtErrorWithMessageIdR2018a(&st, &i_emlrtRTEI,
+    emlrtErrorWithMessageIdR2018a(&st, &l_emlrtRTEI,
       "optim_codegen:common:InfNaNComplexDetectedLB",
       "optim_codegen:common:InfNaNComplexDetectedLB", 0);
   }
 
-  for (b_i = 0; b_i < 241; b_i++) {
+  for (b_i = 0; b_i < 321; b_i++) {
     b[b_i] = (ub[b_i] == rtMinusInf);
   }
 
   y = false;
   i = 0;
   exitg1 = false;
-  while ((!exitg1) && (i <= 240)) {
+  while ((!exitg1) && (i <= 320)) {
     if (!b[i]) {
       i++;
     } else {
@@ -194,14 +194,14 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
   if (y) {
     guard1 = true;
   } else {
-    for (i = 0; i < 241; i++) {
+    for (i = 0; i < 321; i++) {
       b[i] = muDoubleScalarIsNaN(ub[i]);
     }
 
     y = false;
     i = 0;
     exitg1 = false;
-    while ((!exitg1) && (i <= 240)) {
+    while ((!exitg1) && (i <= 320)) {
       if (!b[i]) {
         i++;
       } else {
@@ -216,20 +216,20 @@ void checkLinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp
   }
 
   if (guard1) {
-    emlrtErrorWithMessageIdR2018a(&st, &i_emlrtRTEI,
+    emlrtErrorWithMessageIdR2018a(&st, &l_emlrtRTEI,
       "optim_codegen:common:InfNaNComplexDetectedUB",
       "optim_codegen:common:InfNaNComplexDetectedUB", 0);
   }
 
-  if ((Aineq_size[0] != 0) && (Aineq_size[1] != 0) && (Aineq_size[1] != 241)) {
-    emlrtErrorWithMessageIdR2018a(sp, &g_emlrtRTEI,
+  if ((Aineq_size[0] != 0) && (Aineq_size[1] != 0) && (Aineq_size[1] != 321)) {
+    emlrtErrorWithMessageIdR2018a(sp, &j_emlrtRTEI,
       "optim_codegen:common:WrongNumberOfColumnsInA",
-      "optim_codegen:common:WrongNumberOfColumnsInA", 2, 6, 241.0);
+      "optim_codegen:common:WrongNumberOfColumnsInA", 2, 6, 321.0);
   }
 
   if ((Aineq_size[0] != 0) && (Aineq_size[1] != 0) && (Aineq_size[0] !=
        bineq_size[0])) {
-    emlrtErrorWithMessageIdR2018a(sp, &g_emlrtRTEI,
+    emlrtErrorWithMessageIdR2018a(sp, &j_emlrtRTEI,
       "optim_codegen:common:AAndBinInconsistent",
       "optim_codegen:common:AAndBinInconsistent", 0);
   }

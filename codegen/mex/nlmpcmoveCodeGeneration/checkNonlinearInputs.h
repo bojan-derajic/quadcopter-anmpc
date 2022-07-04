@@ -19,9 +19,9 @@
 
 /* Function Declarations */
 int32_T checkNonlinearInputs(c_nlmpcmoveCodeGenerationStackD *SD, const
-  emlrtStack *sp, const real_T x0[241], const real_T
+  emlrtStack *sp, const real_T x0[321], const real_T
   nonlcon_tunableEnvironment_f1_x[12], const real_T
-  c_nonlcon_tunableEnvironment_f1[60], const real_T
-  d_nonlcon_tunableEnvironment_f1[60]);
+  c_nonlcon_tunableEnvironment_f1[80], const real_T
+  d_nonlcon_tunableEnvironment_f1[80]);
 
 /* End of code generation (checkNonlinearInputs.h) */

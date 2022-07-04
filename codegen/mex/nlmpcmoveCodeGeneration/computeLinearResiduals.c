@@ -13,7 +13,7 @@
 #include <string.h>
 
 /* Function Definitions */
-void b_computeLinearResiduals(const real_T x[241], int32_T nVar, real_T
+void b_computeLinearResiduals(const real_T x[321], int32_T nVar, real_T
   workspaceIneq_data[], int32_T workspaceIneq_size[1], int32_T mLinIneq, const
   real_T AineqT_data[], const real_T bineq_data[], int32_T ldAi)
 {
@@ -22,7 +22,7 @@ void b_computeLinearResiduals(const real_T x[241], int32_T nVar, real_T
   ptrdiff_t lda_t;
   ptrdiff_t m_t;
   ptrdiff_t n_t;
-  real_T y_data[1743];
+  real_T y_data[2323];
   real_T alpha1;
   real_T beta1;
   int32_T loop_ub;
@@ -57,7 +57,7 @@ void b_computeLinearResiduals(const real_T x[241], int32_T nVar, real_T
   }
 }
 
-void computeLinearResiduals(const real_T x[241], real_T workspaceIneq_data[],
+void computeLinearResiduals(const real_T x[321], real_T workspaceIneq_data[],
   int32_T workspaceIneq_size[1], int32_T mLinIneq, const real_T AineqT_data[],
   const real_T bineq_data[], int32_T ldAi)
 {
@@ -66,7 +66,7 @@ void computeLinearResiduals(const real_T x[241], real_T workspaceIneq_data[],
   ptrdiff_t lda_t;
   ptrdiff_t m_t;
   ptrdiff_t n_t;
-  real_T y_data[1743];
+  real_T y_data[2323];
   real_T alpha1;
   real_T beta1;
   int32_T loop_ub;
@@ -91,7 +91,7 @@ void computeLinearResiduals(const real_T x[241], real_T workspaceIneq_data[],
     alpha1 = 1.0;
     beta1 = -1.0;
     TRANSA = 'T';
-    m_t = (ptrdiff_t)241;
+    m_t = (ptrdiff_t)321;
     n_t = (ptrdiff_t)mLinIneq;
     lda_t = (ptrdiff_t)ldAi;
     incx_t = (ptrdiff_t)1;

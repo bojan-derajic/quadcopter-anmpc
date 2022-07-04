@@ -16,10 +16,10 @@
 #define typedef_struct1_T
 
 typedef struct {
-  real_T ref[4];
+  real_T ref[80];
   real_T MVTarget[4];
-  real_T X0[180];
-  real_T MV0[60];
+  real_T X0[240];
+  real_T MV0[80];
   real_T Slack0;
 } struct1_T;
 
@@ -29,10 +29,10 @@ typedef struct {
 #define typedef_struct2_T
 
 typedef struct {
-  real_T MVopt[64];
-  real_T Xopt[192];
-  real_T Yopt[64];
-  real_T Topt[16];
+  real_T MVopt[84];
+  real_T Xopt[252];
+  real_T Yopt[84];
+  real_T Topt[21];
   real_T Slack;
   real_T ExitFlag;
   real_T Iterations;
@@ -41,214 +41,214 @@ typedef struct {
 
 #endif                                 /*typedef_struct2_T*/
 
-#ifndef struct_emxArray_real_T_360
-#define struct_emxArray_real_T_360
+#ifndef struct_emxArray_real_T_480
+#define struct_emxArray_real_T_480
 
-struct emxArray_real_T_360
+struct emxArray_real_T_480
 {
-  real_T data[360];
+  real_T data[480];
   int32_T size[1];
 };
 
-#endif                                 /*struct_emxArray_real_T_360*/
+#endif                                 /*struct_emxArray_real_T_480*/
 
-#ifndef typedef_emxArray_real_T_360
-#define typedef_emxArray_real_T_360
+#ifndef typedef_emxArray_real_T_480
+#define typedef_emxArray_real_T_480
 
-typedef struct emxArray_real_T_360 emxArray_real_T_360;
+typedef struct emxArray_real_T_480 emxArray_real_T_480;
 
-#endif                                 /*typedef_emxArray_real_T_360*/
+#endif                                 /*typedef_emxArray_real_T_480*/
 
-#ifndef struct_emxArray_real_T_962
-#define struct_emxArray_real_T_962
+#ifndef struct_emxArray_real_T_1282
+#define struct_emxArray_real_T_1282
 
-struct emxArray_real_T_962
+struct emxArray_real_T_1282
 {
-  real_T data[962];
+  real_T data[1282];
   int32_T size[1];
 };
 
-#endif                                 /*struct_emxArray_real_T_962*/
+#endif                                 /*struct_emxArray_real_T_1282*/
 
-#ifndef typedef_emxArray_real_T_962
-#define typedef_emxArray_real_T_962
+#ifndef typedef_emxArray_real_T_1282
+#define typedef_emxArray_real_T_1282
 
-typedef struct emxArray_real_T_962 emxArray_real_T_962;
+typedef struct emxArray_real_T_1282 emxArray_real_T_1282;
 
-#endif                                 /*typedef_emxArray_real_T_962*/
+#endif                                 /*typedef_emxArray_real_T_1282*/
 
-#ifndef struct_emxArray_real_T_1743
-#define struct_emxArray_real_T_1743
+#ifndef struct_emxArray_real_T_2323
+#define struct_emxArray_real_T_2323
 
-struct emxArray_real_T_1743
+struct emxArray_real_T_2323
 {
-  real_T data[1743];
+  real_T data[2323];
   int32_T size[1];
 };
 
-#endif                                 /*struct_emxArray_real_T_1743*/
+#endif                                 /*struct_emxArray_real_T_2323*/
 
-#ifndef typedef_emxArray_real_T_1743
-#define typedef_emxArray_real_T_1743
+#ifndef typedef_emxArray_real_T_2323
+#define typedef_emxArray_real_T_2323
 
-typedef struct emxArray_real_T_1743 emxArray_real_T_1743;
+typedef struct emxArray_real_T_2323 emxArray_real_T_2323;
 
-#endif                                 /*typedef_emxArray_real_T_1743*/
+#endif                                 /*typedef_emxArray_real_T_2323*/
 
-#ifndef struct_emxArray_int32_T_1743
-#define struct_emxArray_int32_T_1743
+#ifndef struct_emxArray_int32_T_2323
+#define struct_emxArray_int32_T_2323
 
-struct emxArray_int32_T_1743
+struct emxArray_int32_T_2323
 {
-  int32_T data[1743];
+  int32_T data[2323];
   int32_T size[1];
 };
 
-#endif                                 /*struct_emxArray_int32_T_1743*/
+#endif                                 /*struct_emxArray_int32_T_2323*/
 
-#ifndef typedef_emxArray_int32_T_1743
-#define typedef_emxArray_int32_T_1743
+#ifndef typedef_emxArray_int32_T_2323
+#define typedef_emxArray_int32_T_2323
 
-typedef struct emxArray_int32_T_1743 emxArray_int32_T_1743;
+typedef struct emxArray_int32_T_2323 emxArray_int32_T_2323;
 
-#endif                                 /*typedef_emxArray_int32_T_1743*/
+#endif                                 /*typedef_emxArray_int32_T_2323*/
 
-#ifndef struct_emxArray_real_T_1743x1743
-#define struct_emxArray_real_T_1743x1743
+#ifndef struct_emxArray_real_T_2323x2323
+#define struct_emxArray_real_T_2323x2323
 
-struct emxArray_real_T_1743x1743
+struct emxArray_real_T_2323x2323
 {
-  real_T data[3038049];
+  real_T data[5396329];
   int32_T size[2];
 };
 
-#endif                                 /*struct_emxArray_real_T_1743x1743*/
+#endif                                 /*struct_emxArray_real_T_2323x2323*/
 
-#ifndef typedef_emxArray_real_T_1743x1743
-#define typedef_emxArray_real_T_1743x1743
+#ifndef typedef_emxArray_real_T_2323x2323
+#define typedef_emxArray_real_T_2323x2323
 
-typedef struct emxArray_real_T_1743x1743 emxArray_real_T_1743x1743;
+typedef struct emxArray_real_T_2323x2323 emxArray_real_T_2323x2323;
 
-#endif                                 /*typedef_emxArray_real_T_1743x1743*/
+#endif                                 /*typedef_emxArray_real_T_2323x2323*/
 
-#ifndef struct_emxArray_real_T_962x180
-#define struct_emxArray_real_T_962x180
+#ifndef struct_emxArray_real_T_1282x240
+#define struct_emxArray_real_T_1282x240
 
-struct emxArray_real_T_962x180
+struct emxArray_real_T_1282x240
 {
-  real_T data[173160];
+  real_T data[307680];
   int32_T size[2];
 };
 
-#endif                                 /*struct_emxArray_real_T_962x180*/
+#endif                                 /*struct_emxArray_real_T_1282x240*/
 
-#ifndef typedef_emxArray_real_T_962x180
-#define typedef_emxArray_real_T_962x180
+#ifndef typedef_emxArray_real_T_1282x240
+#define typedef_emxArray_real_T_1282x240
 
-typedef struct emxArray_real_T_962x180 emxArray_real_T_962x180;
+typedef struct emxArray_real_T_1282x240 emxArray_real_T_1282x240;
 
-#endif                                 /*typedef_emxArray_real_T_962x180*/
+#endif                                 /*typedef_emxArray_real_T_1282x240*/
 
-#ifndef struct_emxArray_real_T_1743x962
-#define struct_emxArray_real_T_1743x962
+#ifndef struct_emxArray_real_T_2323x1282
+#define struct_emxArray_real_T_2323x1282
 
-struct emxArray_real_T_1743x962
+struct emxArray_real_T_2323x1282
 {
-  real_T data[1676766];
+  real_T data[2978086];
   int32_T size[2];
 };
 
-#endif                                 /*struct_emxArray_real_T_1743x962*/
+#endif                                 /*struct_emxArray_real_T_2323x1282*/
 
-#ifndef typedef_emxArray_real_T_1743x962
-#define typedef_emxArray_real_T_1743x962
+#ifndef typedef_emxArray_real_T_2323x1282
+#define typedef_emxArray_real_T_2323x1282
 
-typedef struct emxArray_real_T_1743x962 emxArray_real_T_1743x962;
+typedef struct emxArray_real_T_2323x1282 emxArray_real_T_2323x1282;
 
-#endif                                 /*typedef_emxArray_real_T_1743x962*/
+#endif                                 /*typedef_emxArray_real_T_2323x1282*/
 
 #ifndef typedef_d_struct_T
 #define typedef_d_struct_T
 
 typedef struct {
-  emxArray_real_T_1743x962 workspace_double;
-  emxArray_int32_T_1743 workspace_int;
-  emxArray_int32_T_1743 workspace_sort;
+  emxArray_real_T_2323x1282 workspace_double;
+  emxArray_int32_T_2323 workspace_int;
+  emxArray_int32_T_2323 workspace_sort;
 } d_struct_T;
 
 #endif                                 /*typedef_d_struct_T*/
 
-#ifndef struct_emxArray_real_T_962x360
-#define struct_emxArray_real_T_962x360
+#ifndef struct_emxArray_real_T_1282x480
+#define struct_emxArray_real_T_1282x480
 
-struct emxArray_real_T_962x360
+struct emxArray_real_T_1282x480
 {
-  real_T data[346320];
+  real_T data[615360];
   int32_T size[2];
 };
 
-#endif                                 /*struct_emxArray_real_T_962x360*/
+#endif                                 /*struct_emxArray_real_T_1282x480*/
 
-#ifndef typedef_emxArray_real_T_962x360
-#define typedef_emxArray_real_T_962x360
+#ifndef typedef_emxArray_real_T_1282x480
+#define typedef_emxArray_real_T_1282x480
 
-typedef struct emxArray_real_T_962x360 emxArray_real_T_962x360;
+typedef struct emxArray_real_T_1282x480 emxArray_real_T_1282x480;
 
-#endif                                 /*typedef_emxArray_real_T_962x360*/
+#endif                                 /*typedef_emxArray_real_T_1282x480*/
 
-#ifndef struct_emxArray_real_T_360x1
-#define struct_emxArray_real_T_360x1
+#ifndef struct_emxArray_real_T_480x1
+#define struct_emxArray_real_T_480x1
 
-struct emxArray_real_T_360x1
+struct emxArray_real_T_480x1
 {
-  real_T data[360];
+  real_T data[480];
   int32_T size[2];
 };
 
-#endif                                 /*struct_emxArray_real_T_360x1*/
+#endif                                 /*struct_emxArray_real_T_480x1*/
 
-#ifndef typedef_emxArray_real_T_360x1
-#define typedef_emxArray_real_T_360x1
+#ifndef typedef_emxArray_real_T_480x1
+#define typedef_emxArray_real_T_480x1
 
-typedef struct emxArray_real_T_360x1 emxArray_real_T_360x1;
+typedef struct emxArray_real_T_480x1 emxArray_real_T_480x1;
 
-#endif                                 /*typedef_emxArray_real_T_360x1*/
+#endif                                 /*typedef_emxArray_real_T_480x1*/
 
-#ifndef struct_emxArray_int32_T_962
-#define struct_emxArray_int32_T_962
+#ifndef struct_emxArray_int32_T_1282
+#define struct_emxArray_int32_T_1282
 
-struct emxArray_int32_T_962
+struct emxArray_int32_T_1282
 {
-  int32_T data[962];
+  int32_T data[1282];
   int32_T size[1];
 };
 
-#endif                                 /*struct_emxArray_int32_T_962*/
+#endif                                 /*struct_emxArray_int32_T_1282*/
 
-#ifndef typedef_emxArray_int32_T_962
-#define typedef_emxArray_int32_T_962
+#ifndef typedef_emxArray_int32_T_1282
+#define typedef_emxArray_int32_T_1282
 
-typedef struct emxArray_int32_T_962 emxArray_int32_T_962;
+typedef struct emxArray_int32_T_1282 emxArray_int32_T_1282;
 
-#endif                                 /*typedef_emxArray_int32_T_962*/
+#endif                                 /*typedef_emxArray_int32_T_1282*/
 
-#ifndef struct_emxArray_boolean_T_1743
-#define struct_emxArray_boolean_T_1743
+#ifndef struct_emxArray_boolean_T_2323
+#define struct_emxArray_boolean_T_2323
 
-struct emxArray_boolean_T_1743
+struct emxArray_boolean_T_2323
 {
-  boolean_T data[1743];
+  boolean_T data[2323];
   int32_T size[1];
 };
 
-#endif                                 /*struct_emxArray_boolean_T_1743*/
+#endif                                 /*struct_emxArray_boolean_T_2323*/
 
-#ifndef typedef_emxArray_boolean_T_1743
-#define typedef_emxArray_boolean_T_1743
+#ifndef typedef_emxArray_boolean_T_2323
+#define typedef_emxArray_boolean_T_2323
 
-typedef struct emxArray_boolean_T_1743 emxArray_boolean_T_1743;
+typedef struct emxArray_boolean_T_2323 emxArray_boolean_T_2323;
 
-#endif                                 /*typedef_emxArray_boolean_T_1743*/
+#endif                                 /*typedef_emxArray_boolean_T_2323*/
 
 #ifndef typedef_g_struct_T
 #define typedef_g_struct_T
@@ -263,36 +263,36 @@ typedef struct {
   int32_T iNonEq0;
   real_T sqpFval;
   real_T sqpFval_old;
-  real_T xstarsqp[241];
-  real_T xstarsqp_old[241];
-  emxArray_real_T_360 cIneq;
-  emxArray_real_T_360 cIneq_old;
-  real_T cEq[180];
-  real_T cEq_old[180];
-  emxArray_real_T_962 grad;
-  emxArray_real_T_962 grad_old;
+  real_T xstarsqp[321];
+  real_T xstarsqp_old[321];
+  emxArray_real_T_480 cIneq;
+  emxArray_real_T_480 cIneq_old;
+  real_T cEq[240];
+  real_T cEq_old[240];
+  emxArray_real_T_1282 grad;
+  emxArray_real_T_1282 grad_old;
   int32_T FunctionEvaluations;
   int32_T sqpIterations;
   int32_T sqpExitFlag;
-  emxArray_real_T_1743 lambdasqp;
-  emxArray_real_T_1743 lambdasqp_old;
+  emxArray_real_T_2323 lambdasqp;
+  emxArray_real_T_2323 lambdasqp_old;
   real_T steplength;
-  emxArray_real_T_962 delta_x;
-  emxArray_real_T_962 socDirection;
-  emxArray_real_T_1743 lambda_old;
-  emxArray_int32_T_1743 workingset_old;
-  emxArray_real_T_1743x1743 JacCineqTrans_old;
-  emxArray_real_T_962x180 JacCeqTrans_old;
-  emxArray_real_T_962 gradLag;
-  emxArray_real_T_962 delta_gradLag;
-  emxArray_real_T_962 xstar;
+  emxArray_real_T_1282 delta_x;
+  emxArray_real_T_1282 socDirection;
+  emxArray_real_T_2323 lambda_old;
+  emxArray_int32_T_2323 workingset_old;
+  emxArray_real_T_2323x2323 JacCineqTrans_old;
+  emxArray_real_T_1282x240 JacCeqTrans_old;
+  emxArray_real_T_1282 gradLag;
+  emxArray_real_T_1282 delta_gradLag;
+  emxArray_real_T_1282 xstar;
   real_T fstar;
   real_T firstorderopt;
-  emxArray_real_T_1743 lambda;
+  emxArray_real_T_2323 lambda;
   int32_T state;
   real_T maxConstr;
   int32_T iterations;
-  emxArray_real_T_962 searchDir;
+  emxArray_real_T_1282 searchDir;
 } g_struct_T;
 
 #endif                                 /*typedef_g_struct_T*/
@@ -308,21 +308,21 @@ typedef struct {
   int32_T nVarOrig;
   int32_T nVarMax;
   int32_T ldA;
-  emxArray_real_T_962x360 Aineq;
-  emxArray_real_T_360x1 bineq;
-  emxArray_real_T_962x180 Aeq;
-  real_T beq[180];
-  emxArray_real_T_962 lb;
-  emxArray_real_T_962 ub;
-  emxArray_int32_T_962 indexLB;
-  emxArray_int32_T_962 indexUB;
-  emxArray_int32_T_962 indexFixed;
+  emxArray_real_T_1282x480 Aineq;
+  emxArray_real_T_480x1 bineq;
+  emxArray_real_T_1282x240 Aeq;
+  real_T beq[240];
+  emxArray_real_T_1282 lb;
+  emxArray_real_T_1282 ub;
+  emxArray_int32_T_1282 indexLB;
+  emxArray_int32_T_1282 indexUB;
+  emxArray_int32_T_1282 indexFixed;
   int32_T mEqRemoved;
-  int32_T indexEqRemoved[180];
-  emxArray_real_T_1743x1743 ATwset;
-  emxArray_real_T_1743 bwset;
+  int32_T indexEqRemoved[240];
+  emxArray_real_T_2323x2323 ATwset;
+  emxArray_real_T_2323 bwset;
   int32_T nActiveConstr;
-  emxArray_real_T_1743 maxConstrWorkspace;
+  emxArray_real_T_2323 maxConstrWorkspace;
   int32_T sizes[5];
   int32_T sizesNormal[5];
   int32_T sizesPhaseOne[5];
@@ -333,9 +333,9 @@ typedef struct {
   int32_T isActiveIdxPhaseOne[6];
   int32_T isActiveIdxRegularized[6];
   int32_T isActiveIdxRegPhaseOne[6];
-  emxArray_boolean_T_1743 isActiveConstr;
-  emxArray_int32_T_1743 Wid;
-  emxArray_int32_T_1743 Wlocalidx;
+  emxArray_boolean_T_2323 isActiveConstr;
+  emxArray_int32_T_2323 Wid;
+  emxArray_int32_T_2323 Wlocalidx;
   int32_T nWConstr[5];
   int32_T probType;
   real_T SLACK0;
@@ -348,12 +348,12 @@ typedef struct {
 
 typedef struct {
   int32_T ldq;
-  emxArray_real_T_1743x1743 QR;
-  emxArray_real_T_1743x1743 Q;
-  emxArray_int32_T_1743 jpvt;
+  emxArray_real_T_2323x2323 QR;
+  emxArray_real_T_2323x2323 Q;
+  emxArray_int32_T_2323 jpvt;
   int32_T mrows;
   int32_T ncols;
-  emxArray_real_T_1743 tau;
+  emxArray_real_T_2323 tau;
   int32_T minRowCol;
   boolean_T usedPivoting;
 } l_struct_T;
@@ -364,7 +364,7 @@ typedef struct {
 #define typedef_m_struct_T
 
 typedef struct {
-  emxArray_real_T_1743x1743 FMat;
+  emxArray_real_T_2323x2323 FMat;
   int32_T ldm;
   int32_T ndims;
   int32_T info;
@@ -379,53 +379,59 @@ typedef struct {
   union
   {
     struct {
-      real_T tmp_data[14400];
-      real_T y_data[14400];
-      real_T varargin_2_data[7200];
+      real_T tmp_data[25600];
+      real_T y_data[25600];
+      real_T varargin_2_data[12800];
+      int8_T Jx[38400];
     } f0;
 
     struct {
-      real_T Jx[32400];
-      real_T Jmv[10800];
-      real_T y[10800];
+      real_T Jx[57600];
+      real_T Jmv[19200];
+      real_T y[19200];
     } f1;
 
     struct {
-      real_T workspace_data[1676766];
+      real_T workspace_data[2978086];
     } f2;
 
     struct {
-      real_T y_data[1676766];
+      real_T y_data[2978086];
     } f3;
 
     struct {
-      boolean_T tmp_data[57840];
+      boolean_T tmp_data[102720];
     } f4;
+
+    struct {
+      real_T Auf_data[25600];
+      real_T y_data[25600];
+    } f5;
   } u1;
 
   union
   {
     struct {
-      real_T Jc_data[28920];
-    } f5;
+      real_T Jc_data[51360];
+    } f6;
 
     struct {
-      real_T Jceq[43380];
-      real_T Jc_data[28920];
-    } f6;
+      real_T Jceq[77040];
+      real_T Jc_data[51360];
+    } f7;
   } u2;
 
   union
   {
     struct {
-      real_T varargout_4[43380];
-      real_T varargout_3_data[28920];
-    } f7;
+      real_T varargout_4[77040];
+      real_T varargout_3_data[51360];
+    } f8;
 
     struct {
-      real_T varargout_4[43380];
-      real_T varargout_3_data[28920];
-    } f8;
+      real_T varargout_4[77040];
+      real_T varargout_3_data[51360];
+    } f9;
   } u3;
 
   struct {
@@ -434,14 +440,12 @@ typedef struct {
     g_struct_T TrialState;
     m_struct_T b_obj;
     d_struct_T memspace;
-    real_T unusedExpr[58081];
-  } f9;
+    real_T Hessian[103041];
+  } f10;
 
   struct {
-    real_T A_data[57840];
-    real_T Auf_data[14400];
-    real_T y_data[14400];
-  } f10;
+    real_T A_data[102720];
+  } f11;
 } c_nlmpcmoveCodeGenerationStackD;
 
 #endif                                 /*typedef_c_nlmpcmoveCodeGenerationStackD*/

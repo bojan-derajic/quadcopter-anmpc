@@ -8,9 +8,9 @@ nu = 4;
 
 NMPC = nlmpc(nx, ny, nu);
 
-Ts = 0.2;
-Np = 15;
-Nc = 15;
+Ts = 0.1;
+Np = 20;
+Nc = 20;
 
 NMPC.Ts = Ts;
 NMPC.PredictionHorizon = Np;
@@ -36,10 +36,10 @@ NMPC.Weights.ManipulatedVariables = [1, 1, 1, 1];
 
 NMPC.Weights.ManipulatedVariablesRate = [0, 0, 0, 0];
 
-NMPC.Weights.OutputVariables = [1, 1, 2, 5];
+NMPC.Weights.OutputVariables = [0.8, 0.8, 4, 0.5];
 
-% NMPC.Optimization.SolverOptions.MaxIter = 100;
-% NMPC.Optimization.UseSuboptimalSolution = true;
+NMPC.Optimization.UseSuboptimalSolution = true;
+NMPC.Optimization.SolverOptions.MaxIterations = 100;
 
 x0 = zeros(12, 1);
 u0 = zeros(4, 1);
@@ -47,7 +47,7 @@ u0 = zeros(4, 1);
 validateFcns(NMPC, x0, u0);
 
 [coreData, onlineData] = getCodeGenerationData(NMPC, x0, u0, {});
-% onlineData.ref = zeros(Np, ny);
+onlineData.ref = zeros(Np, ny);
 
 func = 'nlmpcmoveCodeGeneration';
 func_output = 'nmpc_move';
@@ -56,7 +56,7 @@ Cfg = coder.config('mex');
 Cfg.DynamicMemoryAllocation = 'off';
 Cfg.ConstantInputs = 'IgnoreValues';
 
-% codegen('-config', Cfg, func, '-o', func_output, '-args',...
-%             {coder.Constant(coreData), x0, u0, onlineData});
+codegen('-config', Cfg, func, '-o', func_output, '-args',...
+            {coder.Constant(coreData), x0, u0, onlineData});
 
 % mexFcn = buildMEX(NMPC, 'NMPC_mex', coreData, onlineData);

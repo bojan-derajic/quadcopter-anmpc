@@ -18,7 +18,7 @@ static emlrtRSInfo ld_emlrtRSI = { 1,  /* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+fminconsqp\\+stopping\\computeDualFeasError.p"/* pathName */
 };
 
-static emlrtBCInfo r_emlrtBCI = { -1,  /* iFirst */
+static emlrtBCInfo jb_emlrtBCI = { -1, /* iFirst */
   -1,                                  /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
@@ -85,7 +85,8 @@ void computeDualFeasError(const emlrtStack *sp, int32_T nVar, const real_T
   exitg1 = false;
   while ((!exitg1) && (idx <= nVar - 1)) {
     if ((idx + 1 < 1) || (idx + 1 > gradLag_size[0])) {
-      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, gradLag_size[0], &r_emlrtBCI, sp);
+      emlrtDynamicBoundsCheckR2012b(idx + 1, 1, gradLag_size[0], &jb_emlrtBCI,
+        sp);
     }
 
     *gradOK = ((!muDoubleScalarIsInf(gradLag_data[idx])) &&
@@ -94,7 +95,7 @@ void computeDualFeasError(const emlrtStack *sp, int32_T nVar, const real_T
       exitg1 = true;
     } else {
       if ((idx + 1 < 1) || (idx + 1 > gradLag_size[0])) {
-        emlrtDynamicBoundsCheckR2012b(idx + 1, 1, gradLag_size[0], &r_emlrtBCI,
+        emlrtDynamicBoundsCheckR2012b(idx + 1, 1, gradLag_size[0], &jb_emlrtBCI,
           sp);
       }
 

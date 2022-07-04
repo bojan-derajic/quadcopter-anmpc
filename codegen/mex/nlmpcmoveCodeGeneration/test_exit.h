@@ -24,11 +24,11 @@ void b_test_exit(const emlrtStack *sp, struct_T *Flags, d_struct_T *memspace,
                  fscales_lineq_constraint_size[1], const int32_T
                  fscales_cineq_constraint_size[1], j_struct_T *WorkingSet,
                  g_struct_T *TrialState, l_struct_T *QRManager, const real_T lb
-                 [241], const real_T ub[241]);
+                 [321], const real_T ub[321]);
 void test_exit(const emlrtStack *sp, k_struct_T *MeritFunction, const int32_T
                fscales_lineq_constraint_size[1], const int32_T
                fscales_cineq_constraint_size[1], const j_struct_T *WorkingSet,
-               g_struct_T *TrialState, const real_T lb[241], const real_T ub[241],
+               g_struct_T *TrialState, const real_T lb[321], const real_T ub[321],
                boolean_T *Flags_gradOK, boolean_T *Flags_fevalOK, boolean_T
                *Flags_done, boolean_T *Flags_stepAccepted, boolean_T
                *Flags_failedLineSearch, int32_T *Flags_stepType);

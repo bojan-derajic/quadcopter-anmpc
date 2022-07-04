@@ -31,7 +31,7 @@ static emlrtBCInfo jd_emlrtBCI = { -1, /* iFirst */
 
 /* Function Definitions */
 void linearForm_(const emlrtStack *sp, boolean_T obj_hasLinear, int32_T obj_nvar,
-                 real_T workspace_data[], const real_T H[58081], const real_T
+                 real_T workspace_data[], const real_T H[103041], const real_T
                  f_data[], const int32_T f_size[1], const real_T x_data[])
 {
   ptrdiff_t incx_t;

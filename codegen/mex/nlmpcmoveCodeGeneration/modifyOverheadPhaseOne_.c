@@ -63,7 +63,7 @@ void modifyOverheadPhaseOne_(const emlrtStack *sp, j_struct_T *obj)
   }
 
   st.site = &dd_emlrtRSI;
-  for (idx = 0; idx < 180; idx++) {
+  for (idx = 0; idx < 240; idx++) {
     i = obj->Aeq.size[0];
     if ((obj->nVar < 1) || (obj->nVar > i)) {
       emlrtDynamicBoundsCheckR2012b(obj->nVar, 1, i, &ub_emlrtBCI, sp);

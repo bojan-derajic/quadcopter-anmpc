@@ -69,7 +69,7 @@ void xgeqp3(const emlrtStack *sp, real_T A_data[], const int32_T A_size[2],
   static const char_T fname[14] = { 'L', 'A', 'P', 'A', 'C', 'K', 'E', '_', 'd',
     'g', 'e', 'q', 'p', '3' };
 
-  ptrdiff_t jpvt_t_data[1743];
+  ptrdiff_t jpvt_t_data[2323];
   ptrdiff_t info_t;
   emlrtStack b_st;
   emlrtStack c_st;

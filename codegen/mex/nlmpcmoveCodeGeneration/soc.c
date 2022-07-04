@@ -39,7 +39,7 @@ static emlrtRSInfo jh_emlrtRSI = { 1,  /* lineNo */
 };
 
 static emlrtBCInfo ee_emlrtBCI = { 1,  /* iFirst */
-  180,                                 /* iLast */
+  240,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -80,7 +80,7 @@ static emlrtBCInfo he_emlrtBCI = { -1, /* iFirst */
 
 /* Function Definitions */
 boolean_T soc(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
-              real_T Hessian[58081], const real_T grad_data[], const int32_T
+              real_T Hessian[103041], const real_T grad_data[], const int32_T
               grad_size[1], g_struct_T *TrialState, d_struct_T *memspace,
               j_struct_T *WorkingSet, l_struct_T *QRManager, m_struct_T
               *CholManager, i_struct_T *QPObjective, const c_struct_T *qpoptions)
@@ -161,7 +161,7 @@ boolean_T soc(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   mIneq = WorkingSet->sizes[2];
   idxIneqOffset = WorkingSet->isActiveIdx[2];
   b_st.site = &ih_emlrtRSI;
-  for (idx = 0; idx < 180; idx++) {
+  for (idx = 0; idx < 240; idx++) {
     WorkingSet->beq[idx] = -TrialState->cEq[idx];
   }
 
@@ -170,7 +170,7 @@ boolean_T soc(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
           TrialState->searchDir.data, WorkingSet->beq);
   b_st.site = &ih_emlrtRSI;
   c_st.site = &oc_emlrtRSI;
-  for (idx_Aineq = 0; idx_Aineq < 180; idx_Aineq++) {
+  for (idx_Aineq = 0; idx_Aineq < 240; idx_Aineq++) {
     WorkingSet->bwset.data[WorkingSet->sizes[0] + idx_Aineq] = WorkingSet->
       beq[idx_Aineq];
   }
@@ -272,14 +272,14 @@ boolean_T soc(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
            &c_qpoptions);
   exitg1 = false;
   while ((!exitg1) && (WorkingSet->mEqRemoved > 0)) {
-    if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 180)) {
-      emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 180, &ee_emlrtBCI,
+    if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 240)) {
+      emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 240, &ee_emlrtBCI,
         sp);
     }
 
     if (WorkingSet->indexEqRemoved[WorkingSet->mEqRemoved - 1] >= 1) {
-      if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 180)) {
-        emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 180,
+      if ((WorkingSet->mEqRemoved < 1) || (WorkingSet->mEqRemoved > 240)) {
+        emlrtDynamicBoundsCheckR2012b(WorkingSet->mEqRemoved, 1, 240,
           &ee_emlrtBCI, sp);
       }
 
@@ -331,13 +331,13 @@ boolean_T soc(c_nlmpcmoveCodeGenerationStackD *SD, const emlrtStack *sp, const
   mIneq = WorkingSet->sizes[2] + 1;
   idx_upper = WorkingSet->sizes[3];
   b_st.site = &jh_emlrtRSI;
-  for (idx = 0; idx < 180; idx++) {
+  for (idx = 0; idx < 240; idx++) {
     WorkingSet->beq[idx] = -TrialState->cEq[idx];
   }
 
   b_st.site = &jh_emlrtRSI;
   c_st.site = &oc_emlrtRSI;
-  for (idx_Aineq = 0; idx_Aineq < 180; idx_Aineq++) {
+  for (idx_Aineq = 0; idx_Aineq < 240; idx_Aineq++) {
     WorkingSet->bwset.data[WorkingSet->sizes[0] + idx_Aineq] = WorkingSet->
       beq[idx_Aineq];
   }

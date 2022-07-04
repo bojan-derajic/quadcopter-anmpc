@@ -19,8 +19,8 @@
 
 /* Function Declarations */
 void znlmpc_generateRuntimeData(const emlrtStack *sp, const real_T x[12], const
-  real_T lastMV[4], const real_T ref0[4], const real_T MVTarget0[4], const
-  real_T X0[180], const real_T MV0[60], real_T Slack0, f_struct_T *runtimedata,
-  e_struct_T *userdata, real_T z0[241]);
+  real_T lastMV[4], const real_T ref0[80], const real_T MVTarget0[4], const
+  real_T X0[240], const real_T MV0[80], real_T Slack0, f_struct_T *runtimedata,
+  e_struct_T *userdata, real_T z0[321]);
 
 /* End of code generation (znlmpc_generateRuntimeData.h) */

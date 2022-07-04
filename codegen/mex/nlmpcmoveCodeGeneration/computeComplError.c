@@ -18,7 +18,7 @@ static emlrtRSInfo md_emlrtRSI = { 1,  /* lineNo */
   "C:\\Program Files\\Polyspace\\R2020b\\toolbox\\optim\\+optim\\+coder\\+fminconsqp\\+stopping\\computeComplError.p"/* pathName */
 };
 
-static emlrtBCInfo s_emlrtBCI = { -1,  /* iFirst */
+static emlrtBCInfo kb_emlrtBCI = { -1, /* iFirst */
   -1,                                  /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
@@ -28,8 +28,8 @@ static emlrtBCInfo s_emlrtBCI = { -1,  /* iFirst */
   0                                    /* checkKind */
 };
 
-static emlrtBCInfo t_emlrtBCI = { 1,   /* iFirst */
-  241,                                 /* iLast */
+static emlrtBCInfo lb_emlrtBCI = { 1,  /* iFirst */
+  321,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -41,10 +41,10 @@ static emlrtBCInfo t_emlrtBCI = { 1,   /* iFirst */
 /* Function Definitions */
 real_T computeComplError(const emlrtStack *sp, const int32_T
   fscales_lineq_constraint_size[1], const int32_T fscales_cineq_constraint_size
-  [1], const real_T xCurrent[241], int32_T mIneq, const real_T cIneq_data[],
+  [1], const real_T xCurrent[321], int32_T mIneq, const real_T cIneq_data[],
   const int32_T cIneq_size[1], const int32_T finiteLB_data[], const int32_T
-  finiteLB_size[1], int32_T mLB, const real_T lb[241], const int32_T
-  finiteUB_data[], int32_T mUB, const real_T ub[241], const real_T lambda_data[],
+  finiteLB_size[1], int32_T mLB, const real_T lb[321], const int32_T
+  finiteUB_data[], int32_T mUB, const real_T ub[321], const real_T lambda_data[],
   const int32_T lambda_size[1], int32_T iL0)
 {
   emlrtStack b_st;
@@ -69,11 +69,12 @@ real_T computeComplError(const emlrtStack *sp, const int32_T
     for (idx = 0; idx < mLinIneq; idx++) {
       if ((idx + 1 < 1) || (idx + 1 > fscales_lineq_constraint_size[0])) {
         emlrtDynamicBoundsCheckR2012b(idx + 1, 1, fscales_lineq_constraint_size
-          [0], &s_emlrtBCI, sp);
+          [0], &kb_emlrtBCI, sp);
       }
 
       if ((idx + 1 < 1) || (idx + 1 > cIneq_size[0])) {
-        emlrtDynamicBoundsCheckR2012b(idx + 1, 1, cIneq_size[0], &s_emlrtBCI, sp);
+        emlrtDynamicBoundsCheckR2012b(idx + 1, 1, cIneq_size[0], &kb_emlrtBCI,
+          sp);
       }
 
       lbDelta = lambda_data[(iL0 + idx) - 1];
@@ -87,17 +88,17 @@ real_T computeComplError(const emlrtStack *sp, const int32_T
     for (idx = 0; idx < mNonlinIneq; idx++) {
       if ((idx + 1 < 1) || (idx + 1 > fscales_cineq_constraint_size[0])) {
         emlrtDynamicBoundsCheckR2012b(idx + 1, 1, fscales_cineq_constraint_size
-          [0], &s_emlrtBCI, sp);
+          [0], &kb_emlrtBCI, sp);
       }
 
       i = (mLinIneq + idx) + 1;
       if ((i < 1) || (i > cIneq_size[0])) {
-        emlrtDynamicBoundsCheckR2012b(i, 1, cIneq_size[0], &s_emlrtBCI, sp);
+        emlrtDynamicBoundsCheckR2012b(i, 1, cIneq_size[0], &kb_emlrtBCI, sp);
       }
 
       lbDelta = lambda_data[(iLineq0 + idx) + 1];
       if ((i < 1) || (i > cIneq_size[0])) {
-        emlrtDynamicBoundsCheckR2012b(i, 1, cIneq_size[0], &s_emlrtBCI, sp);
+        emlrtDynamicBoundsCheckR2012b(i, 1, cIneq_size[0], &kb_emlrtBCI, sp);
       }
 
       nlpComplError = muDoubleScalarMax(nlpComplError, muDoubleScalarMin
@@ -115,19 +116,19 @@ real_T computeComplError(const emlrtStack *sp, const int32_T
 
     for (idx = 0; idx < mLB; idx++) {
       if ((idx + 1 < 1) || (idx + 1 > finiteLB_size[0])) {
-        emlrtDynamicBoundsCheckR2012b(idx + 1, 1, finiteLB_size[0], &s_emlrtBCI,
+        emlrtDynamicBoundsCheckR2012b(idx + 1, 1, finiteLB_size[0], &kb_emlrtBCI,
           sp);
       }
 
-      if ((finiteLB_data[idx] < 1) || (finiteLB_data[idx] > 241)) {
-        emlrtDynamicBoundsCheckR2012b(finiteLB_data[idx], 1, 241, &t_emlrtBCI,
+      if ((finiteLB_data[idx] < 1) || (finiteLB_data[idx] > 321)) {
+        emlrtDynamicBoundsCheckR2012b(finiteLB_data[idx], 1, 321, &lb_emlrtBCI,
           sp);
       }
 
       lbDelta = xCurrent[finiteLB_data[idx] - 1] - lb[finiteLB_data[idx] - 1];
       i = mLinIneq + idx;
       if ((i < 1) || (i > lambda_size[0])) {
-        emlrtDynamicBoundsCheckR2012b(i, 1, lambda_size[0], &s_emlrtBCI, sp);
+        emlrtDynamicBoundsCheckR2012b(i, 1, lambda_size[0], &kb_emlrtBCI, sp);
       }
 
       lbLambda = lambda_data[i - 1];
@@ -146,7 +147,7 @@ real_T computeComplError(const emlrtStack *sp, const int32_T
       lbDelta = ub[finiteUB_data[idx] - 1] - xCurrent[finiteUB_data[idx] - 1];
       i = mNonlinIneq + idx;
       if ((i < 1) || (i > lambda_size[0])) {
-        emlrtDynamicBoundsCheckR2012b(i, 1, lambda_size[0], &s_emlrtBCI, sp);
+        emlrtDynamicBoundsCheckR2012b(i, 1, lambda_size[0], &kb_emlrtBCI, sp);
       }
 
       lbLambda = lambda_data[i - 1];

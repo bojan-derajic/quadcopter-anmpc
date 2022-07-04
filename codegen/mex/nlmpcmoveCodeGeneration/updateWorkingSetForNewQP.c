@@ -30,7 +30,7 @@ static emlrtBCInfo rb_emlrtBCI = { -1, /* iFirst */
 };
 
 static emlrtBCInfo bc_emlrtBCI = { 1,  /* iFirst */
-  241,                                 /* iLast */
+  321,                                 /* iLast */
   1,                                   /* lineNo */
   1,                                   /* colNo */
   "",                                  /* aName */
@@ -40,10 +40,10 @@ static emlrtBCInfo bc_emlrtBCI = { 1,  /* iFirst */
 };
 
 /* Function Definitions */
-void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
+void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[321],
   j_struct_T *WorkingSet, int32_T mIneq, int32_T mNonlinIneq, const real_T
-  cIneq_data[], const int32_T cIneq_size[1], const real_T cEq[180], int32_T mLB,
-  const real_T lb[241], int32_T mUB, const real_T ub[241], int32_T mFixed)
+  cIneq_data[], const int32_T cIneq_size[1], const real_T cEq[240], int32_T mLB,
+  const real_T lb[321], int32_T mUB, const real_T ub[321], int32_T mFixed)
 {
   emlrtStack b_st;
   emlrtStack st;
@@ -62,7 +62,7 @@ void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
   b_st.tls = st.tls;
   nVar = WorkingSet->nVar;
   st.site = &ad_emlrtRSI;
-  for (idx = 0; idx < 180; idx++) {
+  for (idx = 0; idx < 240; idx++) {
     WorkingSet->beq[idx] = -cEq[idx];
     WorkingSet->bwset.data[mFixed + idx] = WorkingSet->beq[idx];
   }
@@ -71,9 +71,9 @@ void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
   iEq0 = 1;
   st.site = &ad_emlrtRSI;
   i = nVar - 1;
-  for (idx = 0; idx < 180; idx++) {
+  for (idx = 0; idx < 240; idx++) {
     for (b_i = 0; b_i <= i; b_i++) {
-      idx_local_tmp = WorkingSet->Aeq.size[0] * 180;
+      idx_local_tmp = WorkingSet->Aeq.size[0] * 240;
       i1 = iEq0 + b_i;
       if ((i1 < 1) || (i1 > idx_local_tmp)) {
         emlrtDynamicBoundsCheckR2012b(i1, 1, idx_local_tmp, &rb_emlrtBCI, sp);
@@ -124,14 +124,14 @@ void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
     }
 
     if ((WorkingSet->indexLB.data[idx] < 1) || (WorkingSet->indexLB.data[idx] >
-         241)) {
-      emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 241,
+         321)) {
+      emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 321,
         &bc_emlrtBCI, sp);
     }
 
     if ((WorkingSet->indexLB.data[idx] < 1) || (WorkingSet->indexLB.data[idx] >
-         241)) {
-      emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 241,
+         321)) {
+      emlrtDynamicBoundsCheckR2012b(WorkingSet->indexLB.data[idx], 1, 321,
         &bc_emlrtBCI, sp);
     }
 
@@ -171,11 +171,11 @@ void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
       xk[WorkingSet->indexFixed.data[idx] - 1];
   }
 
-  if (WorkingSet->nActiveConstr > mFixed + 180) {
-    iw0 = mFixed + 181;
+  if (WorkingSet->nActiveConstr > mFixed + 240) {
+    iw0 = mFixed + 241;
     iEq0 = WorkingSet->nActiveConstr;
     st.site = &ad_emlrtRSI;
-    if ((mFixed + 181 <= WorkingSet->nActiveConstr) &&
+    if ((mFixed + 241 <= WorkingSet->nActiveConstr) &&
         (WorkingSet->nActiveConstr > 2147483646)) {
       b_st.site = &db_emlrtRSI;
       check_forloop_overflow_error(&b_st);
@@ -252,10 +252,10 @@ void b_updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
   }
 }
 
-void updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
+void updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[321],
   j_struct_T *WorkingSet, int32_T mIneq, const real_T cIneq_data[], const
-  int32_T cIneq_size[1], const real_T cEq[180], int32_T mLB, const real_T lb[241],
-  int32_T mUB, const real_T ub[241], int32_T mFixed)
+  int32_T cIneq_size[1], const real_T cEq[240], int32_T mLB, const real_T lb[321],
+  int32_T mUB, const real_T ub[321], int32_T mFixed)
 {
   emlrtStack b_st;
   emlrtStack st;
@@ -270,7 +270,7 @@ void updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
   st.tls = sp->tls;
   b_st.prev = &st;
   b_st.tls = st.tls;
-  for (idx = 0; idx < 180; idx++) {
+  for (idx = 0; idx < 240; idx++) {
     WorkingSet->beq[idx] = -cEq[idx];
     WorkingSet->bwset.data[mFixed + idx] = WorkingSet->beq[idx];
   }
@@ -278,9 +278,9 @@ void updateWorkingSetForNewQP(const emlrtStack *sp, const real_T xk[241],
   iw0 = WorkingSet->ldA * mFixed + 1;
   iEq0 = 1;
   st.site = &ad_emlrtRSI;
-  for (idx = 0; idx < 180; idx++) {
-    for (i = 0; i < 241; i++) {
-      b_i = WorkingSet->Aeq.size[0] * 180;
+  for (idx = 0; idx < 240; idx++) {
+    for (i = 0; i < 321; i++) {
+      b_i = WorkingSet->Aeq.size[0] * 240;
       i1 = iEq0 + i;
       if ((i1 < 1) || (i1 > b_i)) {
         emlrtDynamicBoundsCheckR2012b(i1, 1, b_i, &rb_emlrtBCI, sp);
