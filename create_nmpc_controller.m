@@ -32,11 +32,11 @@ NMPC.States(9).Max = pi;
 
 NMPC.OutputVariables(3).Min = 0;
 
-NMPC.Weights.ManipulatedVariables = [1, 1, 1, 1];
+NMPC.Weights.ManipulatedVariables = sqrt([1, 1, 1, 1]);
 
-NMPC.Weights.ManipulatedVariablesRate = [0, 0, 0, 0];
+NMPC.Weights.ManipulatedVariablesRate = sqrt([0, 0, 0, 0]);
 
-NMPC.Weights.OutputVariables = [1, 1, 3, 5];
+NMPC.Weights.OutputVariables = sqrt([8, 8, 10, 12]);
 
 NMPC.Optimization.UseSuboptimalSolution = true;
 NMPC.Optimization.SolverOptions.MaxIterations = 200;
@@ -56,7 +56,7 @@ Cfg = coder.config('mex');
 Cfg.DynamicMemoryAllocation = 'off';
 Cfg.ConstantInputs = 'IgnoreValues';
 
-codegen('-config', Cfg, func, '-o', func_output, '-args',...
-            {coder.Constant(coreData), x0, u0, onlineData});
+% codegen('-config', Cfg, func, '-o', func_output, '-args',...
+%             {coder.Constant(coreData), x0, u0, onlineData});
 
 % mexFcn = buildMEX(NMPC, 'NMPC_mex', coreData, onlineData);

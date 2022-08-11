@@ -2,14 +2,15 @@
 clear; close all; clc;
 
 create_nmpc_controller;
-%%
+
+% quadcopter_nmpc
+
 clc
 T = 30;
 dt = 0.001;
-Ta = 0.005;
+Ta = 0.002;
 
 X = zeros(T/Ta+1, nx);
-UT = zeros(T/Ta+1, nu);
 Xr = zeros(T/Ta+1, nx);
 U = zeros(T/Ta, nu);
 U_nmpc = zeros(T/Ta, nu);
@@ -28,20 +29,20 @@ onlineData.MV0 = repmat(u0', Nc, 1);
 W0 = [zeros(13, 4); eye(4, 4); -eye(4, 4)];
 Wf0 = [zeros(13, 4); eye(4, 4); -eye(4, 4)];
 
-gamma = 0.05;
-gamma_f = 50;
-ksi = 1000;
+gamma = 5;
+gamma_f = 20;
+xi = 10;
 
 Ap = -eye(3);
 Av = -eye(3);
 Aeta = -eye(3);
 Aomega = -eye(3);
 
-Ae = 0.02*blkdiag(Ap, Av, Aeta, Aomega);
+Ae = 1*blkdiag(Ap, Av, Aeta, Aomega);
 
-Q = 0.1*eye(12);
+Qe = 0.2*eye(12);
 
-P = lyap(Ae, Q);
+P = lyap(Ae, Qe);
 
 k = 1;
 X(k, :) = x0;
@@ -50,7 +51,7 @@ u_nmpc = u0;
 W_data(:, :, k) = W0;
 Wf_data(:, :, k) = Wf0;
 
-REF = ref_traj('lin', T + Np*Ta, Ta);
+REF = ref_traj('comb', T + Np*Ta, Ta);
 
 hbar = waitbar(0,'Simulation Progress');
 tic
@@ -65,7 +66,6 @@ for i = 1:T/Ts
     for j = 1:Ts/Ta
         
         x = X(k, :);
-        uT = UT(k, :);
         xr = Xr(k, :);
         e = x - xr;
         
@@ -101,13 +101,17 @@ for i = 1:T/Ts
         
         W = W_data(:, :, k);
         Wf = Wf_data(:, :, k);
-        Wd = gamma*(sigma*e*P'*B - ksi*(W - Wf));
-        Wfd = gamma_f*(W - Wf);
         
-        W = W + Ta*Wd;
+        Wfd = gamma_f*(W - Wf);
         Wf = Wf + Ta*Wfd;
         
+        Wd = gamma*(sigma*e*P'*B - xi*(W - Wf));
+        W = W + Ta*Wd;
+
         u = -W'*sigma
+        
+        u(u>8.5) = 8.5;
+        u(u<0) = 0;
         
         [t, x] = ode45(@(t, x) quadcopter_model(x, u, (k-1)*Ta), 0:dt:Ta, x);
     
@@ -127,4 +131,6 @@ end
 toc
 close(hbar);
 
-plot_trajectory;
+% fprintf('Ju: %f\n', mean((diff(U)).^2, 'all'));
+plot_traj_anmpc;
+% plot_trajectory;
